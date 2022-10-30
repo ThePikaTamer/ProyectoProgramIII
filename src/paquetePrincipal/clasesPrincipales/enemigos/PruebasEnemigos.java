@@ -1,4 +1,4 @@
-package clasesPrincipales.enemigos;
+package paquetePrincipal.clasesPrincipales.enemigos;
 
 import javax.swing.*;
 import java.awt.*;

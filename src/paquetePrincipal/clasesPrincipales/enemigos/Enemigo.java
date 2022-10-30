@@ -1,26 +1,28 @@
-package clasesPrincipales.enemigos;
+package paquetePrincipal.clasesPrincipales.enemigos;
 
-public abstract class Enemigo{
+import paquetePrincipal.Objeto;
+
+public abstract class Enemigo extends paquetePrincipal.Objeto {
 	
-	protected double posX;
-	protected double posY;
+
 	
 	protected double anchuraEnemigo;
 	protected double alturaEnemigo;
 	
 	protected double vida;
 	protected double danyo;
-	protected double velMovimiento;
+
 //	protected String imagen; //Ruta de la imagen de la entidad
 	
 	//CONSTRUCTORES//
-	public Enemigo(double vida, double danyo, double velMovimiento, double anchuraEnemigo,double alturaEnemigo){
+	public Enemigo(double vida, double danyo, double velX, double velY, double anchuraEnemigo,double alturaEnemigo, String image){
 		this.vida = vida;
 		this.danyo = danyo;
-		this.velMovimiento = velMovimiento;
+		this.velX = velX;
+		this.velY = velY;
 		this.anchuraEnemigo = anchuraEnemigo;
 		this.alturaEnemigo = alturaEnemigo;
-//		this.imagen = imagen;
+		this.image = image;
 		
 		
 	}

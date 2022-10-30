@@ -1,3 +1,4 @@
+package paquetePrincipal;
 
 abstract public class NaveBase extends Objeto// implements Animable
 {
@@ -6,7 +7,7 @@ abstract public class NaveBase extends Objeto// implements Animable
 	protected double velocidadMovimiento;
 	protected double velocidadRotacion;
 	protected String IMG;
-	//protected category jugador; -> en category estará pl1 & pl2 depende de el que tenga usará una tecla u otra
+	//protected category jugador; -> en category estarï¿½ pl1 & pl2 depende de el que tenga usarï¿½ una tecla u otra
 	//protected powerUp habilidad;
 	//protected 
 	

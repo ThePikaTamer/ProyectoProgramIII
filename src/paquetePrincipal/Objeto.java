@@ -1,5 +1,6 @@
+package paquetePrincipal;
 
-abstract class Objeto 
+public abstract class Objeto 
 {
 	protected static String image;
 	protected double velX;
