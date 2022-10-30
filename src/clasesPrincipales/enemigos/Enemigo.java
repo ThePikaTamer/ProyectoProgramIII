@@ -1,6 +1,6 @@
 package clasesPrincipales.enemigos;
 
-public abstract class Enemigo {
+public abstract class Enemigo{
 	
 	protected double posX;
 	protected double posY;
