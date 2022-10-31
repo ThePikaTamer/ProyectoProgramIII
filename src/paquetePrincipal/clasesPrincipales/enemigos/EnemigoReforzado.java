@@ -8,6 +8,7 @@ public class EnemigoReforzado extends Enemigo {
 		
 	}
 
+
 	
 	
 	
