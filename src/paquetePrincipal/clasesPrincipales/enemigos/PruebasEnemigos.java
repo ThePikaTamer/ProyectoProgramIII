@@ -1,6 +1,9 @@
 package paquetePrincipal.clasesPrincipales.enemigos;
 
 import javax.swing.*;
+
+import paquetePrincipal.ventanas.VentanaJuego;
+
 import java.awt.*;
 
 public class PruebasEnemigos {
@@ -14,9 +17,13 @@ public class PruebasEnemigos {
 		JPanel panel = new JPanel();
 		ventanaPruebas.add(panel);
 		
+		new VentanaJuego();
+		
+		
 		
 		EnemigoBasico e1 = new EnemigoBasico();
-		e1.inicializarEnemigo(ventanaPruebas.getWidth(), ventanaPruebas.getHeight());
+
+		
 		
 		
 	

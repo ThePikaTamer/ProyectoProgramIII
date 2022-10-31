@@ -7,7 +7,7 @@ public class EnemigoBasico extends Enemigo{
 	
 	public EnemigoBasico() {
 		super(2, 1, 2, 2, 50, 50,IMG );
-	
+
 	}
 
 
