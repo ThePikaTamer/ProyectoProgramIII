@@ -2,7 +2,7 @@ package paquetePrincipal.clasesPrincipales.enemigos;
 
 import javax.swing.*;
 
-
+import paquetePrincipal.ventanas.VentanaJuego;
 
 import java.awt.*;
 
@@ -17,6 +17,7 @@ public class PruebasEnemigos {
 		JPanel panel = new JPanel();
 		ventanaPruebas.add(panel);
 		
+		new VentanaJuego();
 		
 		
 		
