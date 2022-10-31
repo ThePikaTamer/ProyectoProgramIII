@@ -1,7 +1,7 @@
 package paquetePrincipal.clasesPrincipales.asteroides;
 
 
-public class Asteroide extends paquetePrincipal.Objeto {
+public abstract class Asteroide extends paquetePrincipal.Objeto {
 
 	protected double anchuraAsteroide;
 	protected double alturaAsteroide;
