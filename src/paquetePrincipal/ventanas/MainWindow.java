@@ -1,4 +1,4 @@
-package paquetePrincipal;
+package paquetePrincipal.ventanas;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -35,7 +35,7 @@ public class MainWindow extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				new VentanaSeleccion();
+				new VentanaJuego();
 				dispose();
 				
 			}

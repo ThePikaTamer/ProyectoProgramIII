@@ -28,27 +28,27 @@ public class VentanaJuego extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				new Ventana1Jugador();
+				new VentanaSeleccion();
 				dispose();
 				
 				
 			}
 		});
-	boton1Jugador.addActionListener(new ActionListener() {
+	boton2Jugadores.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				new Ventana2Jugadores();
+				new VentanaSeleccion2();
 				dispose();
 				
 				
 			}
 		});
-	boton1Jugador.addActionListener(new ActionListener() {
+	botonReturn.addActionListener(new ActionListener() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-//			new MainWindow();
+			new MainWindow();
 			dispose();
 			
 			

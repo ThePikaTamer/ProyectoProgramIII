@@ -1,4 +1,4 @@
-package paquetePrincipal;
+package paquetePrincipal.ventanas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
