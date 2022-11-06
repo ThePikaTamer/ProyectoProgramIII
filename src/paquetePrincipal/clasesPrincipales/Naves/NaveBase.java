@@ -1,7 +1,12 @@
-package paquetePrincipal;
+package paquetePrincipal.clasesPrincipales.Naves;
+
+import paquetePrincipal.CategoriaJugador;
+import paquetePrincipal.Objeto;
 
 abstract public class NaveBase extends Objeto
 {
+	protected double anchuraNave;
+	protected double alturaNave;
 	protected int vida;
 	protected double velocidadDisparo;
 	protected double velocidadMovimiento;
@@ -10,9 +15,11 @@ abstract public class NaveBase extends Objeto
 	protected CategoriaJugador jugador;
 	protected Object habilidad;
 	
-	public NaveBase(int vida, double velocidadDisparo, double velocidadMovimiento, double velocidadRotacion, String iMG, CategoriaJugador jugador, Object habilidad) 
+	public NaveBase(double anchuraNave, double alturaNave, int vida, double velocidadDisparo, double velocidadMovimiento, double velocidadRotacion, String iMG, CategoriaJugador jugador, Object habilidad)
 	{
 		super();
+		this.anchuraNave = anchuraNave;
+		this.alturaNave = alturaNave;
 		this.vida = vida;
 		this.velocidadDisparo = velocidadDisparo;
 		this.velocidadMovimiento = velocidadMovimiento;
@@ -22,6 +29,22 @@ abstract public class NaveBase extends Objeto
 		this.habilidad = habilidad;
 	}
 	
+	
+	
+	public double getAnchuraNave() {
+		return anchuraNave;
+	}
+	public void setAnchuraNave(double anchuraNave) {
+		this.anchuraNave = anchuraNave;
+	}
+
+	public double getAlturaNave() {
+		return alturaNave;
+	}
+	public void setAlturaNave(double alturaNave) {
+		this.alturaNave = alturaNave;
+	}
+
 	public int getVida() {
 		return vida;
 	}
@@ -72,6 +95,16 @@ abstract public class NaveBase extends Objeto
 	}
 
 	
+
+	//
+	public void inicializarNave(int anchuraPantalla, int alturaPantalla) {
+		this.posX = Math.random()*(anchuraPantalla-this.anchuraNave)+ (anchuraNave/2);
+		this.posY = -1*(Math.random()*(alturaPantalla-this.alturaNave) + (alturaNave/2));
+		System.out.println( "X = "+posX);
+		System.out.println("Y = "+posY);
+		
+	}
+	
 	// para disparar
 	void disparar()//(bullet bala)
 	{
@@ -87,7 +120,7 @@ abstract public class NaveBase extends Objeto
 	}
 	
 	
-	//@Override?
+	//
 	void movimiento()
 	{
 		if(this.getJugador()==CategoriaJugador.PLAYER1)
@@ -98,6 +131,21 @@ abstract public class NaveBase extends Objeto
 		else if(this.getJugador()==CategoriaJugador.PLAYER2)
 		{
 			//flechas direccion
+		}
+	}
+	
+
+	//
+	void usarPowerUp()
+	{
+		if(this.getJugador()==CategoriaJugador.PLAYER1)
+		{
+			//boton espacio
+		}
+		
+		else if(this.getJugador()==CategoriaJugador.PLAYER2)
+		{
+			//boton shift derecho?
 		}
 	}
 	

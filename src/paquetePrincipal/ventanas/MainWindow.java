@@ -50,6 +50,14 @@ public class MainWindow extends JFrame
 				
 			}
 		});
+		botonStop.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+			}
+		});
 		
 		setVisible(true);
 		
