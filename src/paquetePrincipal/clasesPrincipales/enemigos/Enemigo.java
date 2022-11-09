@@ -19,22 +19,21 @@ import paquetePrincipal.Objeto;
 
 public abstract class Enemigo extends paquetePrincipal.Objeto  {
 
-	protected double anchuraEnemigo;
-	protected double alturaEnemigo;
+	
+	
 
 	protected double vida;
 	protected double danyo;
 
 
 	// CONSTRUCTORES//
-	public Enemigo(double vida, double danyo, double velX, double velY, double anchuraEnemigo, double alturaEnemigo,
+	public Enemigo(double vida, double danyo, double velX, double velY, double radio,
 			String image) {
 		this.vida = vida;
 		this.danyo = danyo;
 		this.velX = velX;
 		this.velY = velY;
-		this.anchuraEnemigo = anchuraEnemigo;
-		this.alturaEnemigo = alturaEnemigo;
+		this.radio = radio;
 		this.image = image;
 
 	}
@@ -43,31 +42,8 @@ public abstract class Enemigo extends paquetePrincipal.Objeto  {
 	// METODOS//
 
 	
-	//metodos de obtención y modificación de la anchura de los enemigos
-	public double getAnchuraEnemigo() {
-		return anchuraEnemigo;
-	}
-	public void setAnchuraEnemigo(double anchuraEnemigo) {
-		if(anchuraEnemigo >=0) {
-			this.anchuraEnemigo = anchuraEnemigo;
-		}else {
-			System.err.println("La anchura debe contener un numero natural.");
-		}
-	}
 
-
-	//metodos de obtención y modificación de la altura de los enemigos
-	public double getAlturaEnemigo() {
-		return alturaEnemigo;
-	}
-	public void setAlturaEnemigo(double alturaEnemigo) {
-		if(alturaEnemigo >= 0) {
-			this.alturaEnemigo = alturaEnemigo;
-		}else {
-			System.err.println("La altura debe contener un numero natural.");
-		}
-		
-	}
+	
 
 
 	//metodos de obtención y modificación de la vida de los enemigos
@@ -102,8 +78,8 @@ public abstract class Enemigo extends paquetePrincipal.Objeto  {
 	//metodo el cual da un valor aleatorio a la posición del enemigo la cual tiene que estar dentro de la pantalla
 	public void inicializarEnemigo(int anchuraPantalla, int alturaPantalla) {
 
-		this.posX = Math.random() * (anchuraPantalla - this.anchuraEnemigo) + (anchuraEnemigo / 2);
-		this.posY =  (Math.random() * (alturaPantalla - this.alturaEnemigo) + (alturaEnemigo / 2));
+		this.posX = Math.random() * (anchuraPantalla - this.radio) + (this.radio);
+		this.posY =  (Math.random() * (alturaPantalla - this.radio) + (this.radio));
 
 		//Prueba para ver si funciona
 		System.out.println("X = " + posX);
