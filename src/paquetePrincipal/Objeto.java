@@ -70,8 +70,8 @@ public abstract class Objeto implements Animable {
 	}
 
 	public void setDibujoInicial() {
-		if (this.cicloAnimacion.size() != 0) {
-			this.image = this.cicloAnimacion.get(0);
+		if (this.getCicloAnimacion().size() != 0) {
+			this.setImage(this.cicloAnimacion.get(0));
 		} else {
 			System.err.println("El array está vacio");
 		}
@@ -96,7 +96,7 @@ public abstract class Objeto implements Animable {
 	}
 
 	public boolean colisionando(Objeto o1) {
-		if(o1 instanceof Objeto) {
+		
 			if (this.calcDistancia(o1)< (this.radio+o1.radio)) {
 				return true;
 			}else {
@@ -104,15 +104,7 @@ public abstract class Objeto implements Animable {
 			}
 
 			
-		}else {
-			System.err.println("El objeto introducido no es valido");
-			return false;
-		}
-		
-		
-		
-		
-		
+	
 	}
 
 }

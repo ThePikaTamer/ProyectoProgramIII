@@ -1,4 +1,4 @@
-package paquetePrincipal;
+package paquetePrincipal.clasesPrincipales.asteroides;
 
 import static org.junit.Assert.*;
 

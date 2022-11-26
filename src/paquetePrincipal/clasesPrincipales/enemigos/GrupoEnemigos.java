@@ -2,7 +2,7 @@ package paquetePrincipal.clasesPrincipales.enemigos;
 
 import java.util.ArrayList;
 
-import paquetePrincipal.NaveBase;
+
 
 public class GrupoEnemigos {
 

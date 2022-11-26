@@ -1,4 +1,4 @@
-package paquetePrincipal;
+package paquetePrincipal.PowerUps;
 
 import static org.junit.Assert.*;
 
