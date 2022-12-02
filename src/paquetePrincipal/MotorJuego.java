@@ -1,10 +1,14 @@
 package paquetePrincipal;
 
 import java.awt.BorderLayout;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.JFrame;
 
@@ -25,10 +29,10 @@ public class MotorJuego extends JFrame {
 	private static int ups = 0;
 	
 	//VARIABLES DE JUEGO
-	List<NaveBase> jugadoresEnPartida = new ArrayList<NaveBase>();
+	public static List<NaveBase> jugadoresEnPartida = new ArrayList<NaveBase>();
 	
 	
-	NaveBase jugador1 = new NaveBasica(null, CategoriaJugador.PLAYER1);
+	public static NaveBase jugador1 = new NaveBasica(null, CategoriaJugador.PLAYER1);
 	
 	;
 	public MotorJuego(final String titulo, final int anchura, final int altura) {
@@ -57,6 +61,7 @@ public class MotorJuego extends JFrame {
 	
 	
 	public void GameStart() {
+		iniciarLecturaTeclado();
 		iniciar();
 		this.setRunning(true); 
 	}
@@ -68,14 +73,22 @@ public class MotorJuego extends JFrame {
 	}
 	//ACTUALIZA LOGICA DE JUEGO
 	public void update() {
-		jugador1.movimiento();
+		if(this.isTeclaPulsada(KeyEvent.VK_W)) {
+			jugador1.setPosY(jugador1.posY -1);
+		}if(this.isTeclaPulsada(KeyEvent.VK_S)) {
+			jugador1.setPosY(jugador1.posY +1);
+		}if(this.isTeclaPulsada(KeyEvent.VK_D)) {
+			jugador1.setPosX(jugador1.posX + 1);
+		}if(this.isTeclaPulsada(KeyEvent.VK_A)) {
+			jugador1.setPosX(jugador1.posX - 1);
+		}
 	};
 	
 	
 
 	//DIBUJAR
 	public void dibujar() {
-		this.cc.dibujar();
+		this.cc.dibujar(this);
 	};
 	
 	
@@ -244,9 +257,38 @@ public class MotorJuego extends JFrame {
 
 
 	
-	
-	
 
+	
+	//LECTURA DE TECLADO
+	
+	private static int codTeclaTecleada = 0;
+	private static int codTeclaActualmentePulsada = 0;
+	private static Set<Integer> teclasPulsadas = new HashSet<Integer>();
+	
+	public void iniciarLecturaTeclado() {
+			KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+			manager.addKeyEventDispatcher(new KeyEventDispatcher() {
+				
+				public boolean dispatchKeyEvent(KeyEvent e) {
+					if (e.getID() == KeyEvent.KEY_PRESSED) {
+						teclasPulsadas.add( e.getKeyCode() );
+						codTeclaActualmentePulsada = e.getKeyCode();
+					} else if (e.getID() == KeyEvent.KEY_RELEASED) {
+						teclasPulsadas.remove( e.getKeyCode() );
+						codTeclaTecleada = e.getKeyCode();
+						codTeclaActualmentePulsada = 0;
+					} else if (e.getID() == KeyEvent.KEY_TYPED) {
+					}
+					return false;   // false = enviar el evento al comp
+				} } );
+			
+			
+	};
+			
+	public boolean isTeclaPulsada( int codTecla ) {
+		return teclasPulsadas.contains(codTecla);
+	}
+	
 
 	
 	

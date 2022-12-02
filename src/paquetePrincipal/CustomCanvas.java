@@ -6,6 +6,9 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
+import java.util.List;
+
+import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 
 
 
@@ -27,7 +30,7 @@ public class CustomCanvas extends Canvas{
 			
 		
 	
-		public void dibujar() {
+		public void dibujar(MotorJuego motor) {
 	        // Se configura el Canvas
 	        final BufferStrategy buffer = getBufferStrategy();
 	        if (buffer == null) {
@@ -35,13 +38,26 @@ public class CustomCanvas extends Canvas{
 	            return;
 	        }
 	        final Graphics2D g = (Graphics2D) buffer.getDrawGraphics();
-
+	        final Graphics2D g2 = (Graphics2D) buffer.getDrawGraphics();
 	        // Acá va todo lo que se tiene que dibujar de todas las entidades
-	        g.draw3DRect(50, 50, 25, 25, true);
+	        
 	        g.fillRect(10, 10, 130, 15);
+	        g.clearRect(0, 0, anchura, altura);
+	        g.drawRect(0, 0, anchura, altura);
+	        
+	        
+	        
+	        
+	        
+	        
+	        
 	        g.setColor(Color.yellow);
 	        g.drawString("UPS: " + MotorJuego.getUPS() + " | FPS: " + MotorJuego.getFPS(), 20, 20);
-
+	        double posY = MotorJuego.jugador1.posY;
+	        double posX = MotorJuego.jugador1.posX;
+	        g.drawRect((int)posX, (int)posY, 50, 50);
+	   
+	        
 	        // Configuracion y dibujado final
 	        Toolkit.getDefaultToolkit().sync();
 	        g.dispose();
