@@ -6,8 +6,12 @@ public class Main
 {
 	public static void main(String[] args) 
 	{
-		new MainWindow();
-		System.out.println("This is a test.");
+		 MotorJuego game = new MotorJuego("My Game", 640, 360);
+	        game.GameStart();
+	        game.comenzarBuclePrincipal();
+		
+//		new MainWindow();
+//		System.out.println("This is a test.");
 	}
 }
 

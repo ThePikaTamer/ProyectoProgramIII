@@ -1,8 +1,16 @@
 package paquetePrincipal;
 
 import java.awt.BorderLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
+
+import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
+import paquetePrincipal.clasesPrincipales.Naves.NaveBasica;
+import paquetePrincipal.clasesPrincipales.enemigos.EnemigoBasico;
 
 public class MotorJuego extends JFrame {
 	private boolean running = false;
@@ -15,7 +23,14 @@ public class MotorJuego extends JFrame {
 	private static int FPS_TARGET = 60;
 	private static int fps = 0;
 	private static int ups = 0;
-
+	
+	//VARIABLES DE JUEGO
+	List<NaveBase> jugadoresEnPartida = new ArrayList<NaveBase>();
+	
+	
+	NaveBase jugador1 = new NaveBasica(null, CategoriaJugador.PLAYER1);
+	
+	;
 	public MotorJuego(final String titulo, final int anchura, final int altura) {
 		this.titulo = titulo;
 		this.anchuraV = anchura;
@@ -35,6 +50,12 @@ public class MotorJuego extends JFrame {
 	
 	//METODOS
 	
+	
+	
+	
+	
+	
+	
 	public void GameStart() {
 		iniciar();
 		this.setRunning(true); 
@@ -42,8 +63,33 @@ public class MotorJuego extends JFrame {
 
 	public void iniciar() {
 		
+		
+		
+	}
+	//ACTUALIZA LOGICA DE JUEGO
+	public void update() {
+		jugador1.movimiento();
+	};
+	
+	
+
+	//DIBUJAR
+	public void dibujar() {
+		this.cc.dibujar();
+	};
+	
+	
+	public static int getFPS() {
+	    return fps;
 	}
 
+	public static int getUPS() {
+	    return ups;
+	}
+	
+	
+	
+	
 	public void comenzarBuclePrincipal() {
         int accumulatedUpdates = 0;//nº actualizaciones
         int accumulatedFrames = 0;//nº dibujados
@@ -58,6 +104,48 @@ public class MotorJuego extends JFrame {
         double currentTime;
         double deltaAps = 0;
         double deltaFps = 0;
+        
+        
+        while (running) {
+            final long beginLoop = System.nanoTime();
+
+            currentTime = beginLoop - lastUpdate;
+            lastUpdate = beginLoop;
+
+            deltaAps += currentTime / TIME_PER_UPDATE;
+
+            while (deltaAps >= 1) {
+                update();
+                accumulatedUpdates++;
+                deltaAps--;
+            }
+             
+        deltaFps += currentTime / TIME_PER_RENDER;
+
+        if (deltaFps >= 1) {
+            dibujar();
+            accumulatedFrames++;
+            deltaFps = 0;
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            
+            if (System.nanoTime() - lastCounter > NS_PER_SECOND) {
+
+                ups = accumulatedUpdates;
+                fps = accumulatedFrames;
+
+                accumulatedUpdates = 0;
+                accumulatedFrames = 0;
+                lastCounter = System.nanoTime();
+            }
+        }
+    
+        }
+        
+	
 	}
 	
 	
@@ -153,6 +241,13 @@ public class MotorJuego extends JFrame {
 	public int getAlturaV() {
 		return alturaV;
 	}
+
+
+	
+	
+	
+
+
 	
 	
 	

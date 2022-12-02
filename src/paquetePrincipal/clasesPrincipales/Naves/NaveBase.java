@@ -1,5 +1,7 @@
 package paquetePrincipal.clasesPrincipales.Naves;
 
+import java.awt.event.KeyEvent;
+
 import paquetePrincipal.CategoriaJugador;
 import paquetePrincipal.Objeto;
 
@@ -121,11 +123,12 @@ abstract public class NaveBase extends Objeto
 	
 	
 	//
-	void movimiento()
+	public void movimiento()
 	{
 		if(this.getJugador()==CategoriaJugador.PLAYER1)
 		{
-			//WASD
+		
+			
 		}
 		
 		else if(this.getJugador()==CategoriaJugador.PLAYER2)

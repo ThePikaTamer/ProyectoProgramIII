@@ -7,7 +7,7 @@ public class NaveBasica extends NaveBase
 	protected static String IMG = "";
 	protected static CategoriaJugador tipoJugador;
 	
-	public NaveBasica(Object habilidad)
+	public NaveBasica(Object habilidad, CategoriaJugador tipoJugador)
 	{
 		super(2, 2, 3, 2.5, 3.0, 3.0, IMG, tipoJugador, habilidad);
 		// TODO Auto-generated constructor stub
