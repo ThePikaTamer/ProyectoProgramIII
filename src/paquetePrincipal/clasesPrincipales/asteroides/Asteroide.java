@@ -39,7 +39,7 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 	
 	
 	
-	public void movimiento() {
+	public void update() {
 		
 	}
 

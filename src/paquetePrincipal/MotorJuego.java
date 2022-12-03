@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBasica;
+import paquetePrincipal.clasesPrincipales.enemigos.Enemigo;
 import paquetePrincipal.clasesPrincipales.enemigos.EnemigoBasico;
 
 public class MotorJuego extends JFrame {
@@ -31,7 +32,7 @@ public class MotorJuego extends JFrame {
 	//VARIABLES DE JUEGO
 	public static List<NaveBase> jugadoresEnPartida = new ArrayList<NaveBase>();
 	
-	
+	public static Enemigo e1 = new EnemigoBasico();
 	public static NaveBase jugador1 = new NaveBasica(null, CategoriaJugador.PLAYER1);
 	
 	
@@ -62,19 +63,21 @@ public class MotorJuego extends JFrame {
 
 	public void iniciar() {
 		
+		this.jugadoresEnPartida.add(jugador1);
+		this.e1.inicializarEnemigo(this.anchuraV, this.alturaV,jugadoresEnPartida);
 		
 		
 	}
 	//ACTUALIZA LOGICA DE JUEGO
 	public void update() {
 		if(this.isTeclaPulsada(KeyEvent.VK_W)) {
-			jugador1.setPosY(jugador1.posY -1);
+			jugador1.setPosY(jugador1.posY -jugador1.getVelocidadMovimiento());
 		}if(this.isTeclaPulsada(KeyEvent.VK_S)) {
-			jugador1.setPosY(jugador1.posY +1);
+			jugador1.setPosY(jugador1.posY +jugador1.getVelocidadMovimiento());
 		}if(this.isTeclaPulsada(KeyEvent.VK_D)) {
-			jugador1.setPosX(jugador1.posX + 1);
+			jugador1.setPosX(jugador1.posX + jugador1.getVelocidadMovimiento());
 		}if(this.isTeclaPulsada(KeyEvent.VK_A)) {
-			jugador1.setPosX(jugador1.posX - 1);
+			jugador1.setPosX(jugador1.posX - jugador1.getVelocidadMovimiento());
 		}
 		if(this.isTeclaPulsada(KeyEvent.VK_UP)) {
 			jugador1.setPosY(jugador1.posY -1);
@@ -84,8 +87,10 @@ public class MotorJuego extends JFrame {
 			jugador1.setPosX(jugador1.posX + 1);
 		}if(this.isTeclaPulsada(KeyEvent.VK_A)) {
 			jugador1.setPosX(jugador1.posX - 1);
+		}if(this.isTeclaPulsada(KeyEvent.VK_SPACE)) {
+			e1.inicializarEnemigo(anchuraV, alturaV, this.jugadoresEnPartida);
 		}
-		
+		e1.update();
 		
 		
 		
