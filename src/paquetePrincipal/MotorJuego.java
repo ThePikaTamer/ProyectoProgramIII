@@ -34,7 +34,7 @@ public class MotorJuego extends JFrame {
 	
 	public static NaveBase jugador1 = new NaveBasica(null, CategoriaJugador.PLAYER1);
 	
-	;
+	
 	public MotorJuego(final String titulo, final int anchura, final int altura) {
 		this.titulo = titulo;
 		this.anchuraV = anchura;
@@ -53,12 +53,6 @@ public class MotorJuego extends JFrame {
 
 	
 	//METODOS
-	
-	
-	
-	
-	
-	
 	
 	public void GameStart() {
 		iniciarLecturaTeclado();
@@ -82,6 +76,19 @@ public class MotorJuego extends JFrame {
 		}if(this.isTeclaPulsada(KeyEvent.VK_A)) {
 			jugador1.setPosX(jugador1.posX - 1);
 		}
+		if(this.isTeclaPulsada(KeyEvent.VK_UP)) {
+			jugador1.setPosY(jugador1.posY -1);
+		}if(this.isTeclaPulsada(KeyEvent.VK_UP)) {
+			jugador1.setPosY(jugador1.posY +1);
+		}if(this.isTeclaPulsada(KeyEvent.VK_D)) {
+			jugador1.setPosX(jugador1.posX + 1);
+		}if(this.isTeclaPulsada(KeyEvent.VK_A)) {
+			jugador1.setPosX(jugador1.posX - 1);
+		}
+		
+		
+		
+		
 	};
 	
 	

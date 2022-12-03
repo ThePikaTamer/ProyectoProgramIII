@@ -1,6 +1,8 @@
 package paquetePrincipal.clasesPrincipales.Naves;
 
+import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Point2D;
 
 import paquetePrincipal.CategoriaJugador;
 import paquetePrincipal.Objeto;
@@ -16,6 +18,7 @@ abstract public class NaveBase extends Objeto
 	protected String IMG;
 	protected CategoriaJugador jugador;
 	protected Object habilidad;
+	protected Point2D orientacion = new Point(0, 1);
 	
 	public NaveBase(double anchuraNave, double alturaNave, int vida, double velocidadDisparo, double velocidadMovimiento, double velocidadRotacion, String iMG, CategoriaJugador jugador, Object habilidad)
 	{
@@ -31,6 +34,13 @@ abstract public class NaveBase extends Objeto
 		this.habilidad = habilidad;
 	}
 	
+	
+	public Point2D getOrientacion() {
+		return this.orientacion;
+	}
+	public void setOrientacion(double x, double y) {
+		this.orientacion.setLocation(x, y);
+	}
 	
 	
 	public double getAnchuraNave() {

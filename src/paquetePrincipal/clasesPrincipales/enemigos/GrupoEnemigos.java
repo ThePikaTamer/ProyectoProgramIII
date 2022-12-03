@@ -1,6 +1,9 @@
 package paquetePrincipal.clasesPrincipales.enemigos;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 
 
 
@@ -23,4 +26,8 @@ public class GrupoEnemigos {
 //		
 //	}
 
+	
+	public void update(List<NaveBase> lista) {
+		
+	}
 }
