@@ -25,7 +25,7 @@ public class MotorJuego extends JFrame {
 
 	public static CustomCanvas cc;
 	private static int UPS_TARGET = 60;
-	private static int FPS_TARGET = 60;
+	private static int FPS_TARGET = 30;
 	private static int fps = 0;
 	private static int ups = 0;
 	
@@ -49,6 +49,9 @@ public class MotorJuego extends JFrame {
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		
+		this.GameStart();
+	    this.comenzarBuclePrincipal();
 	}
 	
 
@@ -173,11 +176,7 @@ public class MotorJuego extends JFrame {
 	
 	}
 	
-	
-	
-	
-	
-	
+
 	//GET-SET
 	public boolean isRunning() {
 		return running;
