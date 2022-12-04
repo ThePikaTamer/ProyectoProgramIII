@@ -1,6 +1,7 @@
 package paquetePrincipal.ventanas;
 
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,11 +22,13 @@ public class MainWindow extends JFrame
 		JPanel panel=new JPanel();
 		
 		
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.setLayout(new GridLayout(3, 3));
 		JButton botonJugar=new JButton("Jugar");
 		JButton botonOptions=new JButton("Opciones");
 		JButton botonStop=new JButton("Salir");
 		this.add(panel);
+
+
 		panel.add(botonJugar);
 		panel.add(botonOptions);
 		panel.add(botonStop);

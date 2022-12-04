@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import paquetePrincipal.clasesPrincipales.enemigos.Enemigo;
 import paquetePrincipal.clasesPrincipales.enemigos.EnemigoBasico;
+import paquetePrincipal.clasesPrincipales.enemigos.EnemigoReforzado;
 
 public class ObjetoTest {
 
@@ -62,5 +63,20 @@ public class ObjetoTest {
 		e1.siguienteDibujo();
 		assertTrue("img\\Enemy_1.png" == e1.getImage());
 		
+	}
+	
+	@Test 
+	public void testGetterSetter() {
+		Objeto o = new EnemigoReforzado();
+		o.setCicloAnimacion(new ArrayList<>());
+		o.setDibujoInicial();//saca por pantalla que el array está vacio
+		
+		o.setRadio(50);
+		assertEquals(50, o.getRadio(),0);
+		
+		o.setVelX(13);
+		assertEquals(13, o.getVelX(),0);
+		o.setVelY(13);
+		assertEquals(13, o.getVelY(),0);
 	}
 }

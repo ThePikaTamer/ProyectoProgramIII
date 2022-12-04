@@ -27,6 +27,8 @@ public abstract class Enemigo extends paquetePrincipal.Objeto  {
 	
 	
 
+	
+
 	protected double vida;
 	protected double danyo;
 	protected NaveBase NaveDectada = null;
@@ -75,13 +77,40 @@ public abstract class Enemigo extends paquetePrincipal.Objeto  {
 	public void setDanyo(double danyo) {
 		if(danyo >= 0) {
 		this.danyo = danyo;
-		}else {
+		}else { 
 			System.err.println("El daño debe contener un numero natural.");
 
 		}
 		
 	}
-	
+	public NaveBase getNaveDectada() {
+		return NaveDectada;
+	}
+
+
+	public void setNaveDectada(NaveBase naveDectada) {
+		NaveDectada = naveDectada;
+	}
+
+
+	public double getVectorDirectorNaveX() {
+		return vectorDirectorNaveX;
+	}
+
+
+	public void setVectorDirectorNaveX(double vectorDirectorNaveX) {
+		this.vectorDirectorNaveX = vectorDirectorNaveX;
+	}
+
+
+	public double getVectorDirectorNaveY() {
+		return vectorDirectorNaveY;
+	}
+
+
+	public void setVectorDirectorNaveY(double vectorDirectorNaveY) {
+		this.vectorDirectorNaveY = vectorDirectorNaveY;
+	}
 	
 	//metodo el cual da un valor aleatorio a la posición del enemigo la cual tiene que estar dentro de la pantalla
 	public void inicializarEnemigo(int anchuraPantalla, int alturaPantalla,List<NaveBase> navesVivas) {
@@ -115,10 +144,13 @@ public abstract class Enemigo extends paquetePrincipal.Objeto  {
 
 	
 	
-	
+	 
 	
 	public void elegirNaveSeguida(List<NaveBase> navesVivas) {
-		if (navesVivas.size() <=1) {
+		if(navesVivas.size() == 0) {
+			
+		}
+		else if (navesVivas.size() ==1) {
 			this.NaveDectada = navesVivas.get(0);
 		}else {
 			

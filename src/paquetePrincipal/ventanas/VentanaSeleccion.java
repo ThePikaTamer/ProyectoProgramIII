@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import paquetePrincipal.MotorJuego;
+
 public class VentanaSeleccion extends JFrame
 {
 	public VentanaSeleccion()
@@ -34,8 +36,11 @@ public class VentanaSeleccion extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				new MainWindow();
+				new MotorJuego("My Game", 640,360 );
 				dispose();
+//				 
+			        
+				
 			}
 		});
 

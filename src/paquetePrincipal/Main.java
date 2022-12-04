@@ -8,10 +8,9 @@ public class Main
 	{
 		int altura = 640;
 		int anchura = 360;
-		 MotorJuego game = new MotorJuego("My Game", 1000,500 );
-	        game.GameStart();
-	        game.comenzarBuclePrincipal();
-		
+	 new MotorJuego("My Game", 640,360 );
+
+//		
 //		new MainWindow();
 //		System.out.println("This is a test.");
 	}
