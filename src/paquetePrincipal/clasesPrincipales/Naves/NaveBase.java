@@ -1,10 +1,15 @@
 package paquetePrincipal.clasesPrincipales.Naves;
 
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 
+import javax.swing.ImageIcon;
+
 import paquetePrincipal.CategoriaJugador;
+import paquetePrincipal.MotorJuego;
 import paquetePrincipal.Objeto;
 
 abstract public class NaveBase extends Objeto
@@ -19,6 +24,7 @@ abstract public class NaveBase extends Objeto
 	protected CategoriaJugador jugador;
 	protected Object habilidad;
 	protected Point2D orientacion = new Point(0, 1);
+	protected Image image;
 	
 	public NaveBase(double anchuraNave, double alturaNave, int vida, double velocidadDisparo, double velocidadMovimiento, double velocidadRotacion, String iMG, CategoriaJugador jugador, Object habilidad)
 	{
@@ -107,6 +113,8 @@ abstract public class NaveBase extends Objeto
 	}
 
 	
+	
+
 
 	//
 	public void inicializarNave(int anchuraPantalla, int alturaPantalla) {
@@ -116,6 +124,14 @@ abstract public class NaveBase extends Objeto
 		System.out.println("Y = "+posY);
 		
 	}
+	
+	void loadImage()
+	{
+		//String imRoute="img/nave.png";
+		ImageIcon ii=new ImageIcon(this.getIMG());
+		Image img =ii.getImage();
+	}
+	
 	
 	// para disparar
 	void disparar()//(bullet bala)
@@ -135,16 +151,54 @@ abstract public class NaveBase extends Objeto
 	//
 	public void movimiento()
 	{
+
+		/*if(MotorJuego.isTeclaPulsada(KeyEvent.VK_W)) 
+		{
+			jugador1.setPosY(jugador1.posY -jugador1.getVelocidadMovimiento());
+		}
+		
+		KeyEvent event=null;
 		if(this.getJugador()==CategoriaJugador.PLAYER1)
 		{
-		
-			
+			if(event.getKeyCode()==KeyEvent.VK_W)//arriba
+			{
+				setPosY(this.posY -this.getVelocidadMovimiento());
+			}
+			else if(event.getKeyCode()==KeyEvent.VK_S)//abajo
+			{
+				setPosY(this.posY +this.getVelocidadMovimiento());
+			}
+			else if(event.getKeyCode()==KeyEvent.VK_A)//izquierda
+			{
+				setPosX(this.posX -this.getVelocidadMovimiento());
+				
+			}
+			else if(event.getKeyCode()==KeyEvent.VK_D)//derecha
+			{
+				setPosX(this.posX +this.getVelocidadMovimiento());
+			}
 		}
 		
 		else if(this.getJugador()==CategoriaJugador.PLAYER2)
 		{
 			//flechas direccion
-		}
+			if(event.getKeyCode()==KeyEvent.VK_UP)//arriba
+			{
+				setPosY(this.posY -this.getVelocidadMovimiento());
+			}
+			else if(event.getKeyCode()==KeyEvent.VK_DOWN)//abajo
+			{
+				setPosY(this.posY +this.getVelocidadMovimiento());
+			}
+			else if(event.getKeyCode()==KeyEvent.VK_LEFT)//izquierda
+			{
+				setPosX(this.posX -this.getVelocidadMovimiento());
+			}
+			else if(event.getKeyCode()==KeyEvent.VK_RIGHT)//derecha
+			{
+				setPosX(this.posX +this.getVelocidadMovimiento());
+			}
+		}*/
 	}
 	
 

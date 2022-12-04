@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBasica;
+import paquetePrincipal.clasesPrincipales.Naves.Proyectil;
 import paquetePrincipal.clasesPrincipales.enemigos.Enemigo;
 import paquetePrincipal.clasesPrincipales.enemigos.EnemigoBasico;
 
@@ -31,10 +32,13 @@ public class MotorJuego extends JFrame {
 	
 	//VARIABLES DE JUEGO
 	public static List<NaveBase> jugadoresEnPartida = new ArrayList<NaveBase>();
+	public static List<Proyectil> projectiles=new ArrayList<>();
 	
 	public static Enemigo e1 = new EnemigoBasico();
 	public static NaveBase jugador1 = new NaveBasica(null, CategoriaJugador.PLAYER1);
 	
+	//
+	public int cadenciaDisparo=10; 
 	
 	public MotorJuego(final String titulo, final int anchura, final int altura) {
 		this.titulo = titulo;
@@ -70,29 +74,50 @@ public class MotorJuego extends JFrame {
 	}
 	//ACTUALIZA LOGICA DE JUEGO
 	public void update() {
-		if(this.isTeclaPulsada(KeyEvent.VK_W)) {
+		//&&jugador1.getJugador()==CategoriaJugador.PLAYER1
+		if(this.isTeclaPulsada(KeyEvent.VK_W)&&jugador1.getJugador()==CategoriaJugador.PLAYER1) {
 			jugador1.setPosY(jugador1.posY -jugador1.getVelocidadMovimiento());
-		}if(this.isTeclaPulsada(KeyEvent.VK_S)) {
+		}if(this.isTeclaPulsada(KeyEvent.VK_S)&&jugador1.getJugador()==CategoriaJugador.PLAYER1) {
 			jugador1.setPosY(jugador1.posY +jugador1.getVelocidadMovimiento());
-		}if(this.isTeclaPulsada(KeyEvent.VK_D)) {
+		}if(this.isTeclaPulsada(KeyEvent.VK_D)&&jugador1.getJugador()==CategoriaJugador.PLAYER1) { //rotate
 			jugador1.setPosX(jugador1.posX + jugador1.getVelocidadMovimiento());
-		}if(this.isTeclaPulsada(KeyEvent.VK_A)) {
+			//jugador1.getTransform().rotate(Math.toRadians(30.0));
+			//jugador1.setr
+			//System.out.println("oiiii");
+		}
+		if(this.isTeclaPulsada(KeyEvent.VK_A)&&jugador1.getJugador()==CategoriaJugador.PLAYER1) { //rotate
+			jugador1.setPosX(jugador1.posX - jugador1.getVelocidadMovimiento());
+			
+		}
+		//&&jugador1.getJugador()==CategoriaJugador.PLAYER2
+		if(this.isTeclaPulsada(KeyEvent.VK_UP)&&jugador1.getJugador()==CategoriaJugador.PLAYER2) {
+			jugador1.setPosY(jugador1.posY -jugador1.getVelocidadMovimiento());
+		}if(this.isTeclaPulsada(KeyEvent.VK_DOWN)&&jugador1.getJugador()==CategoriaJugador.PLAYER2) {
+			jugador1.setPosY(jugador1.posY +jugador1.getVelocidadMovimiento());
+		}if(this.isTeclaPulsada(KeyEvent.VK_RIGHT)&&jugador1.getJugador()==CategoriaJugador.PLAYER2) {
+			jugador1.setPosX(jugador1.posX + jugador1.getVelocidadMovimiento());
+		}if(this.isTeclaPulsada(KeyEvent.VK_LEFT)&&jugador1.getJugador()==CategoriaJugador.PLAYER2) {
 			jugador1.setPosX(jugador1.posX - jugador1.getVelocidadMovimiento());
 		}
-		if(this.isTeclaPulsada(KeyEvent.VK_UP)) {
-			jugador1.setPosY(jugador1.posY -1);
-		}if(this.isTeclaPulsada(KeyEvent.VK_UP)) {
-			jugador1.setPosY(jugador1.posY +1);
-		}if(this.isTeclaPulsada(KeyEvent.VK_D)) {
-			jugador1.setPosX(jugador1.posX + 1);
-		}if(this.isTeclaPulsada(KeyEvent.VK_A)) {
-			jugador1.setPosX(jugador1.posX - 1);
-		}if(this.isTeclaPulsada(KeyEvent.VK_SPACE)) {
-			e1.inicializarEnemigo(anchuraV, alturaV, this.jugadoresEnPartida);
-		}
+		/*if(this.isTeclaPulsada(KeyEvent.VK_SPACE)&&jugador1.getJugador()==CategoriaJugador.PLAYER1) {
+			//e1.inicializarEnemigo(anchuraV, alturaV, this.jugadoresEnPartida);
+			//disparo
+			if(cadenciaDisparo>=10)
+			{
+				Proyectil proyectilD=new Proyectil(15.0f, 10.0f);
+				proyectilD.posX=jugador1.posX;
+				proyectilD.posY=jugador1.posY;
+				
+				projectiles.add(proyectilD);
+				System.out.println("there");
+				
+				cadenciaDisparo=0;
+			}
+		}*/
+		jugador1.movimiento();
 		e1.update();
 		
-		
+		cadenciaDisparo++;
 		
 	};
 	

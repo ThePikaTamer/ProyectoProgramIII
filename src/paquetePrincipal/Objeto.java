@@ -11,7 +11,19 @@ public abstract class Objeto implements Animable {
 	protected double radio;
 	protected ArrayList<String> cicloAnimacion = new ArrayList<>();
 
+	
+	/*public Objeto(double velX, double velY, double posX, double posY, double radio, ArrayList<String> cicloAnimacion) {
+		super();
+		this.velX = velX;
+		this.velY = velY;
+		this.posX = posX;
+		this.posY = posY;
+		this.radio = radio;
+		this.cicloAnimacion = cicloAnimacion;
+	}*/
+	
 	// Get-setters
+
 
 	public double getRadio() {
 		return radio;
@@ -21,7 +33,7 @@ public abstract class Objeto implements Animable {
 		this.radio = radio;
 	}
 
-	public static String getImage() {
+	public String getImage() {
 		return image;
 	}
 

@@ -4,7 +4,7 @@ import paquetePrincipal.CategoriaJugador;
 
 public class NaveBasica extends NaveBase 
 {
-	protected static String IMG = "";
+	protected static String IMG = "img/nave.png";
 	protected static CategoriaJugador tipoJugador;
 	
 	public NaveBasica(Object habilidad, CategoriaJugador tipoJugador)

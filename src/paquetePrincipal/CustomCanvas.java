@@ -17,6 +17,8 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.ImageObserver;
 import java.util.List;
 
+import javax.swing.ImageIcon;
+
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 
 public class CustomCanvas extends Canvas {
@@ -56,9 +58,19 @@ public class CustomCanvas extends Canvas {
 		double posX2 = MotorJuego.e1.posX;
 		g.drawRect((int) posX2, (int) posY2, 25, 25);
 		g.fillRect((int) posX2, (int) posY2, 25, 25);
+		
 		g.setColor(Color.BLUE);
-		g.drawRect((int) posX, (int) posY, 50, 50);
-		g.fillRect((int) posX, (int) posY, 50, 50);
+		g.drawRect((int) posX, (int) posY, 60, 50);
+		g.fillRect((int) posX, (int) posY, 60, 50);
+		
+		while(MotorJuego.projectiles.size()>0) //help porqué se para
+		{
+			double posX3 = MotorJuego.projectiles.get(MotorJuego.projectiles.size()-1).getPosX();
+			double posY3 = MotorJuego.projectiles.get(MotorJuego.projectiles.size()-1).getPosY();
+			g.setColor(Color.YELLOW);
+			g.drawRect((int)posX3, (int)posY3, 10, 15);
+			g.fillRect((int)posX3, (int)posY3, 10, 15);
+		}
 
 		// Configuracion y dibujado final
 		Toolkit.getDefaultToolkit().sync();
