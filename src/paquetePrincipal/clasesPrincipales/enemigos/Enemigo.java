@@ -18,8 +18,10 @@ import javax.swing.JFrame;
 
 
 import paquetePrincipal.Animable;
+import paquetePrincipal.Disparo;
 import paquetePrincipal.Objeto;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
+import paquetePrincipal.clasesPrincipales.Naves.NaveBasica;
 
 
 public abstract class Enemigo extends paquetePrincipal.Objeto  {
@@ -34,7 +36,7 @@ public abstract class Enemigo extends paquetePrincipal.Objeto  {
 	protected NaveBase NaveDectada = null;
 	protected double vectorDirectorNaveX;
 	protected double vectorDirectorNaveY;
-
+//	protected Puntuacion puntuacion;
 
 	// CONSTRUCTORES//
 	public Enemigo(double vida, double danyo, double velX, double velY, double radio,
@@ -50,11 +52,16 @@ public abstract class Enemigo extends paquetePrincipal.Objeto  {
 
 	
 	// METODOS//
-
-	
-
-	
-
+	public void reducirVida(int daño) {
+		this.setVida(this.getVida()-daño);
+	}
+	@Override
+	public boolean colisionando(Objeto o1) {
+		if(o1 instanceof NaveBase) {
+			((NaveBase) o1).reducirVida((int)this.getDanyo());
+			return super.colisionando(o1);
+		}else return false;
+	}
 
 	//metodos de obtención y modificación de la vida de los enemigos
 	public double getVida() {
@@ -140,6 +147,7 @@ public abstract class Enemigo extends paquetePrincipal.Objeto  {
 		System.out.println(this.vectorDirectorNaveX + " - "+ this.vectorDirectorNaveY);
 		this.posX += this.velX* this.vectorDirectorNaveX;
 		this.posY += this.velY *this.vectorDirectorNaveY;
+		this.colisionando(NaveDectada);
 	}
 
 	

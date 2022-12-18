@@ -17,6 +17,9 @@ import paquetePrincipal.clasesPrincipales.Naves.NaveBasica;
 import paquetePrincipal.clasesPrincipales.Naves.Proyectil;
 import paquetePrincipal.clasesPrincipales.enemigos.Enemigo;
 import paquetePrincipal.clasesPrincipales.enemigos.EnemigoBasico;
+import paquetePrincipal.clasesPrincipales.enemigos.EnemigoReforzado;
+import paquetePrincipal.clasesPrincipales.enemigos.EnemigoVeloz;
+import paquetePrincipal.clasesPrincipales.enemigos.GrupoEnemigos;
 
 public class MotorJuego extends JFrame {
 	private boolean running = false;
@@ -34,9 +37,12 @@ public class MotorJuego extends JFrame {
 	public static List<NaveBase> jugadoresEnPartida = new ArrayList<NaveBase>();
 	public static List<Proyectil> projectiles=new ArrayList<>();
 	
-	public static Enemigo e1 = new EnemigoBasico();
-	public static NaveBase jugador1 = new NaveBasica(null, CategoriaJugador.PLAYER1);
 	
+	public static NaveBase jugador1 = new NaveBasica(null, CategoriaJugador.PLAYER1);
+	public static GrupoEnemigos enemigosVivos = new GrupoEnemigos();
+	public static Enemigo e1 = new EnemigoBasico();
+	public static Enemigo e2 = new EnemigoReforzado();
+	public static Enemigo e3 = new EnemigoVeloz();
 	//
 	public int cadenciaDisparo=10; 
 	
@@ -71,8 +77,12 @@ public class MotorJuego extends JFrame {
 	public void iniciar() {
 		
 		this.jugadoresEnPartida.add(jugador1);
+		this.enemigosVivos.anyadir(e1);
+		this.enemigosVivos.anyadir(e2);
+		this.enemigosVivos.anyadir(e3);
 		this.e1.inicializarEnemigo(this.anchuraV, this.alturaV,jugadoresEnPartida);
-		
+		this.e2.inicializarEnemigo(this.anchuraV, this.alturaV,jugadoresEnPartida);
+		this.e3.inicializarEnemigo(this.anchuraV, this.alturaV,jugadoresEnPartida);
 		
 	}
 	//ACTUALIZA LOGICA DE JUEGO
@@ -102,6 +112,8 @@ public class MotorJuego extends JFrame {
 		}if(this.isTeclaPulsada(KeyEvent.VK_LEFT)&&jugador1.getJugador()==CategoriaJugador.PLAYER2) {
 			jugador1.setPosX(jugador1.posX - jugador1.getVelocidadMovimiento());
 		}
+		this.enemigosVivos.update(jugadoresEnPartida);
+
 		/*if(this.isTeclaPulsada(KeyEvent.VK_SPACE)&&jugador1.getJugador()==CategoriaJugador.PLAYER1) {
 			//e1.inicializarEnemigo(anchuraV, alturaV, this.jugadoresEnPartida);
 			//disparo
@@ -118,7 +130,7 @@ public class MotorJuego extends JFrame {
 			}
 		}*/
 		jugador1.movimiento();
-		e1.update();
+		
 		
 		cadenciaDisparo++;
 		

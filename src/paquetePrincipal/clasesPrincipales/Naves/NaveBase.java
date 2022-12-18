@@ -215,6 +215,11 @@ abstract public class NaveBase extends Objeto
 			//boton shift derecho?
 		}
 	}
+
+
+	public void reducirVida(int danyo) {
+		this.setVida(this.getVida()-danyo);
+	};
 	
 	
 }

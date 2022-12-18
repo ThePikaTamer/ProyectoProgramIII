@@ -54,19 +54,35 @@ public class CustomCanvas extends Canvas {
 		g.drawString("UPS: " + MotorJuego.getUPS() + " | FPS: " + MotorJuego.getFPS(), 20, 20);
 		double posY = MotorJuego.jugador1.posY;
 		double posX = MotorJuego.jugador1.posX;
-		double posY2 = MotorJuego.e1.posY;
-		double posX2 = MotorJuego.e1.posX;
-		g.drawRect((int) posX2, (int) posY2, 25, 25);
-		g.fillRect((int) posX2, (int) posY2, 25, 25);
+		double posY2 = MotorJuego.e2.posY;
+		double posX2 = MotorJuego.e2.posX;
+		double posY3 = MotorJuego.e3.posY;
+		double posX3 = MotorJuego.e3.posX;
 		
-		g.setColor(Color.BLUE);
-		g.drawRect((int) posX, (int) posY, 60, 50);
-		g.fillRect((int) posX, (int) posY, 60, 50);
 		
-		while(MotorJuego.projectiles.size()>0) //help porqué se para
+		g.drawRect((int) posX, (int) posY, 50, 50);
+		g.fillRect((int) posX, (int) posY, 50, 50);
+		if(motor.enemigosVivos.contiene(motor.e2)) {
+			g.setColor(Color.green);
+			g.drawRect((int) posX2, (int) posY2, 25, 25);
+			g.fillRect((int) posX2, (int) posY2, 25, 25);
+			}
+		
+			if(motor.enemigosVivos.contiene(motor.e1)) {
+			g.setColor(Color.BLUE);
+			g.drawRect((int) posX3, (int) posY3, 25, 25);
+			g.fillRect((int) posX3, (int) posY3, 25, 25);
+			}
+//		g.fillRect((int) posX2, (int) posY2, 25, 25);
+//		
+//		g.setColor(Color.BLUE);
+//		g.drawRect((int) posX, (int) posY, 60, 50);
+//		g.fillRect((int) posX, (int) posY, 60, 50);
+		
+		while(MotorJuego.projectiles.size()>0) //help porquï¿½ se para
 		{
-			double posX3 = MotorJuego.projectiles.get(MotorJuego.projectiles.size()-1).getPosX();
-			double posY3 = MotorJuego.projectiles.get(MotorJuego.projectiles.size()-1).getPosY();
+//			double posX3 = MotorJuego.projectiles.get(MotorJuego.projectiles.size()-1).getPosX();
+//			double posY3 = MotorJuego.projectiles.get(MotorJuego.projectiles.size()-1).getPosY();
 			g.setColor(Color.YELLOW);
 			g.drawRect((int)posX3, (int)posY3, 10, 15);
 			g.fillRect((int)posX3, (int)posY3, 10, 15);

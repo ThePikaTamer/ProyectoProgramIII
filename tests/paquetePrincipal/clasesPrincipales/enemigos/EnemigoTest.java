@@ -22,7 +22,7 @@ public class EnemigoTest {
 		e.setVida(1);
 		assertEquals(1,e.getVida(), 0);
 		e.setVida(-1);//para quitar cosas en rojo
-		
+		 
 		
 		assertEquals(1,e.getDanyo(), 0);
 		e.setDanyo(2);
