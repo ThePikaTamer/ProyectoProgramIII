@@ -144,7 +144,7 @@ public abstract class Enemigo extends paquetePrincipal.Objeto  {
 //actualiza posicion de los enemigos
 	public void update() {
 		this.setVectorDirectorConNave(this.NaveDectada);
-		System.out.println(this.vectorDirectorNaveX + " - "+ this.vectorDirectorNaveY);
+		//System.out.println(this.vectorDirectorNaveX + " - "+ this.vectorDirectorNaveY);
 		this.posX += this.velX* this.vectorDirectorNaveX;
 		this.posY += this.velY *this.vectorDirectorNaveY;
 		this.colisionando(NaveDectada);

@@ -12,6 +12,7 @@ import java.util.Set;
 
 import javax.swing.JFrame;
 
+import Controles.Teclado;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBasica;
 import paquetePrincipal.clasesPrincipales.Naves.Proyectil;
@@ -46,6 +47,13 @@ public class MotorJuego extends JFrame {
 	//
 	public int cadenciaDisparo=10; 
 	
+	//Teclado
+	public Teclado teclado;
+	
+	
+	
+	
+	
 	public MotorJuego(final String titulo, final int anchura, final int altura) {
 		this.titulo = titulo;
 		this.anchuraV = anchura;
@@ -59,9 +67,14 @@ public class MotorJuego extends JFrame {
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		
+		//TECLADO
+		teclado = new Teclado();
+		this.addKeyListener(teclado);
+		//
 		this.GameStart();
 	    this.comenzarBuclePrincipal();
+	    
+	    
 	}
 	
 
@@ -87,50 +100,23 @@ public class MotorJuego extends JFrame {
 	}
 	//ACTUALIZA LOGICA DE JUEGO
 	public void update() {
-		//&&jugador1.getJugador()==CategoriaJugador.PLAYER1
-		if(this.isTeclaPulsada(KeyEvent.VK_W)&&jugador1.getJugador()==CategoriaJugador.PLAYER1) {
-			jugador1.setPosY(jugador1.posY -jugador1.getVelocidadMovimiento());
-		}if(this.isTeclaPulsada(KeyEvent.VK_S)&&jugador1.getJugador()==CategoriaJugador.PLAYER1) {
-			jugador1.setPosY(jugador1.posY +jugador1.getVelocidadMovimiento());
-		}if(this.isTeclaPulsada(KeyEvent.VK_D)&&jugador1.getJugador()==CategoriaJugador.PLAYER1) { //rotate
-			jugador1.setPosX(jugador1.posX + jugador1.getVelocidadMovimiento());
-			//jugador1.getTransform().rotate(Math.toRadians(30.0));
-			//jugador1.setr
-			//System.out.println("oiiii");
-		}
-		if(this.isTeclaPulsada(KeyEvent.VK_A)&&jugador1.getJugador()==CategoriaJugador.PLAYER1) { //rotate
-			jugador1.setPosX(jugador1.posX - jugador1.getVelocidadMovimiento());
-			
-		}
-		//&&jugador1.getJugador()==CategoriaJugador.PLAYER2
-		if(this.isTeclaPulsada(KeyEvent.VK_UP)&&jugador1.getJugador()==CategoriaJugador.PLAYER2) {
-			jugador1.setPosY(jugador1.posY -jugador1.getVelocidadMovimiento());
-		}if(this.isTeclaPulsada(KeyEvent.VK_DOWN)&&jugador1.getJugador()==CategoriaJugador.PLAYER2) {
-			jugador1.setPosY(jugador1.posY +jugador1.getVelocidadMovimiento());
-		}if(this.isTeclaPulsada(KeyEvent.VK_RIGHT)&&jugador1.getJugador()==CategoriaJugador.PLAYER2) {
-			jugador1.setPosX(jugador1.posX + jugador1.getVelocidadMovimiento());
-		}if(this.isTeclaPulsada(KeyEvent.VK_LEFT)&&jugador1.getJugador()==CategoriaJugador.PLAYER2) {
-			jugador1.setPosX(jugador1.posX - jugador1.getVelocidadMovimiento());
-		}
-		this.enemigosVivos.update(jugadoresEnPartida);
 
-		/*if(this.isTeclaPulsada(KeyEvent.VK_SPACE)&&jugador1.getJugador()==CategoriaJugador.PLAYER1) {
-			//e1.inicializarEnemigo(anchuraV, alturaV, this.jugadoresEnPartida);
-			//disparo
-			if(cadenciaDisparo>=10)
-			{
-				Proyectil proyectilD=new Proyectil(15.0f, 10.0f);
-				proyectilD.posX=jugador1.posX;
-				proyectilD.posY=jugador1.posY;
-				
-				projectiles.add(proyectilD);
-				System.out.println("there");
-				
-				cadenciaDisparo=0;
-			}
-		}*/
-		jugador1.movimiento();
-		
+		//TECLADO
+		teclado.update();
+		if(teclado.arriba) {
+			jugador1.setPosY(jugador1.posY- jugador1.getVelocidadMovimiento());
+			System.out.println("arriba");
+		}if(teclado.abajo) {
+			jugador1.setPosY(jugador1.posY+ jugador1.getVelocidadMovimiento());
+		}if(teclado.izquierda) {
+			jugador1.setPosX(jugador1.posX- jugador1.getVelocidadMovimiento());
+		}if(teclado.derecha) {
+			jugador1.setPosX(jugador1.posX+ jugador1.getVelocidadMovimiento());
+		}
+		System.out.println(""+ jugador1.posX +" - " + jugador1.posY);
+		//
+
+		this.enemigosVivos.update(jugadoresEnPartida);
 		
 		cadenciaDisparo++;
 		
@@ -170,7 +156,7 @@ public class MotorJuego extends JFrame {
         double deltaAps = 0;
         double deltaFps = 0;
         
-        
+        this.requestFocus();
         while (running) {
             final long beginLoop = System.nanoTime();
 
