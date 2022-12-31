@@ -8,15 +8,19 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import paquetePrincipal.MotorJuego;
+
 public class VentanaOpciones extends JFrame
 {
+	public MotorJuego juego;
 	public VentanaOpciones()
 	{
+		this.juego = juego;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1800, 1000);
 		setTitle("Options");
 		setLocationRelativeTo(null);
-
+		
 		JPanel panel=new JPanel();
 		
 		
@@ -30,8 +34,9 @@ public class VentanaOpciones extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				new MainWindow();
 				dispose();
+				
+				
 				
 			}
 		});

@@ -26,9 +26,10 @@ abstract public class NaveBase extends Objeto
 	protected Point2D orientacion = new Point(0, 1);
 	protected Image image;
 	
-	public NaveBase(double anchuraNave, double alturaNave, int vida, double velocidadDisparo, double velocidadMovimiento, double velocidadRotacion, String iMG, CategoriaJugador jugador, Object habilidad)
+	public NaveBase( double radio, double anchuraNave, double alturaNave, int vida, double velocidadDisparo, double velocidadMovimiento, double velocidadRotacion, String iMG, CategoriaJugador jugador, Object habilidad)
 	{
 		super();
+		this.radio = radio;
 		this.anchuraNave = anchuraNave;
 		this.alturaNave = alturaNave;
 		this.vida = vida;

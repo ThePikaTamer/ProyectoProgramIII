@@ -8,13 +8,13 @@ public class Main
 	{
 		int altura = 640;
 		int anchura = 360;
-	 new MotorJuego("My Game", 640,360 );
+	 //new MotorJuego("My Game", 640,360 );
 
 	 
 	 
 	 
 //		
-//		new MainWindow();
+		new MainWindow();
 //		System.out.println("This is a test.");
 	}
 }

@@ -56,33 +56,27 @@ public class CustomCanvas extends Canvas {
 		double posX = MotorJuego.jugador1.posX;
 		double posY2 = MotorJuego.e2.posY;
 		double posX2 = MotorJuego.e2.posX;
-		double posY3 = MotorJuego.e3.posY;
-		double posX3 = MotorJuego.e3.posX;
+		double posY3 = MotorJuego.e1.posY;
+		double posX3 = MotorJuego.e1.posX;
 		
 		
-		g.drawRect((int) posX, (int) posY, 50, 50);
-		g.fillRect((int) posX, (int) posY, 50, 50);
-		if(motor.enemigosVivos.contiene(motor.e2)) {
+		g.drawRect((int) posX, (int) posY, (int)MotorJuego.jugador1.radio*2, (int)MotorJuego.jugador1.radio*2);
+		g.fillRect((int) posX, (int) posY, (int)MotorJuego.jugador1.radio*2, (int)MotorJuego.jugador1.radio*2);
+		if(motor.enemigosVivos.contiene(motor.e2) && motor.e2.vivo) {
 			g.setColor(Color.green);
-			g.drawRect((int) posX2, (int) posY2, 25, 25);
-			g.fillRect((int) posX2, (int) posY2, 25, 25);
+			g.drawRect((int) posX2, (int) posY2, (int)MotorJuego.e2.radio, (int)MotorJuego.e2.radio);
+			g.fillRect((int) posX2, (int) posY2, (int)MotorJuego.e2.radio, (int)MotorJuego.e2.radio);
 			}
-		
-			if(motor.enemigosVivos.contiene(motor.e1)) {
+		System.err.println( motor.e1.vivo);
+			if(motor.enemigosVivos.contiene(motor.e1)&& motor.e1.vivo) {
 			g.setColor(Color.BLUE);
-			g.drawRect((int) posX3, (int) posY3, 25, 25);
-			g.fillRect((int) posX3, (int) posY3, 25, 25);
+			g.drawRect((int) posX3, (int) posY3, (int)MotorJuego.e1.radio*2,(int) MotorJuego.e1.radio*2);
+			g.fillRect((int) posX3, (int) posY3, (int)MotorJuego.e1.radio*2,(int) MotorJuego.e1.radio*2);
 			}
-//		g.fillRect((int) posX2, (int) posY2, 25, 25);
-//		
-//		g.setColor(Color.BLUE);
-//		g.drawRect((int) posX, (int) posY, 60, 50);
-//		g.fillRect((int) posX, (int) posY, 60, 50);
+
 		
 		while(MotorJuego.projectiles.size()>0) //help porqu� se para
 		{
-//			double posX3 = MotorJuego.projectiles.get(MotorJuego.projectiles.size()-1).getPosX();
-//			double posY3 = MotorJuego.projectiles.get(MotorJuego.projectiles.size()-1).getPosY();
 			g.setColor(Color.YELLOW);
 			g.drawRect((int)posX3, (int)posY3, 10, 15);
 			g.fillRect((int)posX3, (int)posY3, 10, 15);

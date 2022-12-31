@@ -44,9 +44,12 @@ public class GrupoEnemigos {
 	public void update(List<NaveBase> lista) {
 		List<Enemigo> muertos = new ArrayList<>();
 		for(Enemigo i: this.arrayEnemigos) {
+			if(i.vivo) {
 			i.update();
+			}
 		for (NaveBase nave: lista) {
 			if(i.colisionando(nave)) {
+				i.vivo = false;
 				muertos.add(i);
 			}
 			

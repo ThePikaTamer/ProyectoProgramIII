@@ -101,8 +101,8 @@ public abstract class Objeto implements Animable {
 	}
 
 	public double calcDistancia(Objeto o1) {
-		double vectY = this.getPosY() - o1.getPosY();
-		double vectX = this.getPosX() - o1.getPosX();
+		double vectY = (this.getPosY()+this.radio) - (o1.getPosY()+o1.radio);
+		double vectX = (this.getPosX()+this.radio) - (o1.getPosX()+o1.radio);
 		double resultado = Math.sqrt((vectX) * (vectX) + (vectY) * (vectY));
 		return resultado;
 	}

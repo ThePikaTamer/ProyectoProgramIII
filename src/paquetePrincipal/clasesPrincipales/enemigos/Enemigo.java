@@ -36,6 +36,7 @@ public abstract class Enemigo extends paquetePrincipal.Objeto  {
 	protected NaveBase NaveDectada = null;
 	protected double vectorDirectorNaveX;
 	protected double vectorDirectorNaveY;
+	public boolean vivo = false;
 //	protected Puntuacion puntuacion;
 
 	// CONSTRUCTORES//
@@ -53,14 +54,14 @@ public abstract class Enemigo extends paquetePrincipal.Objeto  {
 	
 	// METODOS//
 	public void reducirVida(int daño) {
-		this.setVida(this.getVida()-daño);
+		this.vida -= daño;
 	}
 	@Override
 	public boolean colisionando(Objeto o1) {
-		if(o1 instanceof NaveBase) {
-			((NaveBase) o1).reducirVida((int)this.getDanyo());
+//		if(o1 instanceof NaveBase) {
+//			((NaveBase) o1).reducirVida((int)this.getDanyo());
 			return super.colisionando(o1);
-		}else return false;
+//		}else return false;
 	}
 
 	//metodos de obtención y modificación de la vida de los enemigos
@@ -121,7 +122,7 @@ public abstract class Enemigo extends paquetePrincipal.Objeto  {
 	
 	//metodo el cual da un valor aleatorio a la posición del enemigo la cual tiene que estar dentro de la pantalla
 	public void inicializarEnemigo(int anchuraPantalla, int alturaPantalla,List<NaveBase> navesVivas) {
-
+		this.vivo = true;
 		this.posX = Math.random() * anchuraPantalla;
 		this.posY =  Math.random() * alturaPantalla;
 		if(this.posX >= anchuraPantalla-2*this.getRadio() || this.posY >= alturaPantalla-2*this.getRadio()) {

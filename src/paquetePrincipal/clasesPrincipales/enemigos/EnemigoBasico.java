@@ -9,7 +9,7 @@ public class EnemigoBasico extends Enemigo{
 	
 	
 	public EnemigoBasico() {
-		super(2, 1, 2, 2, 50,IMG );
+		super(2, 1, 2, 2, 10,IMG );
 		this.setCicloAnimacion(new ArrayList<>());
 		this.getCicloAnimacion().add(IMG);
 		this.getCicloAnimacion().add("img\\Enemy_1_1.png");

@@ -21,8 +21,9 @@ import paquetePrincipal.clasesPrincipales.enemigos.EnemigoBasico;
 import paquetePrincipal.clasesPrincipales.enemigos.EnemigoReforzado;
 import paquetePrincipal.clasesPrincipales.enemigos.EnemigoVeloz;
 import paquetePrincipal.clasesPrincipales.enemigos.GrupoEnemigos;
+import paquetePrincipal.ventanas.VentanaOpciones;
 
-public class MotorJuego extends JFrame {
+public class MotorJuego extends JFrame implements Runnable {
 	private boolean running = false;
 	private final String titulo;
 	private final int anchuraV;
@@ -30,7 +31,7 @@ public class MotorJuego extends JFrame {
 
 	public static CustomCanvas cc;
 	private static int UPS_TARGET = 60;
-	private static int FPS_TARGET = 30;
+	private static int FPS_TARGET = 60;
 	private static int fps = 0;
 	private static int ups = 0;
 	
@@ -49,8 +50,10 @@ public class MotorJuego extends JFrame {
 	
 	//Teclado
 	public Teclado teclado;
-	
-	
+	//
+	//THREADS
+	private static Thread thread;
+	//
 	
 	
 	
@@ -70,9 +73,13 @@ public class MotorJuego extends JFrame {
 		//TECLADO
 		teclado = new Teclado();
 		this.addKeyListener(teclado);
+		this.requestFocus();
 		//
+		
+		
+	//TODO	//HAY QUE CREAR HILOS PARA QUE NO SE ATASQUE EL PROGRAMA
 		this.GameStart();
-	    this.comenzarBuclePrincipal();
+//	    this.comenzarBuclePrincipal();
 	    
 	    
 	}
@@ -81,13 +88,29 @@ public class MotorJuego extends JFrame {
 	
 	//METODOS
 	
-	public void GameStart() {
-		iniciarLecturaTeclado();
-		iniciar();
+	public synchronized void GameStart() {
 		this.setRunning(true); 
+		iniciar();
+		
+	}
+//	public synchronized void GameContinue() {		//TODO No funciona
+//		this.setRunning(true);
+//		this.thread.start();
+//		
+//	}
+	public synchronized void GameStop() {
+		this.setRunning(false);
+		try {
+			thread.join();
+		} catch (InterruptedException e) {
+			System.err.println("Problemas con hilo");
+			e.printStackTrace();
+		}
 	}
 
 	public void iniciar() {
+		thread = new Thread(this, "principal");
+		
 		
 		this.jugadoresEnPartida.add(jugador1);
 		this.enemigosVivos.anyadir(e1);
@@ -96,7 +119,7 @@ public class MotorJuego extends JFrame {
 		this.e1.inicializarEnemigo(this.anchuraV, this.alturaV,jugadoresEnPartida);
 		this.e2.inicializarEnemigo(this.anchuraV, this.alturaV,jugadoresEnPartida);
 		this.e3.inicializarEnemigo(this.anchuraV, this.alturaV,jugadoresEnPartida);
-		
+		thread.start();
 	}
 	//ACTUALIZA LOGICA DE JUEGO
 	public void update() {
@@ -112,13 +135,17 @@ public class MotorJuego extends JFrame {
 			jugador1.setPosX(jugador1.posX- jugador1.getVelocidadMovimiento());
 		}if(teclado.derecha) {
 			jugador1.setPosX(jugador1.posX+ jugador1.getVelocidadMovimiento());
+		}if(teclado.menuESQ) {
+			new VentanaOpciones();
+			this.GameStop();
+			
 		}
 		System.out.println(""+ jugador1.posX +" - " + jugador1.posY);
-		//
+		
 
 		this.enemigosVivos.update(jugadoresEnPartida);
 		
-		cadenciaDisparo++;
+//		cadenciaDisparo++;
 		
 	};
 	
@@ -293,34 +320,22 @@ public class MotorJuego extends JFrame {
 	
 
 	
-	//LECTURA DE TECLADO
+
 	
-	private static int codTeclaTecleada = 0;
-	private static int codTeclaActualmentePulsada = 0;
-	private static Set<Integer> teclasPulsadas = new HashSet<Integer>();
 	
-	public void iniciarLecturaTeclado() {
-			KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-			manager.addKeyEventDispatcher(new KeyEventDispatcher() {
-				
-				public boolean dispatchKeyEvent(KeyEvent e) {
-					if (e.getID() == KeyEvent.KEY_PRESSED) {
-						teclasPulsadas.add( e.getKeyCode() );
-						codTeclaActualmentePulsada = e.getKeyCode();
-					} else if (e.getID() == KeyEvent.KEY_RELEASED) {
-						teclasPulsadas.remove( e.getKeyCode() );
-						codTeclaTecleada = e.getKeyCode();
-						codTeclaActualmentePulsada = 0;
-					} else if (e.getID() == KeyEvent.KEY_TYPED) {
-					}
-					return false;   // false = enviar el evento al comp
-				} } );
-			
-			
-	};
-			
-	public boolean isTeclaPulsada( int codTecla ) {
-		return teclasPulsadas.contains(codTecla);
+
+
+
+	
+	
+	
+	
+	//THREADS
+	@Override
+	public void run() {
+		this.comenzarBuclePrincipal();
+
+		
 	}
 	
 

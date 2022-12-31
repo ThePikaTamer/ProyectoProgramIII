@@ -9,7 +9,7 @@ public class NaveBasica extends NaveBase
 	
 	public NaveBasica(Object habilidad, CategoriaJugador tipoJugador)
 	{
-		super(2, 2, 3, 2.5, 3.0, 3.0, IMG, tipoJugador, habilidad);
+		super(15,2, 2, 3, 2.5, 3.0, 3.0, IMG, tipoJugador, habilidad);
 		// TODO Auto-generated constructor stub
 	}
 	
