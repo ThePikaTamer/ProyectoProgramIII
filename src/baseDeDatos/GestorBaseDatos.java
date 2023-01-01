@@ -217,13 +217,13 @@ public class GestorBaseDatos {
 					this.ModosDeJuegoParaActualizar = new ArrayList<>();
 				}
 			}
-		//CARGA DE USUARIOS
+			// CARGA DE USUARIOS
 			if (this.getUsuariosDeJuegoParaActualizar() != null) {
 				try (PreparedStatement insertUs = conn
 						.prepareStatement("INSERT INTO USUARIO (ID_US, NICKNAME, CORREO, FECHA_NAC) VALUES(?,?,?,?)")) {
 
-					for(Usuario cadaUs : this.usuariosDeJuegoParaActualizar) {
-						if(!this.ListaClavesUsuarios().contains(cadaUs.getIdUsuario())) {
+					for (Usuario cadaUs : this.usuariosDeJuegoParaActualizar) {
+						if (!this.ListaClavesUsuarios().contains(cadaUs.getIdUsuario())) {
 							insertUs.setInt(1, cadaUs.getIdUsuario());
 							insertUs.setString(2, cadaUs.getNickUsuario());
 							insertUs.setString(3, cadaUs.getCorreo());
@@ -237,34 +237,34 @@ public class GestorBaseDatos {
 				}
 
 			}
-		//CARGA DE USUARIO
-			if(this.getPartidasDeJuego() != null) {
-				try(PreparedStatement insertP = conn.prepareStatement("INSERT INTO PARTIDA (ID_PAR,FECHA_PAR, HORA_PAR, PUNTOS, JUGADOR1, JUGADOR2) VALUES (?,?,?,?,?,?)")){
-					for(Partida cadaP : this.partidasDeJuegoParaActualizar) {
-						if(!this.ListaClavesPartidas().contains(cadaP.getIDPartida())) {
+			// CARGA DE USUARIO
+			if (this.getPartidasDeJuego() != null) {
+				try (PreparedStatement insertP = conn.prepareStatement(
+						"INSERT INTO PARTIDA (ID_PAR,FECHA_PAR, HORA_PAR, PUNTOS, JUGADOR1, JUGADOR2) VALUES (?,?,?,?,?,?)")) {
+					for (Partida cadaP : this.partidasDeJuegoParaActualizar) {
+						if (!this.ListaClavesPartidas().contains(cadaP.getIDPartida())) {
 							insertP.setInt(1, cadaP.getIDPartida());
 							insertP.setString(2, cadaP.getFechaPartida().toString());
-							insertP.setString(3, cadaP.getHoraPartida().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+							insertP.setString(3,
+									cadaP.getHoraPartida().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
 							insertP.setInt(4, cadaP.getPuntos());
-							if(cadaP.getJugador1()!= null) 	insertP.setInt(5, cadaP.getJugador1().getIdUsuario());
-							if(cadaP.getJugador2()!= null)insertP.setInt(6, cadaP.getJugador2().getIdUsuario());
+							if (cadaP.getJugador1() != null)
+								insertP.setInt(5, cadaP.getJugador1().getIdUsuario());
+							if (cadaP.getJugador2() != null)
+								insertP.setInt(6, cadaP.getJugador2().getIdUsuario());
 
-							System.out.println(insertP.toString());//PRUEBA
+							System.out.println(insertP.toString());// PRUEBA
 							insertP.executeUpdate();
 						}
 						this.descargarDatosDeBaseDeDatosCompleta(baseDeDatos);
 						this.partidasDeJuegoParaActualizar = new ArrayList<>();
-						
+
 					}
-					
-					
-					
-					
+
 				}
-				
-				
+
 			}
-			
+
 			// EXCEPCIONES DE TODOS LOS STATEMENTS
 		} catch (Exception e) {
 			e.printStackTrace();

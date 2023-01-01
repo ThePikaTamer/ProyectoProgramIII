@@ -1,29 +1,25 @@
 package paquetePrincipal;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public abstract class Objeto implements Animable {
-	protected static String image;
+	protected BufferedImage IMG;
 	protected double velX;
 	protected double velY;
 	protected double posX;
 	protected double posY;
 	protected double radio;
-	protected ArrayList<String> cicloAnimacion = new ArrayList<>();
+	protected ArrayList<BufferedImage> cicloAnimacion = new ArrayList<>();
 
-	
-	/*public Objeto(double velX, double velY, double posX, double posY, double radio, ArrayList<String> cicloAnimacion) {
-		super();
-		this.velX = velX;
-		this.velY = velY;
-		this.posX = posX;
-		this.posY = posY;
-		this.radio = radio;
-		this.cicloAnimacion = cicloAnimacion;
-	}*/
-	
+	/*
+	 * public Objeto(double velX, double velY, double posX, double posY, double
+	 * radio, ArrayList<String> cicloAnimacion) { super(); this.velX = velX;
+	 * this.velY = velY; this.posX = posX; this.posY = posY; this.radio = radio;
+	 * this.cicloAnimacion = cicloAnimacion; }
+	 */
+
 	// Get-setters
-
 
 	public double getRadio() {
 		return radio;
@@ -33,12 +29,12 @@ public abstract class Objeto implements Animable {
 		this.radio = radio;
 	}
 
-	public String getImage() {
-		return image;
+	public BufferedImage getImage() {
+		return this.IMG;
 	}
 
-	public static void setImage(String image) {
-		Objeto.image = image;
+	public  void setImage(BufferedImage image) {
+		IMG = image;
 	}
 
 	public double getVelX() {
@@ -73,11 +69,11 @@ public abstract class Objeto implements Animable {
 		this.posY = posY;
 	}
 
-	public ArrayList<String> getCicloAnimacion() {
+	public ArrayList<BufferedImage> getCicloAnimacion() {
 		return cicloAnimacion;
 	}
 
-	public void setCicloAnimacion(ArrayList<String> cicloAnimacion) {
+	public void setCicloAnimacion(ArrayList<BufferedImage> cicloAnimacion) {
 		this.cicloAnimacion = cicloAnimacion;
 	}
 
@@ -91,32 +87,30 @@ public abstract class Objeto implements Animable {
 	}
 
 	public void siguienteDibujo() {
-		String dibujoActual = this.image;
+		BufferedImage dibujoActual = this.IMG;
 		if (this.cicloAnimacion.indexOf(dibujoActual) == (this.cicloAnimacion.size() - 1)) {
 			this.setDibujoInicial();
 		} else {
-			this.image = this.cicloAnimacion.get(this.cicloAnimacion.indexOf(dibujoActual) + 1);
+			this.IMG = this.cicloAnimacion.get(this.cicloAnimacion.indexOf(dibujoActual) + 1);
 		}
 
 	}
 
 	public double calcDistancia(Objeto o1) {
-		double vectY = (this.getPosY()+this.radio) - (o1.getPosY()+o1.radio);
-		double vectX = (this.getPosX()+this.radio) - (o1.getPosX()+o1.radio);
+		double vectY = (this.getPosY() + this.radio) - (o1.getPosY() + o1.radio);
+		double vectX = (this.getPosX() + this.radio) - (o1.getPosX() + o1.radio);
 		double resultado = Math.sqrt((vectX) * (vectX) + (vectY) * (vectY));
 		return resultado;
 	}
 
 	public boolean colisionando(Objeto o1) {
-		
-			if (this.calcDistancia(o1)< (this.radio+o1.radio)) {
-				return true;
-			}else {
-				return false;
-			}
 
-			
-	
+		if (this.calcDistancia(o1) < (this.radio + o1.radio)) {
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 
 }

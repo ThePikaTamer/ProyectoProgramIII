@@ -19,6 +19,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 
+import graficos.Assets;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 
 public class CustomCanvas extends Canvas {
@@ -43,43 +44,42 @@ public class CustomCanvas extends Canvas {
 			createBufferStrategy(2);
 			return;
 		}
+
+		// CREAR GRAFICOS PARA DIBUJAR
 		final Graphics2D g = (Graphics2D) buffer.getDrawGraphics();
 
-		// Acá va todo lo que se tiene que dibujar de todas las entidades
-
+		// Aquí va todo lo que se tiene que dibujar de todas las entidades
 		g.clearRect(0, 0, anchura, altura);
 
 		g.fillRect(10, 10, 130, 15);
 		g.setColor(Color.red);
 		g.drawString("UPS: " + MotorJuego.getUPS() + " | FPS: " + MotorJuego.getFPS(), 20, 20);
-		double posY = MotorJuego.jugador1.posY;
-		double posX = MotorJuego.jugador1.posX;
 		double posY2 = MotorJuego.e2.posY;
 		double posX2 = MotorJuego.e2.posX;
 		double posY3 = MotorJuego.e1.posY;
 		double posX3 = MotorJuego.e1.posX;
-		
-		
-		g.drawRect((int) posX, (int) posY, (int)MotorJuego.jugador1.radio*2, (int)MotorJuego.jugador1.radio*2);
-		g.fillRect((int) posX, (int) posY, (int)MotorJuego.jugador1.radio*2, (int)MotorJuego.jugador1.radio*2);
-		if(motor.enemigosVivos.contiene(motor.e2) && motor.e2.vivo) {
-			g.setColor(Color.green);
-			g.drawRect((int) posX2, (int) posY2, (int)MotorJuego.e2.radio, (int)MotorJuego.e2.radio);
-			g.fillRect((int) posX2, (int) posY2, (int)MotorJuego.e2.radio, (int)MotorJuego.e2.radio);
-			}
-		System.err.println( motor.e1.vivo);
-			if(motor.enemigosVivos.contiene(motor.e1)&& motor.e1.vivo) {
-			g.setColor(Color.BLUE);
-			g.drawRect((int) posX3, (int) posY3, (int)MotorJuego.e1.radio*2,(int) MotorJuego.e1.radio*2);
-			g.fillRect((int) posX3, (int) posY3, (int)MotorJuego.e1.radio*2,(int) MotorJuego.e1.radio*2);
-			}
 
+//		g.drawRect((int) posX, (int) posY, (int)MotorJuego.jugador1.radio*2, (int)MotorJuego.jugador1.radio*2);
+//		g.fillRect((int) posX, (int) posY, (int)MotorJuego.jugador1.radio*2, (int)MotorJuego.jugador1.radio*2);
+//		if (motor.enemigosVivos.contiene(motor.e2) && motor.e2.vivo) {
+//			g.setColor(Color.green);
+//			g.drawRect((int) posX2, (int) posY2, (int) MotorJuego.e2.radio, (int) MotorJuego.e2.radio);
+//			g.fillRect((int) posX2, (int) posY2, (int) MotorJuego.e2.radio, (int) MotorJuego.e2.radio);
+//		}
+//		System.err.println(motor.e1.vivo);
+//		if (motor.enemigosVivos.contiene(motor.e1) && motor.e1.vivo) {
+//			g.setColor(Color.BLUE);
+//			g.drawRect((int) posX3, (int) posY3, (int) MotorJuego.e1.radio * 2, (int) MotorJuego.e1.radio * 2);
+//			g.fillRect((int) posX3, (int) posY3, (int) MotorJuego.e1.radio * 2, (int) MotorJuego.e1.radio * 2);
+//		}
 		
-		while(MotorJuego.projectiles.size()>0) //help porqu� se para
-		{
-			g.setColor(Color.YELLOW);
-			g.drawRect((int)posX3, (int)posY3, 10, 15);
-			g.fillRect((int)posX3, (int)posY3, 10, 15);
+		motor.jugador1.dibujar(g);
+		if (motor.enemigosVivos.contiene(motor.e1) && motor.e1.vivo) {
+		motor.e1.dibujar(g);
+		}
+		if (motor.enemigosVivos.contiene(motor.e2) && motor.e2.vivo) {
+		motor.e2.dibujar(g);
+			
 		}
 
 		// Configuracion y dibujado final

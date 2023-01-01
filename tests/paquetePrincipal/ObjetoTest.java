@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-
 import paquetePrincipal.clasesPrincipales.enemigos.Enemigo;
 import paquetePrincipal.clasesPrincipales.enemigos.EnemigoBasico;
 import paquetePrincipal.clasesPrincipales.enemigos.EnemigoReforzado;
@@ -45,38 +44,37 @@ public class ObjetoTest {
 	@Test
 	public void testSetDibujoInicial() {
 		Enemigo e1 = new EnemigoBasico();
-	//Rama1
+		// Rama1
 		e1.setImage("prueba");
 		assertTrue(e1.getImage() == "prueba");
 		e1.setDibujoInicial();
 		assertTrue(e1.getImage() == "img\\Enemy_1.png");
 
-
 	}
 
 	@Test
 	public void testSiguienteDibujo() {
-		Enemigo e1 = new EnemigoBasico();	
-		
+		Enemigo e1 = new EnemigoBasico();
+
 		e1.siguienteDibujo();
 		assertTrue("img\\Enemy_1_1.png" == e1.getImage());
 		e1.siguienteDibujo();
 		assertTrue("img\\Enemy_1.png" == e1.getImage());
-		
+
 	}
-	
-	@Test 
+
+	@Test
 	public void testGetterSetter() {
 		Objeto o = new EnemigoReforzado();
 		o.setCicloAnimacion(new ArrayList<>());
-		o.setDibujoInicial();//saca por pantalla que el array está vacio
-		
+		o.setDibujoInicial();// saca por pantalla que el array está vacio
+
 		o.setRadio(50);
-		assertEquals(50, o.getRadio(),0);
-		
+		assertEquals(50, o.getRadio(), 0);
+
 		o.setVelX(13);
-		assertEquals(13, o.getVelX(),0);
+		assertEquals(13, o.getVelX(), 0);
 		o.setVelY(13);
-		assertEquals(13, o.getVelY(),0);
+		assertEquals(13, o.getVelY(), 0);
 	}
 }

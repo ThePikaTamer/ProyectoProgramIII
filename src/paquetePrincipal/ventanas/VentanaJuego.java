@@ -17,57 +17,48 @@ public class VentanaJuego extends JFrame {
 		setSize(1800, 1000);
 		setTitle("Asteroids");
 		setLocationRelativeTo(null);
-		
+
 		JButton boton1Jugador = new JButton("1 Jugador");
 		JButton boton2Jugadores = new JButton("2 Jugadores");
 		JButton botonReturn = new JButton("Opciones");
 		JPanel panelJugadores = new JPanel();
-		panelJugadores.setLayout(new GridLayout(1,2));
-		
+		panelJugadores.setLayout(new GridLayout(1, 2));
+
 		boton1Jugador.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new VentanaSeleccion();
 				dispose();
-				
-				
+
 			}
 		});
-	boton2Jugadores.addActionListener(new ActionListener() {
-			
+		boton2Jugadores.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new VentanaSeleccion2();
 				dispose();
-				
-				
+
 			}
 		});
-	botonReturn.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			new MainWindow();
-			dispose();
-			
-			
-		}
-	});
-		
-		
-		
-		
+		botonReturn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new MainWindow();
+				dispose();
+
+			}
+		});
+
 		this.getContentPane().add(panelJugadores);
 		panelJugadores.add(boton1Jugador, BorderLayout.WEST);
 		panelJugadores.add(boton2Jugadores, BorderLayout.EAST);
 		this.getContentPane().add(botonReturn, BorderLayout.SOUTH);
-		
-		
-		
+
 		this.setVisible(true);
-		
-		
+
 	}
 
 }

@@ -1,23 +1,19 @@
 package paquetePrincipal.clasesPrincipales.enemigos;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class EnemigoBasico extends Enemigo{
+import graficos.Assets;
 
-	
-	protected static String IMG = "img\\Enemy_1.png";
-	
-	
+public class EnemigoBasico extends Enemigo {
+
+	protected static BufferedImage IMG = Assets.enemigoBasico;
+
 	public EnemigoBasico() {
-		super(2, 1, 2, 2, 10,IMG );
+		super(2, 1, 2, 2, 16, IMG);
 		this.setCicloAnimacion(new ArrayList<>());
 		this.getCicloAnimacion().add(IMG);
-		this.getCicloAnimacion().add("img\\Enemy_1_1.png");
-
+		
 	}
 
-
-
-	
-	
 }

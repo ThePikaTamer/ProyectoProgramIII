@@ -23,17 +23,16 @@ public class PowerUpTest {
 		puh.cicloAnimacion.add("imagen0");
 		puh.cicloAnimacion.add("imagen1");
 		puh.cicloAnimacion.add("imagen2");
-		
+
 		PowerUpHp puhp = new PowerUpHp();
 		puhp.cicloAnimacion.add("imagen0");
 		puhp.cicloAnimacion.add("imagen1");
 		puhp.cicloAnimacion.add("imagen2");
-		
-		
+
 		PowerUpVD puv = new PowerUpVD();
 		puv.cicloAnimacion.add("imagen0");
 		puv.cicloAnimacion.add("imagen1");
 		puv.cicloAnimacion.add("imagen2");
-		
-}
+
+	}
 }

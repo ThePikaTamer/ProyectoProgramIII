@@ -16,7 +16,7 @@ public class AsteroideTest {
 		ab.cicloAnimacion.add("imagen0");
 		ab.cicloAnimacion.add("imagen1");
 		ab.cicloAnimacion.add("imagen2");
-		
+
 		AsteroideDorado ad = new AsteroideDorado();
 		ad.cicloAnimacion.add("imagen0");
 		ad.cicloAnimacion.add("imagen1");

@@ -1,12 +1,14 @@
 package paquetePrincipal.clasesPrincipales.PowerUps;
 
+import java.awt.image.BufferedImage;
+
 public class PowerUpHabilidad extends PowerUp {
 
-	protected static String IMG = "";
-	
+	protected static BufferedImage IMG;
+
 	public PowerUpHabilidad() {
 		super(2, 2, IMG);
-		
+
 	}
 
 }

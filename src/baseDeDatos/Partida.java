@@ -13,16 +13,7 @@ public class Partida {
 	protected int puntos;
 	protected Usuario jugador1;
 	protected Usuario jugador2;
-	
-	
-	
-	
-	
 
-	
-	
-	
-	
 	public Partida(int iDPartida, LocalDate fechaPartida, LocalTime horaPartida, int puntos, Usuario jugador1,
 			Usuario jugador2) {
 		super();
@@ -33,6 +24,7 @@ public class Partida {
 		this.jugador1 = jugador1;
 		this.jugador2 = jugador2;
 	}
+
 	public Partida(int iDPartida, String fechaPartida, LocalTime horaPartida, int puntos, Usuario jugador1,
 			Usuario jugador2) {
 		super();
@@ -44,38 +36,46 @@ public class Partida {
 		this.jugador2 = jugador2;
 	}
 
-	
-	
 	public int getPuntos() {
 		return puntos;
 	}
+
 	public void setPuntos(int puntos) {
 		this.puntos = puntos;
 	}
+
 	public Usuario getJugador1() {
 		return jugador1;
 	}
+
 	public void setJugador1(Usuario jugador1) {
 		this.jugador1 = jugador1;
 	}
+
 	public Usuario getJugador2() {
 		return jugador2;
 	}
+
 	public void setJugador2(Usuario jugador2) {
 		this.jugador2 = jugador2;
 	}
+
 	public void setFechaPartida(LocalDate fechaPartida) {
 		this.fechaPartida = fechaPartida;
 	}
+
 	public int getIDPartida() {
 		return IDPartida;
 	}
+
 	public void setIDPartida(int iDPartida) {
 		IDPartida = iDPartida;
 	}
+
 	public LocalDate getFechaPartida() {
 		return fechaPartida;
 	}
+
 	public void setFechaPartida(LocalDate fechaPartida, String fechaFormateada) {
 		if (fechaFormateada != null) {
 			try {
@@ -91,22 +91,20 @@ public class Partida {
 		}
 
 	}
+
 	public LocalTime getHoraPartida() {
 		return horaPartida;
 	}
+
 	public void setHoraPartida(LocalTime horaPartida) {
 		this.horaPartida = horaPartida;
 	}
-	
-	
+
 	@Override
 	public String toString() {
-		
-		return this.IDPartida + " - " + this.puntos+ " - "+this.fechaPartida+" - "+this.horaPartida+ " - ["+ this.jugador1+ "] - ["+ this.jugador2+"]";
+
+		return this.IDPartida + " - " + this.puntos + " - " + this.fechaPartida + " - " + this.horaPartida + " - ["
+				+ this.jugador1 + "] - [" + this.jugador2 + "]";
 	}
-	
-	
-	
-	
-	
+
 }

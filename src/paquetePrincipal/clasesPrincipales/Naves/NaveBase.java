@@ -1,72 +1,71 @@
 package paquetePrincipal.clasesPrincipales.Naves;
 
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+import Controles.Teclado;
+import clasesLogicas.Vector2D;
 import paquetePrincipal.CategoriaJugador;
 import paquetePrincipal.MotorJuego;
 import paquetePrincipal.Objeto;
 
-abstract public class NaveBase extends Objeto
-{
-	protected double anchuraNave;
-	protected double alturaNave;
+abstract public class NaveBase extends Objeto {
+
 	protected int vida;
 	protected double velocidadDisparo;
 	protected double velocidadMovimiento;
 	protected double velocidadRotacion;
-	protected String IMG;
 	protected CategoriaJugador jugador;
 	protected Object habilidad;
-	protected Point2D orientacion = new Point(0, 1);
-	protected Image image;
 	
-	public NaveBase( double radio, double anchuraNave, double alturaNave, int vida, double velocidadDisparo, double velocidadMovimiento, double velocidadRotacion, String iMG, CategoriaJugador jugador, Object habilidad)
-	{
+	//VECTORES DE MOVIMIENTO
+	protected Vector2D vectorVel;
+	protected AffineTransform at;
+	protected double anguloOrientacion;
+	protected Vector2D orientacion;
+	protected Vector2D vectorAcc;
+	
+	protected  final double ACCEL = 0.2;
+	
+	//
+	
+
+
+	public NaveBase(double radio, int vida, double velocidadDisparo,
+			double velocidadMovimiento, double velocidadRotacion, BufferedImage IMG, CategoriaJugador jugador,
+			Object habilidad, Vector2D vectorVel) {
 		super();
 		this.radio = radio;
-		this.anchuraNave = anchuraNave;
-		this.alturaNave = alturaNave;
 		this.vida = vida;
 		this.velocidadDisparo = velocidadDisparo;
 		this.velocidadMovimiento = velocidadMovimiento;
 		this.velocidadRotacion = velocidadRotacion;
-		IMG = iMG;
+		this.IMG = IMG;
 		this.jugador = jugador;
 		this.habilidad = habilidad;
-	}
-	
-	
-	public Point2D getOrientacion() {
-		return this.orientacion;
-	}
-	public void setOrientacion(double x, double y) {
-		this.orientacion.setLocation(x, y);
-	}
-	
-	
-	public double getAnchuraNave() {
-		return anchuraNave;
-	}
-	public void setAnchuraNave(double anchuraNave) {
-		this.anchuraNave = anchuraNave;
+		
+		this.vectorVel = vectorVel;
+		this.anguloOrientacion = 0;
+		this.orientacion =  new Vector2D(0, 1);
+		this.vectorAcc = new Vector2D(0, 0);
+		
 	}
 
-	public double getAlturaNave() {
-		return alturaNave;
-	}
-	public void setAlturaNave(double alturaNave) {
-		this.alturaNave = alturaNave;
-	}
+
+
+
 
 	public int getVida() {
 		return vida;
 	}
+
 	public void setVida(int vida) {
 		this.vida = vida;
 	}
@@ -74,6 +73,7 @@ abstract public class NaveBase extends Objeto
 	public double getVelocidadDisparo() {
 		return velocidadDisparo;
 	}
+
 	public void setVelocidadDisparo(double velocidadDisparo) {
 		this.velocidadDisparo = velocidadDisparo;
 	}
@@ -81,6 +81,7 @@ abstract public class NaveBase extends Objeto
 	public double getVelocidadMovimiento() {
 		return velocidadMovimiento;
 	}
+
 	public void setVelocidadMovimiento(double velocidadMovimiento) {
 		this.velocidadMovimiento = velocidadMovimiento;
 	}
@@ -88,20 +89,23 @@ abstract public class NaveBase extends Objeto
 	public double getVelocidadRotacion() {
 		return velocidadRotacion;
 	}
+
 	public void setVelocidadRotacion(double velocidadRotacion) {
 		this.velocidadRotacion = velocidadRotacion;
 	}
 
-	public String getIMG() {
+	public BufferedImage getIMG() {
 		return IMG;
 	}
-	public void setIMG(String iMG) {
-		IMG = iMG;
+
+	public void setIMG(BufferedImage IMG) {
+		IMG = IMG;
 	}
 
 	public CategoriaJugador getJugador() {
 		return jugador;
 	}
+
 	public void setJugador(CategoriaJugador jugador) {
 		this.jugador = jugador;
 	}
@@ -109,118 +113,120 @@ abstract public class NaveBase extends Objeto
 	public Object getHabilidad() {
 		return habilidad;
 	}
+
 	public void setHabilidad(Object habilidad) {
 		this.habilidad = habilidad;
 	}
 
-	
-	
-
-
 	//
 	public void inicializarNave(int anchuraPantalla, int alturaPantalla) {
-		this.posX = Math.random()*(anchuraPantalla-this.anchuraNave)+ (anchuraNave/2);
-		this.posY = -1*(Math.random()*(alturaPantalla-this.alturaNave) + (alturaNave/2));
-		System.out.println( "X = "+posX);
-		System.out.println("Y = "+posY);
-		
+		this.posX = Math.random() * (anchuraPantalla - this.radio) + (this.radio / 2);
+		this.posY = -1 * (Math.random() * (alturaPantalla - this.radio) + (this.radio / 2));
+		System.out.println("X = " + posX);
+		System.out.println("Y = " + posY);
+
 	}
-	
-	void loadImage()
-	{
-		//String imRoute="img/nave.png";
-		ImageIcon ii=new ImageIcon(this.getIMG());
-		Image img =ii.getImage();
-	}
-	
+
 	
 	// para disparar
-	void disparar()//(bullet bala)
+	void disparar()// (bullet bala)
 	{
-		if(this.getJugador()==CategoriaJugador.PLAYER1)
-		{
-			//espacio
+		if (this.getJugador() == CategoriaJugador.PLAYER1) {
+			// espacio
 		}
-		
-		else if(this.getJugador()==CategoriaJugador.PLAYER2)
-		{
-			//-
+
+		else if (this.getJugador() == CategoriaJugador.PLAYER2) {
+			// -
 		}
 	}
-	
-	
-	//
-	public void movimiento()
-	{
 
-		/*if(MotorJuego.isTeclaPulsada(KeyEvent.VK_W)) 
-		{
-			jugador1.setPosY(jugador1.posY -jugador1.getVelocidadMovimiento());
-		}
+	//
+	public void movimiento() {
 		
-		KeyEvent event=null;
-		if(this.getJugador()==CategoriaJugador.PLAYER1)
-		{
-			if(event.getKeyCode()==KeyEvent.VK_W)//arriba
-			{
-				setPosY(this.posY -this.getVelocidadMovimiento());
+		if(this.jugador == CategoriaJugador.PLAYER1) {
+		
+		if (Teclado.W) {
+			vectorAcc = orientacion.multEscalar(ACCEL);
+		}else {
+			if(vectorVel.getMagnitud() != 0) {
+				vectorAcc = (vectorVel.multEscalar(-1).normalizar()).multEscalar(ACCEL);
 			}
-			else if(event.getKeyCode()==KeyEvent.VK_S)//abajo
-			{
-				setPosY(this.posY +this.getVelocidadMovimiento());
-			}
-			else if(event.getKeyCode()==KeyEvent.VK_A)//izquierda
-			{
-				setPosX(this.posX -this.getVelocidadMovimiento());
+		}
+		if (Teclado.S) {
+			this.setPosY(this.posY + this.getVelocidadMovimiento());
+		}
+		if (Teclado.A) {
+			anguloOrientacion -= this.velocidadRotacion;
+		}
+		if (Teclado.D) {
+			anguloOrientacion += this.velocidadRotacion;
+		}
+		}else if(this.jugador == CategoriaJugador.PLAYER2) {
+			if (Teclado.arriba) {
+				this.setPosY(this.posY - this.getVelocidadMovimiento());
 				
 			}
-			else if(event.getKeyCode()==KeyEvent.VK_D)//derecha
-			{
-				setPosX(this.posX +this.getVelocidadMovimiento());
+			if (Teclado.abajo) {
+				this.setPosY(this.posY + this.getVelocidadMovimiento());
 			}
+			if (Teclado.izquierda) {
+				this.setPosX(this.posX - this.getVelocidadMovimiento());
+			}
+			if (Teclado.derecha) {
+				this.setPosX(this.posX + this.getVelocidadMovimiento());
+			}	
 		}
 		
-		else if(this.getJugador()==CategoriaJugador.PLAYER2)
-		{
-			//flechas direccion
-			if(event.getKeyCode()==KeyEvent.VK_UP)//arriba
-			{
-				setPosY(this.posY -this.getVelocidadMovimiento());
-			}
-			else if(event.getKeyCode()==KeyEvent.VK_DOWN)//abajo
-			{
-				setPosY(this.posY +this.getVelocidadMovimiento());
-			}
-			else if(event.getKeyCode()==KeyEvent.VK_LEFT)//izquierda
-			{
-				setPosX(this.posX -this.getVelocidadMovimiento());
-			}
-			else if(event.getKeyCode()==KeyEvent.VK_RIGHT)//derecha
-			{
-				setPosX(this.posX +this.getVelocidadMovimiento());
-			}
-		}*/
+		
+		
+		
+		
+		
+		
+		vectorVel = vectorVel.sumar(vectorAcc);
+		  vectorVel = vectorVel.limitar(this.velocidadMovimiento);
+		orientacion = orientacion.setDirrección(anguloOrientacion- Math.PI/2);
+		
+		posX += vectorVel.getX();
+		posY += + vectorVel.getY();
+		//LIMITAR MOVIMIENTO
+		if(posX > MotorJuego.getAnchuraV()) {
+			posX = 0;
+		}if(posY > MotorJuego.getAlturaV()) {
+			posY = 0;
+		}
+		if(posX  < 0) {
+			posX = MotorJuego.getAnchuraV() ;
+		}
+		
+		if(posY  < 0) {
+			posY  = MotorJuego.getAlturaV() ;
+		}
 	}
-	
 
 	//
-	void usarPowerUp()
-	{
-		if(this.getJugador()==CategoriaJugador.PLAYER1)
-		{
-			//boton espacio
+	void usarPowerUp() {
+		if (this.getJugador() == CategoriaJugador.PLAYER1) {
+			// boton espacio
 		}
-		
-		else if(this.getJugador()==CategoriaJugador.PLAYER2)
-		{
-			//boton shift derecho?
+
+		else if (this.getJugador() == CategoriaJugador.PLAYER2) {
+			// boton shift derecho?
 		}
 	}
 
-
 	public void reducirVida(int danyo) {
-		this.setVida(this.getVida()-danyo);
+		this.setVida(this.getVida() - danyo);
 	};
+
 	
+	public void dibujar(Graphics2D g) {
+		
+
+		at = AffineTransform.getTranslateInstance(posX, posY);
+		at.rotate(anguloOrientacion, this.IMG.getWidth()/2,this.IMG.getHeight()/2);
+		g.drawImage(this.IMG,at, null);
+	
+	}
 	
 }

@@ -1,23 +1,21 @@
 package paquetePrincipal;
 
+import javax.imageio.ImageIO;
+
 import paquetePrincipal.ventanas.MainWindow;
 
-public class Main 
-{
-	public static void main(String[] args) 
-	{
-		int altura = 640;
-		int anchura = 360;
-	 //new MotorJuego("My Game", 640,360 );
+public class Main {
+	public static void main(String[] args) {
+		int altura = 1080;
+		int anchura = 1920;
+		new MotorJuego("My Game");
+//		System.out.println(HojaSprites.class.getResource("C:\\Users\\ander\\git\\Prog\\ProyectoProgramIII\\recursos\\texturas"));
+//HojaSprites hoja = new HojaSprites("/imagenes/primero.png", anchura, altura);
 
-	 
-	 
-	 
 //		
-		new MainWindow();
+//		new MainWindow();
 //		System.out.println("This is a test.");
 	}
 }
-
 
 //ProyectoProgramIII

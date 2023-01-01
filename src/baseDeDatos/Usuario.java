@@ -19,7 +19,7 @@ public class Usuario {
 		this.correo = correo;
 		this.fechanacimiento = fechanacimiento;
 	}
-	
+
 	public Usuario(int idUsuario, String nickUsuario, String correo, String fechanacimiento) {
 		super();
 		this.idUsuario = idUsuario;

@@ -1,6 +1,5 @@
 package paquetePrincipal.clasesPrincipales.asteroides;
 
-
 public abstract class Asteroide extends paquetePrincipal.Objeto {
 
 	protected double anchuraAsteroide;
@@ -8,11 +7,12 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 	protected double danyoChoque;
 	protected double vida;
 
-	//	protected String imagen; //Ruta de la imagen de la entidad
-	
-	//CONSTRUCTORES//
-	
-	public Asteroide(double vida, double danyoChoque, double velX, double velY, double anchuraAsteroide,double alturaAsteroide, String image) {
+	// protected String imagen; //Ruta de la imagen de la entidad
+
+	// CONSTRUCTORES//
+
+	public Asteroide(double vida, double danyoChoque, double velX, double velY, double anchuraAsteroide,
+			double alturaAsteroide, String image) {
 		this.vida = vida;
 		this.danyoChoque = danyoChoque;
 		this.velX = velX;
@@ -20,27 +20,22 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 		this.anchuraAsteroide = anchuraAsteroide;
 		this.alturaAsteroide = alturaAsteroide;
 		this.image = image;
-	
-	
+
 	}
-	
-	
-	//METODOS//
-	
+
+	// METODOS//
+
 	public void inicializarAsteroide(int anchuraPantalla, int alturaPantalla) {
-		
-		
-		this.posX = Math.random()*(anchuraPantalla-this.anchuraAsteroide)+ (anchuraAsteroide/2);
-		this.posY = -1*(Math.random()*(alturaPantalla-this.alturaAsteroide) + (alturaAsteroide/2));
-		System.out.println( "X = "+posX);
-		System.out.println("Y = "+posY);
-		
+
+		this.posX = Math.random() * (anchuraPantalla - this.anchuraAsteroide) + (anchuraAsteroide / 2);
+		this.posY = -1 * (Math.random() * (alturaPantalla - this.alturaAsteroide) + (alturaAsteroide / 2));
+		System.out.println("X = " + posX);
+		System.out.println("Y = " + posY);
+
 	}
-	
-	
-	
+
 	public void update() {
-		
+
 	}
 
 }

@@ -1,7 +1,7 @@
 package paquetePrincipal;
 
-public interface Animable 
-{
+public interface Animable {
 	void setDibujoInicial();
+
 	void siguienteDibujo();
 }

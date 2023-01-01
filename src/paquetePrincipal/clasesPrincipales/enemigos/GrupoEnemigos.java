@@ -6,8 +6,6 @@ import java.util.List;
 
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 
-
-
 public class GrupoEnemigos {
 
 	protected ArrayList<Enemigo> arrayEnemigos;
@@ -20,44 +18,43 @@ public class GrupoEnemigos {
 		this.arrayEnemigos.add(enemigo);
 
 	}
+
 	public void eliminarPorObjeto(Enemigo e) {
 		this.arrayEnemigos.remove(e);
-		
+
 	}
-	
-	
+
 	public void colisionando(NaveBase nave) {
-		
-			for (Enemigo e : this.arrayEnemigos) {
-				e.colisionando(nave);
-				if(e.colisionando(nave)) {
-					this.eliminarPorObjeto(e);
-				}
+
+		for (Enemigo e : this.arrayEnemigos) {
+			e.colisionando(nave);
+			if (e.colisionando(nave)) {
+				this.eliminarPorObjeto(e);
 			}
-		
+		}
+
 	}
-	public boolean contiene(Enemigo e){
+
+	public boolean contiene(Enemigo e) {
 		return this.arrayEnemigos.contains(e);
 	}
 
-	
 	public void update(List<NaveBase> lista) {
 		List<Enemigo> muertos = new ArrayList<>();
-		for(Enemigo i: this.arrayEnemigos) {
-			if(i.vivo) {
-			i.update();
+		for (Enemigo i : this.arrayEnemigos) {
+			if (i.vivo) {
+				i.update();
 			}
-		for (NaveBase nave: lista) {
-			if(i.colisionando(nave)) {
-				i.vivo = false;
-				muertos.add(i);
+			for (NaveBase nave : lista) {
+				if (i.colisionando(nave)) {
+					i.vivo = false;
+					muertos.add(i);
+				}
+
 			}
-			
-		}
 		}
 		this.arrayEnemigos.removeAll(muertos);
-		
+
 	}
 
-	
 }

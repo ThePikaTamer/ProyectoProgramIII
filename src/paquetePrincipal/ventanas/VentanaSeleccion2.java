@@ -44,12 +44,11 @@ public class VentanaSeleccion2 extends JFrame {
 		panelSeleccionJugador1.add(boton3);
 		panelSeleccionJugador1.add(boton4);
 		JPanel nombreJugador1 = new JPanel(new GridLayout(1, 2));
-		
+
 		JPanel nickName = new JPanel(new BorderLayout());
 		nickName.add(new JLabel("NickName: "), BorderLayout.WEST);
 		nickName.add(new JTextField(), BorderLayout.CENTER);
-		
-		
+
 		nombreJugador1.add(new Label("JUGADOR 1"));
 		nombreJugador1.add(nickName);
 		panelJugador1.add(nombreJugador1, BorderLayout.NORTH);
@@ -63,22 +62,20 @@ public class VentanaSeleccion2 extends JFrame {
 		panelSeleccionJugador2.add(boton7);
 		panelSeleccionJugador2.add(boton8);
 		JPanel nombreJugador2 = new JPanel(new GridLayout(1, 2));
-		
+
 		JPanel nickName2 = new JPanel(new BorderLayout());
 		nickName2.add(new JLabel("NickName: "), BorderLayout.WEST);
 		nickName2.add(new JTextField(), BorderLayout.CENTER);
-		
+
 		nombreJugador2.add(new Label("JUGADOR 2"));
 		nombreJugador2.add(nickName2);
 		panelJugador2.add(nombreJugador2, BorderLayout.NORTH);
 		panelJugador2.add(panelSeleccionJugador2, BorderLayout.CENTER);
-		
+
 //AÑADIRLOS AL PANEL CENTRAL
 		panelCentral.add(panelJugador1);
 		panelCentral.add(panelJugador2);
 		this.getContentPane().add(panelCentral, BorderLayout.CENTER);
-
-	
 
 		JPanel panelInferior = new JPanel();
 		panelInferior.setLayout(new BoxLayout(panelInferior, BoxLayout.X_AXIS));

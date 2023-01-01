@@ -1,8 +1,10 @@
 package paquetePrincipal.clasesPrincipales.PowerUps;
 
+import java.awt.image.BufferedImage;
+
 public class PowerUpHp extends PowerUp {
 
-	protected static String IMG = ""; 
+	protected static BufferedImage IMG;
 
 	public PowerUpHp() {
 		super(2, 2, IMG);

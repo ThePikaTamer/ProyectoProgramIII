@@ -1,11 +1,13 @@
 package paquetePrincipal.clasesPrincipales.enemigos;
 
+import java.awt.image.BufferedImage;
+
 public class EnemigoVeloz extends Enemigo {
-	protected static String IMG = "";
+	protected static BufferedImage IMG;
+
 	public EnemigoVeloz() {
-		super(1, 1, 3,3,50, IMG);
-		
+		super(1, 1, 3, 3, 50, IMG);
+
 	}
 
-	
 }

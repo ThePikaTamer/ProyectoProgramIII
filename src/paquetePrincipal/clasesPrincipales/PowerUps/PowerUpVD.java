@@ -1,8 +1,10 @@
 package paquetePrincipal.clasesPrincipales.PowerUps;
 
+import java.awt.image.BufferedImage;
+
 public class PowerUpVD extends PowerUp {
 
-	protected static String IMG = "";
+	protected static BufferedImage IMG;
 
 	public PowerUpVD() {
 		// TODO Auto-generated constructor stub
