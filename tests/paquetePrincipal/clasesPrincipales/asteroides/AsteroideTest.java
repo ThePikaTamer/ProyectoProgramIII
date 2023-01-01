@@ -30,6 +30,18 @@ public class AsteroideTest {
 		ab.setDanyoChoque(2);
 		assertEquals(2,ab.getDanyoChoque(), 0);
 		ab.setDanyoChoque(-1);
+		
+		Asteroide ad = new AsteroideDorado();
+		
+		assertEquals(2,ad.getVida(), 0);
+		ad.setVida(1);
+		assertEquals(1,ad.getVida(), 0);
+		ad.setVida(-1);
+		
+		assertEquals(1,ad.getDanyoChoque(), 0);
+		ad.setDanyoChoque(2);
+		assertEquals(2,ad.getDanyoChoque(), 0);
+		ad.setDanyoChoque(-1);
 	
 		
 	}

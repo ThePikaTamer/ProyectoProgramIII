@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.List;
 
+import paquetePrincipal.Objeto;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 
 public abstract class Asteroide extends paquetePrincipal.Objeto {
@@ -167,6 +168,13 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 			
 		}
 		}
+	}
+	@Override
+	public boolean colisionando(Objeto o1) {
+//		if(o1 instanceof NaveBase) {
+//			((NaveBase) o1).reducirVida((int)this.getDanyo());
+		return super.colisionando(o1);
+//		}else return false;
 	}
 	
 	public void mover() {
