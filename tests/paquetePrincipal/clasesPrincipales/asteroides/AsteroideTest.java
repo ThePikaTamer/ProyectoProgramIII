@@ -45,6 +45,23 @@ public class AsteroideTest {
 	
 		
 	}
+	@Test
+	public void testInicializarAsteroide() {
+		
+		Asteroide ab = new AsteroideBasico();
+		
+		
+		
+		
+		Asteroide ad = new AsteroideDorado(); 
+		
+		
+		
+		
+		
+		
+	}
+	
 	
 
 		
