@@ -19,6 +19,7 @@ import graficos.Assets;
 
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBasica;
+import paquetePrincipal.clasesPrincipales.Naves.NaveDRapido;
 import paquetePrincipal.clasesPrincipales.Naves.Proyectil;
 import paquetePrincipal.clasesPrincipales.enemigos.Enemigo;
 import paquetePrincipal.clasesPrincipales.enemigos.EnemigoBasico;
@@ -30,8 +31,8 @@ import paquetePrincipal.ventanas.VentanaOpciones;
 public class MotorJuego extends JFrame implements Runnable {
 	private boolean running = false;
 	private final String titulo;
-	private static int anchuraV = 1920;
-	private static int alturaV = 1080;
+	private static int anchuraV = 1333;
+	private static int alturaV = 750;
 
 	public static CustomCanvas cc;
 	private static int UPS_TARGET = 60;
@@ -39,11 +40,14 @@ public class MotorJuego extends JFrame implements Runnable {
 	private static int fps = 0;
 	private static int ups = 0;
 
+	
 	// VARIABLES DE JUEGO
 	public static List<NaveBase> jugadoresEnPartida;
 	public static List<Proyectil> projectiles;
 
 	public static NaveBase jugador1;
+	public static NaveBase jugador2;
+
 	public static GrupoEnemigos enemigosVivos;
 	public static Enemigo e1 ;
 	public static Enemigo e2 ;
@@ -114,7 +118,7 @@ public class MotorJuego extends JFrame implements Runnable {
 		
 		thread = new Thread(this, "principal");
 
-		this.jugadoresEnPartida.add(jugador1);
+		
 		this.enemigosVivos.anyadir(e1);
 		this.enemigosVivos.anyadir(e2);
 		this.enemigosVivos.anyadir(e3);
@@ -172,7 +176,8 @@ public class MotorJuego extends JFrame implements Runnable {
 		double currentTime;
 		double deltaAps = 0;
 		double deltaFps = 0;
-
+		
+		
 		this.requestFocus();
 		while (running) {
 			final long beginLoop = System.nanoTime();
@@ -290,7 +295,10 @@ public class MotorJuego extends JFrame implements Runnable {
 		jugadoresEnPartida = new ArrayList<NaveBase>();
 		projectiles = new ArrayList<>();
 		
-		jugador1 = new NaveBasica(null, CategoriaJugador.PLAYER1);
+		jugador1 = new NaveDRapido(null, CategoriaJugador.PLAYER1);
+		jugador2 = new NaveDRapido(null, CategoriaJugador.PLAYER2);
+		this.jugadoresEnPartida.add(jugador1);
+		this.jugadoresEnPartida.add(jugador2);
 		enemigosVivos = new GrupoEnemigos();
 		e1 = new EnemigoBasico();
 		e2 = new EnemigoReforzado();

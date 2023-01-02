@@ -25,6 +25,8 @@ abstract public class NaveBase extends Objeto {
 	protected CategoriaJugador jugador;
 	protected Object habilidad;
 	
+	protected int contadorAnimacion = 0;
+	
 	//VECTORES DE MOVIMIENTO
 	protected Vector2D vectorVel;
 	protected AffineTransform at;
@@ -152,9 +154,7 @@ abstract public class NaveBase extends Objeto {
 				vectorAcc = (vectorVel.multEscalar(-1).normalizar()).multEscalar(ACCEL);
 			}
 		}
-		if (Teclado.S) {
-			this.setPosY(this.posY + this.getVelocidadMovimiento());
-		}
+		
 		if (Teclado.A) {
 			anguloOrientacion -= this.velocidadRotacion;
 		}
@@ -163,17 +163,17 @@ abstract public class NaveBase extends Objeto {
 		}
 		}else if(this.jugador == CategoriaJugador.PLAYER2) {
 			if (Teclado.arriba) {
-				this.setPosY(this.posY - this.getVelocidadMovimiento());
-				
-			}
-			if (Teclado.abajo) {
-				this.setPosY(this.posY + this.getVelocidadMovimiento());
+				vectorAcc = orientacion.multEscalar(ACCEL);
+			}else {
+				if(vectorVel.getMagnitud() != 0) {
+					vectorAcc = (vectorVel.multEscalar(-1).normalizar()).multEscalar(ACCEL);
+				}
 			}
 			if (Teclado.izquierda) {
-				this.setPosX(this.posX - this.getVelocidadMovimiento());
+				anguloOrientacion -= this.velocidadRotacion;
 			}
 			if (Teclado.derecha) {
-				this.setPosX(this.posX + this.getVelocidadMovimiento());
+				anguloOrientacion += this.velocidadRotacion;
 			}	
 		}
 		
@@ -221,8 +221,12 @@ abstract public class NaveBase extends Objeto {
 
 	
 	public void dibujar(Graphics2D g) {
+		contadorAnimacion++;
+		if(contadorAnimacion > 30) {
+			this.siguienteDibujo();
+			contadorAnimacion = 0;
+		}
 		
-
 		at = AffineTransform.getTranslateInstance(posX, posY);
 		at.rotate(anguloOrientacion, this.IMG.getWidth()/2,this.IMG.getHeight()/2);
 		g.drawImage(this.IMG,at, null);

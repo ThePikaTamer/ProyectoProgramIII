@@ -35,6 +35,8 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 	public boolean vivo = false;
 //	protected Puntuacion puntuacion;
 
+	public int contadorAnimacion = 0;
+	
 	// CONSTRUCTORES//
 	public Enemigo(double vida, double danyo, double velX, double velY, double radio, BufferedImage image) {
 		this.vida = vida;
@@ -43,6 +45,7 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 		this.velY = velY;
 		this.radio = radio;
 		this.IMG = image;
+		this.setCicloAnimacion(new ArrayList<>());
 
 	}
 
@@ -172,6 +175,11 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 
 	
 	public void dibujar(Graphics2D g) {
+		contadorAnimacion++;
+		if(contadorAnimacion > 30) {
+			this.siguienteDibujo();
+			contadorAnimacion = 0;
+		}
 		g.drawImage(this.IMG, (int)posX, (int)posY, null);
 		
 	}
