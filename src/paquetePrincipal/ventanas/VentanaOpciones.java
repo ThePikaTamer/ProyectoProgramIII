@@ -31,6 +31,7 @@ public class VentanaOpciones extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				new MainWindow();
 				dispose();
 
 			}

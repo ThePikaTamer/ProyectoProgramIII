@@ -9,8 +9,9 @@ import javax.swing.JFrame;
 
 import paquetePrincipal.MotorJuego;
 
-public class VentanaSeleccion extends JFrame {
-	public VentanaSeleccion(boolean pl2Selected) {
+public class VentanaSeleccionPl2 extends JFrame
+{
+	public VentanaSeleccionPl2() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1800, 1000);
 		setTitle("Seleccion nave");
@@ -32,18 +33,10 @@ public class VentanaSeleccion extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(pl2Selected==false)
-				{
-					new MotorJuego("My Game").setDobleJugador(false);
-					dispose();
-				}
-//				 
-				else
-				{
-					new VentanaSeleccionPl2();
-					dispose();
-				}
-
+				//System.out.println("Pl2 ready");
+				new MotorJuego("My Game").setDobleJugador(true);
+				
+				dispose();
 			}
 		});
 

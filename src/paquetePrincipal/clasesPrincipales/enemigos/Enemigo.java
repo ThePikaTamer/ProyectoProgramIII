@@ -50,8 +50,8 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 	}
 
 	// METODOS//
-	public void reducirVida(int daño) {
-		this.vida -= daño;
+	public void reducirVida(int damage) {
+		this.vida -= damage;
 	}
 
 	@Override

@@ -20,7 +20,7 @@ public class VentanaJuego extends JFrame {
 
 		JButton boton1Jugador = new JButton("1 Jugador");
 		JButton boton2Jugadores = new JButton("2 Jugadores");
-		JButton botonReturn = new JButton("Opciones");
+		JButton botonReturn = new JButton("Return");
 		JPanel panelJugadores = new JPanel();
 		panelJugadores.setLayout(new GridLayout(1, 2));
 
@@ -28,7 +28,7 @@ public class VentanaJuego extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new VentanaSeleccion();
+				new VentanaSeleccion(false);
 				dispose();
 
 			}
@@ -37,7 +37,7 @@ public class VentanaJuego extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new VentanaSeleccion2();
+				new VentanaSeleccion(true);
 				dispose();
 
 			}

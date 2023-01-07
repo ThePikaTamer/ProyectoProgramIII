@@ -18,7 +18,7 @@ public class Vector2D {
 		return Math.sqrt((x*x) + (y*y));
 	}
 	
-	public Vector2D setDirrección (double angulo) {
+	public Vector2D setDirreccion (double angulo) {
 		return new Vector2D(Math.cos(angulo)* this.getMagnitud(),Math.sin(angulo)*this.getMagnitud());
 	}
 	

@@ -37,7 +37,9 @@ abstract public class NaveBase extends Objeto {
 	protected  final double ACCEL = 0.2;
 	
 	//
-	
+
+	private long time, lastTime;
+	protected int fireRate=300;
 
 
 	public NaveBase(double radio, int vida, double velocidadDisparo,
@@ -59,8 +61,6 @@ abstract public class NaveBase extends Objeto {
 		this.vectorAcc = new Vector2D(0, 0);
 		
 	}
-
-
 
 
 
@@ -133,35 +133,58 @@ abstract public class NaveBase extends Objeto {
 	// para disparar
 	void disparar()// (bullet bala)
 	{
-		if (this.getJugador() == CategoriaJugador.PLAYER1) {
+		if (this.getJugador() == CategoriaJugador.PLAYER1) 
+		{
 			// espacio
+			if(Teclado.espacio)//&&counter>this.fireRate)
+			{
+				System.out.println("1");
+			}
 		}
 
-		else if (this.getJugador() == CategoriaJugador.PLAYER2) {
-			// -
+		else if (this.getJugador() == CategoriaJugador.PLAYER2) 
+		{
+			// .
+			if(Teclado.punto)
+			{
+				System.out.println("2");
+			}
 		}
 	}
 
 	//
 	public void movimiento() {
+		int counter=0;
 		
-		if(this.jugador == CategoriaJugador.PLAYER1) {
+		if(this.jugador == CategoriaJugador.PLAYER1) 
+		{
 		
-		if (Teclado.W) {
-			vectorAcc = orientacion.multEscalar(ACCEL);
-		}else {
-			if(vectorVel.getMagnitud() != 0) {
-				vectorAcc = (vectorVel.multEscalar(-1).normalizar()).multEscalar(ACCEL);
+			if (Teclado.W) {
+				vectorAcc = orientacion.multEscalar(ACCEL);
+			}else {
+				if(vectorVel.getMagnitud() != 0) {
+					vectorAcc = (vectorVel.multEscalar(-1).normalizar()).multEscalar(ACCEL);
+				}
+			}
+			
+			if (Teclado.A) {
+				anguloOrientacion -= this.velocidadRotacion;
+			}
+			if (Teclado.D) {
+				anguloOrientacion += this.velocidadRotacion;
+			}
+			if (Teclado.S) 
+			{
+				vectorAcc = orientacion.multEscalar(-ACCEL);
+			}
+			if(Teclado.espacio)//disparo
+			{
+				System.out.println("shoot1");
+				
 			}
 		}
-		
-		if (Teclado.A) {
-			anguloOrientacion -= this.velocidadRotacion;
-		}
-		if (Teclado.D) {
-			anguloOrientacion += this.velocidadRotacion;
-		}
-		}else if(this.jugador == CategoriaJugador.PLAYER2) {
+		else if(this.jugador == CategoriaJugador.PLAYER2) 
+		{
 			if (Teclado.arriba) {
 				vectorAcc = orientacion.multEscalar(ACCEL);
 			}else {
@@ -174,18 +197,23 @@ abstract public class NaveBase extends Objeto {
 			}
 			if (Teclado.derecha) {
 				anguloOrientacion += this.velocidadRotacion;
+			}
+			if (Teclado.abajo) 
+			{
+				vectorAcc = orientacion.multEscalar(-ACCEL);
+			}
+			if(Teclado.punto)//disparo
+			{
+				System.out.println("shoot2");
 			}	
 		}
 		
 		
 		
 		
-		
-		
-		
 		vectorVel = vectorVel.sumar(vectorAcc);
 		  vectorVel = vectorVel.limitar(this.velocidadMovimiento);
-		orientacion = orientacion.setDirrección(anguloOrientacion- Math.PI/2);
+		orientacion = orientacion.setDirreccion(anguloOrientacion- Math.PI/2);
 		
 		posX += vectorVel.getX();
 		posY += + vectorVel.getY();

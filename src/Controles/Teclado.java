@@ -12,11 +12,13 @@ public class Teclado implements KeyListener {
 	public static boolean abajo;
 	public static boolean izquierda;
 	public static boolean derecha;
+	public static boolean punto;
 	
 	public static boolean W;
 	public static boolean S;
 	public static boolean A;
 	public static boolean D;
+	public static boolean espacio;
 	
 	public static boolean menuESQ;
 
@@ -25,11 +27,13 @@ public class Teclado implements KeyListener {
 		abajo = teclas[KeyEvent.VK_DOWN];
 		izquierda = teclas[KeyEvent.VK_LEFT];
 		derecha = teclas[KeyEvent.VK_RIGHT];
+		punto=teclas[KeyEvent.VK_PERIOD];
 		
 		W = teclas[KeyEvent.VK_W];
 		S = teclas[KeyEvent.VK_S];
 		A = teclas[KeyEvent.VK_A];
 		D = teclas[KeyEvent.VK_D];
+		espacio=teclas[KeyEvent.VK_SPACE];
 		
 		menuESQ = teclas[KeyEvent.VK_ESCAPE];
 	}

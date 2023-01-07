@@ -151,8 +151,8 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 		this.imagen = imagen;
 	}
 	
-	public void reducirVida(int daño) {
-		this.vida -= daño;
+	public void reducirVida(int damage) {
+		this.vida -= damage;
 	}
 
 

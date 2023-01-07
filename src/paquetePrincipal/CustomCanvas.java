@@ -59,7 +59,11 @@ public class CustomCanvas extends Canvas {
 		g.drawImage(Assets.fondoPrueba,0,0, null);
 		//
 		motor.jugador1.dibujar(g);
-		motor.jugador2.dibujar(g);
+		//System.out.println("Jugador en partida customCanvas es: "+motor.isDobleJugador());
+		if(motor.isDobleJugador()) //si hay 2 jugadores
+		{
+			motor.jugador2.dibujar(g);
+		}
 		if (motor.enemigosVivos.contiene(motor.e1) && motor.e1.vivo) {
 		motor.e1.dibujar(g);
 		}

@@ -62,6 +62,8 @@ public class MotorJuego extends JFrame implements Runnable {
 	private static Thread thread;
 	//
 
+	public static boolean dobleJugador;
+	
 	public MotorJuego(final String titulo) {
 		this.titulo = titulo;
 		this.setTitle(titulo);
@@ -82,7 +84,7 @@ public class MotorJuego extends JFrame implements Runnable {
 		// TODO //HAY QUE CREAR HILOS PARA QUE NO SE ATASQUE EL PROGRAMA
 		this.GameStart();
 //	    this.comenzarBuclePrincipal();
-
+		
 	}
 
 	// METODOS
@@ -141,7 +143,6 @@ public class MotorJuego extends JFrame implements Runnable {
 			this.GameStop();
 
 		}
-		System.out.println("" + jugador1.posX + " - " + jugador1.posY);
 
 		this.enemigosVivos.update(jugadoresEnPartida);
 
@@ -161,8 +162,18 @@ public class MotorJuego extends JFrame implements Runnable {
 	public static int getUPS() {
 		return ups;
 	}
-
+	
+/////////////////////////////
+	public boolean isDobleJugador() {
+		return dobleJugador;
+	}
+	public void setDobleJugador(boolean dobleJugador) {
+		this.dobleJugador = dobleJugador;
+	}
+////////////////////////////////
 	public void comenzarBuclePrincipal() {
+
+		System.out.println("Jugador en comenzarBucle es: "+isDobleJugador());
 		int accumulatedUpdates = 0;// nº actualizaciones
 		int accumulatedFrames = 0;// nº dibujados
 
@@ -292,13 +303,19 @@ public class MotorJuego extends JFrame implements Runnable {
 	
 	//CARGAR VARIABLES DE JUEGO
 	public void cargarVariables() {
+		
 		jugadoresEnPartida = new ArrayList<NaveBase>();
 		projectiles = new ArrayList<>();
 		
 		jugador1 = new NaveDRapido(null, CategoriaJugador.PLAYER1);
 		jugador2 = new NaveDRapido(null, CategoriaJugador.PLAYER2);
+		System.out.println("Jugador en partida cargaV es: "+isDobleJugador());
 		this.jugadoresEnPartida.add(jugador1);
-		this.jugadoresEnPartida.add(jugador2);
+		if(isDobleJugador()==true)
+		{
+			this.jugadoresEnPartida.add(jugador2);
+			System.out.println("DIOOOOOOOOOOOODAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa");
+		}
 		enemigosVivos = new GrupoEnemigos();
 		e1 = new EnemigoBasico();
 		e2 = new EnemigoReforzado();

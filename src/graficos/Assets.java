@@ -11,6 +11,8 @@ public class Assets {
 	public static BufferedImage naveDRapido;
 	public static BufferedImage naveDRapido_P1;
 	public static BufferedImage naveDRapido_P2;
+	
+	public static BufferedImage disparo;
 	//
 	//ENEMIGOS
 	public static BufferedImage enemigoBasico;
@@ -31,6 +33,8 @@ public class Assets {
 		naveDRapido = Loader.ImagenLoader("/naves/Nave2.png");
 		naveDRapido_P1 = Loader.ImagenLoader("/naves/Nave2_P1.png");
 		naveDRapido_P2 = Loader.ImagenLoader("/naves/Nave2_P2.png");
+		disparo = Loader.ImagenLoader("/naves/shot.png");
+		
 		
 		enemigoBasico = Loader.ImagenLoader("/enemigos/Enemy_1.png");
 		enemigoBasico1 = Loader.ImagenLoader("/enemigos/Enemy_1_1.png");
