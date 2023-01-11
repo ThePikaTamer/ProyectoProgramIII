@@ -16,14 +16,12 @@ public class Main {
 		int anchura = 1920;
 		
 		Assets.init();
-		//new MotorJuego("My Game");
-//		System.out.println(HojaSprites.class.getResource("C:\\Users\\ander\\git\\Prog\\ProyectoProgramIII\\recursos\\texturas"));
-//HojaSprites hoja = new HojaSprites("/imagenes/primero.png", anchura, altura);
+		
 		Usuario us1 = new Usuario(9876, "pruebaUsuario1", "pruebaGmail.com", LocalDate.now());
 		Usuario us2 = new Usuario(6789, "pruebaUsuario2", "prueba2Gmail.com", LocalDate.now());
 //		
 
-		new MotorJuego("Game", 0, new NaveBasica(null, CategoriaJugador.PLAYER1), new NaveDRapido(args, CategoriaJugador.PLAYER2), us1, us2, true);
+		new MotorJuego("Game", 0, new NaveBasica(null, CategoriaJugador.PLAYER1), new NaveDRapido(args, CategoriaJugador.PLAYER2), us1, us2, false);
 
 //		new MainWindow();
 		//new MotorJuego("Game", 0, new NaveBasica(null, CategoriaJugador.PLAYER1), new NaveDRapido(args, CategoriaJugador.PLAYER2));
