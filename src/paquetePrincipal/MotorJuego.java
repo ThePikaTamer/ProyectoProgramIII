@@ -79,7 +79,11 @@ public class MotorJuego extends JFrame implements Runnable {
 
 	public static boolean dobleJugador;
 	
-	public MotorJuego(final String titulo, int numeroNivel, NaveBase nave1, NaveBase nave2, Usuario usu1, Usuario usu2) {
+
+	public MotorJuego(final String titulo, int numeroNivel, NaveBase nave1, NaveBase nave2, Usuario usu1, Usuario usu2, boolean pl2) {
+
+	
+
 		this.titulo = titulo;
 		this.setTitle(titulo);
 		cc = new CustomCanvas(anchuraV, alturaV);
@@ -99,6 +103,10 @@ public class MotorJuego extends JFrame implements Runnable {
 		this.jugador2 = nave2;
 		this.usuario1 = usu1;
 		this.usuario2 = usu2;
+
+
+		this.dobleJugador=pl2;
+
 		
 		 System.out.println(Assets.naveBasica);
 		
@@ -365,7 +373,6 @@ public class MotorJuego extends JFrame implements Runnable {
 		this.jugadoresEnPartida.add(jugador1);
 		this.gestorBD.getUsuariosDeJuegoParaActualizar().add(usuario1);
 		this.puntuacionDeJugadores = new Puntuacion(0);
-		
 		
 		System.out.println("Jugador en partida cargaV es: "+isDobleJugador());
 		

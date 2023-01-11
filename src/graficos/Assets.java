@@ -7,10 +7,19 @@ public class Assets {
 	public static BufferedImage naveBasica;
 	public static BufferedImage naveBasica_P1;
 	public static BufferedImage naveBasica_P2;
-	
+
 	public static BufferedImage naveDRapido;
 	public static BufferedImage naveDRapido_P1;
 	public static BufferedImage naveDRapido_P2;
+
+	public static BufferedImage naveVeloz;
+	public static BufferedImage naveVeloz_P1;
+	public static BufferedImage naveVeloz_P2;
+
+
+	public static BufferedImage naveTanque;
+	public static BufferedImage naveTanque_P1;
+	public static BufferedImage naveTanque_P2;
 	
 	public static BufferedImage disparo;
 	//
@@ -30,9 +39,20 @@ public class Assets {
 		naveBasica = Loader.ImagenLoader("/naves/Nave1.png");
 		naveBasica_P1 = Loader.ImagenLoader("/naves/Nave1_P1.png");
 		naveBasica_P2 = Loader.ImagenLoader("/naves/Nave1_P2.png");
+		
 		naveDRapido = Loader.ImagenLoader("/naves/Nave2.png");
 		naveDRapido_P1 = Loader.ImagenLoader("/naves/Nave2_P1.png");
 		naveDRapido_P2 = Loader.ImagenLoader("/naves/Nave2_P2.png");
+
+		naveVeloz = Loader.ImagenLoader("/naves/Nave3.png");
+		naveVeloz_P1 = Loader.ImagenLoader("/naves/Nave3_P1.png");
+		naveVeloz_P2 = Loader.ImagenLoader("/naves/Nave3_P2.png");
+
+		naveTanque = Loader.ImagenLoader("/naves/Nave4.png");
+		naveTanque_P1 = Loader.ImagenLoader("/naves/Nave4_P1.png");
+		naveTanque_P2 = Loader.ImagenLoader("/naves/Nave4_P2.png");
+		
+		
 		disparo = Loader.ImagenLoader("/naves/shot.png");
 		
 		

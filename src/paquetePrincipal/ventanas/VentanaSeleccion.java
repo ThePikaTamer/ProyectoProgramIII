@@ -7,7 +7,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import paquetePrincipal.CategoriaJugador;
 import paquetePrincipal.MotorJuego;
+import paquetePrincipal.clasesPrincipales.Naves.NaveBasica;
+import paquetePrincipal.clasesPrincipales.Naves.NaveDRapido;
+import paquetePrincipal.clasesPrincipales.Naves.NaveTanque;
+import paquetePrincipal.clasesPrincipales.Naves.NaveVeloz;
 
 public class VentanaSeleccion extends JFrame {
 	public VentanaSeleccion(boolean pl2Selected) {
@@ -34,13 +39,67 @@ public class VentanaSeleccion extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(pl2Selected==false)
 				{
-					new MotorJuego("My Game", 0, null, null).setDobleJugador(false);
+					new MotorJuego("Asteroids", 0, new NaveBasica(null, CategoriaJugador.PLAYER1), null, false);
 					dispose();
 				}
-//				 
+				
 				else
 				{
-					new VentanaSeleccionPl2();
+					new VentanaSeleccionPl2(new NaveBasica(null, CategoriaJugador.PLAYER1));
+					dispose();
+				}
+
+			}
+		});
+		boton2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(pl2Selected==false)
+				{
+					new MotorJuego("Asteroids", 0, new NaveDRapido(null, CategoriaJugador.PLAYER1), null, false);
+					dispose();
+				}
+				
+				else
+				{
+					new VentanaSeleccionPl2(new NaveDRapido(null, CategoriaJugador.PLAYER1));
+					dispose();
+				}
+
+			}
+		});
+		boton3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(pl2Selected==false)
+				{
+					new MotorJuego("Asteroids", 0, new NaveVeloz(null, CategoriaJugador.PLAYER1), null, false);
+					dispose();
+				}
+				
+				else
+				{
+					new VentanaSeleccionPl2(new NaveVeloz(null, CategoriaJugador.PLAYER1));
+					dispose();
+				}
+
+			}
+		});
+		boton4.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(pl2Selected==false)
+				{
+					new MotorJuego("Asteroids", 0, new NaveTanque(null, CategoriaJugador.PLAYER1), null, false);
+					dispose();
+				}
+				
+				else
+				{
+					new VentanaSeleccionPl2(new NaveTanque(null, CategoriaJugador.PLAYER1));
 					dispose();
 				}
 
