@@ -16,11 +16,12 @@ import javax.swing.JFrame;
 
 import Controles.Teclado;
 import graficos.Assets;
-
+import niveles.LvlLoader;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBasica;
 import paquetePrincipal.clasesPrincipales.Naves.NaveDRapido;
 import paquetePrincipal.clasesPrincipales.Naves.Proyectil;
+import paquetePrincipal.clasesPrincipales.asteroides.GrupoAsteroide;
 import paquetePrincipal.clasesPrincipales.enemigos.Enemigo;
 import paquetePrincipal.clasesPrincipales.enemigos.EnemigoBasico;
 import paquetePrincipal.clasesPrincipales.enemigos.EnemigoReforzado;
@@ -39,19 +40,24 @@ public class MotorJuego extends JFrame implements Runnable {
 	private static int FPS_TARGET = 60;
 	private static int fps = 0;
 	private static int ups = 0;
-
+	
 	
 	// VARIABLES DE JUEGO
+	public static int numeroNivel;
+	public  NaveBase jugador1;
+	public  NaveBase jugador2;
 	public static List<NaveBase> jugadoresEnPartida;
 	public static List<Proyectil> projectiles;
-
-	public static NaveBase jugador1;
-	public static NaveBase jugador2;
-
+	
 	public static GrupoEnemigos enemigosVivos;
-	public static Enemigo e1 ;
-	public static Enemigo e2 ;
-	public static Enemigo e3 ;
+	public static GrupoAsteroide asteroidesEnPantalla;
+	public static int frecEnemigos;
+	public static double frecAsteroides;
+	public static double frecPowerUps;
+	
+	public static double contadorEnem;
+
+	public Puntuacion puntuacionDeJugadores;
 	//
 	public int cadenciaDisparo = 10;
 
@@ -64,7 +70,7 @@ public class MotorJuego extends JFrame implements Runnable {
 
 	public static boolean dobleJugador;
 	
-	public MotorJuego(final String titulo) {
+	public MotorJuego(final String titulo, int numeroNivel, NaveBase nave1, NaveBase nave2) {
 		this.titulo = titulo;
 		this.setTitle(titulo);
 		cc = new CustomCanvas(anchuraV, alturaV);
@@ -75,6 +81,21 @@ public class MotorJuego extends JFrame implements Runnable {
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		
+		//VARIABLES BASE - JUGADORES Y NIVEL
+		Assets.init();
+		this.numeroNivel = numeroNivel;
+		
+		this.jugador1 = nave1;
+		this.jugador2 = nave2;
+
+		
+		 System.out.println(Assets.naveBasica);
+		
+		
+		
+		//
+		
 		// TECLADO
 		teclado = new Teclado();
 		this.addKeyListener(teclado);
@@ -83,8 +104,8 @@ public class MotorJuego extends JFrame implements Runnable {
 
 		// TODO //HAY QUE CREAR HILOS PARA QUE NO SE ATASQUE EL PROGRAMA
 		this.GameStart();
-//	    this.comenzarBuclePrincipal();
-		
+
+
 	}
 
 	// METODOS
@@ -105,6 +126,8 @@ public class MotorJuego extends JFrame implements Runnable {
 		try {
 			thread.join();
 			this.setRunning(false);
+			this.dispose();
+			
 		} catch (InterruptedException e) {
 			System.err.println("Problemas con hilo");
 			e.printStackTrace();
@@ -113,20 +136,12 @@ public class MotorJuego extends JFrame implements Runnable {
 
 	public void iniciar() {
 		// Carga de recursos y variables de juego
-		Assets.init();
-		this.cargarVariables();
+
+		cargarVariables();
 		//
-		
-		
+
 		thread = new Thread(this, "principal");
 
-		
-		this.enemigosVivos.anyadir(e1);
-		this.enemigosVivos.anyadir(e2);
-		this.enemigosVivos.anyadir(e3);
-		this.e1.inicializarEnemigo(this.anchuraV, this.alturaV, jugadoresEnPartida);
-		this.e2.inicializarEnemigo(this.anchuraV, this.alturaV, jugadoresEnPartida);
-		this.e3.inicializarEnemigo(this.anchuraV, this.alturaV, jugadoresEnPartida);
 		thread.start();
 	}
 
@@ -136,18 +151,27 @@ public class MotorJuego extends JFrame implements Runnable {
 		// TECLADO
 		teclado.update();
 		for (NaveBase jugador :this.jugadoresEnPartida) {
+			
 			jugador.movimiento();
 		}
 		if (teclado.menuESQ) {
-			new VentanaOpciones();
+			
 			this.GameStop();
 
 		}
-
-		this.enemigosVivos.update(jugadoresEnPartida);
-
+		if(contadorEnem >= frecEnemigos*UPS_TARGET) {
+		
+			this.enemigosVivos.inicializarSig(this);
+			contadorEnem = 0;
+		}else {
+			contadorEnem++;
+		}
+//		this.enemigosVivos.incializar(this);
+//		this.enemigosVivos.inicializarSig(this);
+		this.enemigosVivos.update(jugadoresEnPartida, this);
+		
 //		cadenciaDisparo++;
-
+		
 	};
 
 	// DIBUJAR
@@ -191,6 +215,7 @@ public class MotorJuego extends JFrame implements Runnable {
 		
 		this.requestFocus();
 		while (running) {
+		
 			final long beginLoop = System.nanoTime();
 
 			currentTime = beginLoop - lastUpdate;
@@ -304,22 +329,24 @@ public class MotorJuego extends JFrame implements Runnable {
 	//CARGAR VARIABLES DE JUEGO
 	public void cargarVariables() {
 		
-		jugadoresEnPartida = new ArrayList<NaveBase>();
 		projectiles = new ArrayList<>();
-		
-		jugador1 = new NaveDRapido(null, CategoriaJugador.PLAYER1);
-		jugador2 = new NaveDRapido(null, CategoriaJugador.PLAYER2);
-		System.out.println("Jugador en partida cargaV es: "+isDobleJugador());
+		this.jugadoresEnPartida = new ArrayList<>();
+		this.enemigosVivos = new GrupoEnemigos();
 		this.jugadoresEnPartida.add(jugador1);
-		if(isDobleJugador()==true)
+		
+		this.puntuacionDeJugadores = new Puntuacion(0);
+		
+		
+		System.out.println("Jugador en partida cargaV es: "+isDobleJugador());
+		
+		if(isDobleJugador()==true && this.jugador2 != null)
 		{
-			this.jugadoresEnPartida.add(jugador2);
-			System.out.println("DIOOOOOOOOOOOODAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa");
+			this.jugadoresEnPartida.add(this.jugador2);
+			
 		}
-		enemigosVivos = new GrupoEnemigos();
-		e1 = new EnemigoBasico();
-		e2 = new EnemigoReforzado();
-		e3 = new EnemigoVeloz();
+		
+		LvlLoader.leerDeFichero("nivel0.csv", this);
+		System.out.println(frecEnemigos);
 	}
 
 }

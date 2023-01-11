@@ -1,5 +1,6 @@
 package paquetePrincipal.clasesPrincipales.asteroides;
 
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.List;
@@ -18,7 +19,8 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 	protected String imagen;
 	protected Point2D orientacion;
 	protected final int velocidad; 
-
+	
+	protected int cotadorAnimacion = 0;
 	
 
 	
@@ -246,5 +248,15 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 		 mover();
 		 rebotar(x, y);
 	}
-
+	public void dibujar(Graphics2D g) {
+		contadorAnimacion++;
+		
+		if(contadorAnimacion > 30) {
+			this.siguienteDibujo();
+			contadorAnimacion = 0;
+		}
+		g.drawImage(this.IMG, (int)posX, (int)posY, null);
+	
+		
+	}
 }

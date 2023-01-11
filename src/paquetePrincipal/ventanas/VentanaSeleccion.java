@@ -34,7 +34,7 @@ public class VentanaSeleccion extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(pl2Selected==false)
 				{
-					new MotorJuego("My Game").setDobleJugador(false);
+					new MotorJuego("My Game", 0, null, null).setDobleJugador(false);
 					dispose();
 				}
 //				 

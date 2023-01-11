@@ -21,6 +21,7 @@ import javax.swing.JFrame;
 import paquetePrincipal.Animable;
 import paquetePrincipal.Disparo;
 import paquetePrincipal.Objeto;
+import paquetePrincipal.Puntuacion;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBasica;
 
@@ -33,12 +34,13 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 	protected double vectorDirectorNaveX;
 	protected double vectorDirectorNaveY;
 	public boolean vivo = false;
-//	protected Puntuacion puntuacion;
+	public boolean init = false;
+	public Puntuacion puntuacion;
 
 	public int contadorAnimacion = 0;
 	
 	// CONSTRUCTORES//
-	public Enemigo(double vida, double danyo, double velX, double velY, double radio, BufferedImage image) {
+	public Enemigo(double vida, double danyo, double velX, double velY, double radio, BufferedImage image, Puntuacion puntuacion) {
 		this.vida = vida;
 		this.danyo = danyo;
 		this.velX = velX;
@@ -46,6 +48,7 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 		this.radio = radio;
 		this.IMG = image;
 		this.setCicloAnimacion(new ArrayList<>());
+		this.puntuacion = puntuacion;
 
 	}
 
@@ -119,6 +122,7 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 	// que estar dentro de la pantalla
 	public void inicializarEnemigo(int anchuraPantalla, int alturaPantalla, List<NaveBase> navesVivas) {
 		this.vivo = true;
+		this.init = true;
 		this.posX = Math.random() * anchuraPantalla;
 		this.posY = Math.random() * alturaPantalla;
 		if (this.posX >= anchuraPantalla - 2 * this.getRadio() || this.posY >= alturaPantalla - 2 * this.getRadio()) {
@@ -176,11 +180,13 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 	
 	public void dibujar(Graphics2D g) {
 		contadorAnimacion++;
+		
 		if(contadorAnimacion > 30) {
 			this.siguienteDibujo();
 			contadorAnimacion = 0;
 		}
 		g.drawImage(this.IMG, (int)posX, (int)posY, null);
+	
 		
 	}
 	

@@ -261,4 +261,10 @@ abstract public class NaveBase extends Objeto {
 	
 	}
 	
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.IMG + "";
+	}
 }

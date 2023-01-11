@@ -64,13 +64,7 @@ public class CustomCanvas extends Canvas {
 		{
 			motor.jugador2.dibujar(g);
 		}
-		if (motor.enemigosVivos.contiene(motor.e1) && motor.e1.vivo) {
-		motor.e1.dibujar(g);
-		}
-		if (motor.enemigosVivos.contiene(motor.e2) && motor.e2.vivo) {
-		motor.e2.dibujar(g);
-			
-		}
+		motor.enemigosVivos.dibujar(g);
 
 		// Configuracion y dibujado final
 		Toolkit.getDefaultToolkit().sync();
