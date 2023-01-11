@@ -28,7 +28,7 @@ import paquetePrincipal.clasesPrincipales.Naves.NaveBasica;
 public abstract class Enemigo extends paquetePrincipal.Objeto {
 
 	
-	protected double vida;
+	protected int vida;
 	protected double danyo;
 	protected NaveBase NaveDectada = null;
 	protected double vectorDirectorNaveX;
@@ -40,7 +40,7 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 	public int contadorAnimacion = 0;
 	
 	// CONSTRUCTORES//
-	public Enemigo(double vida, double danyo, double velX, double velY, double radio, BufferedImage image, Puntuacion puntuacion) {
+	public Enemigo(int vida, double danyo, double velX, double velY, double radio, BufferedImage image, Puntuacion puntuacion) {
 		this.vida = vida;
 		this.danyo = danyo;
 		this.velX = velX;
@@ -70,7 +70,7 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 		return vida;
 	}
 
-	public void setVida(double vida) {
+	public void setVida(int vida) {
 		if (vida >= 0) {
 			this.vida = vida;
 		} else {
@@ -189,6 +189,6 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 	
 		
 	}
-	
+
 	
 }

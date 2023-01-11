@@ -58,14 +58,25 @@ public class CustomCanvas extends Canvas {
 		//FONDO
 		g.drawImage(Assets.fondoPrueba,0,0, null);
 		//
-		motor.jugador1.dibujar(g);
+		
+		
+		 if(motor.jugador1.getVida() > 0) motor.jugador1.dibujar(g);
 		//System.out.println("Jugador en partida customCanvas es: "+motor.isDobleJugador());
 		if(motor.isDobleJugador()) //si hay 2 jugadores
 		{
-			motor.jugador2.dibujar(g);
+			if(motor.jugador2.getVida() > 0)motor.jugador2.dibujar(g);
 		}
 		motor.enemigosVivos.dibujar(g);
 
+		if(motor.finDeJuego == 1) {
+			g.setColor(Color.YELLOW);
+			g.drawRect(anchura/5, (altura/5)*2, (anchura/5)*3,(altura/5) );
+			g.fillRect(anchura/5, (altura/5)*2, (anchura/5)*3,(altura/5) );
+		}else if(motor.finDeJuego == -1) {
+			g.setColor(Color.RED);
+			g.drawRect(anchura/5, (altura/5)*2, (anchura/5)*3,(altura/5) );
+			g.fillRect(anchura/5, (altura/5)*2, (anchura/5)*3,(altura/5) );
+		}
 		// Configuracion y dibujado final
 		Toolkit.getDefaultToolkit().sync();
 		g.dispose();

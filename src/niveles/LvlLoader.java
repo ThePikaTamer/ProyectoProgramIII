@@ -20,20 +20,7 @@ import paquetePrincipal.clasesPrincipales.enemigos.EnemigoVeloz;
 
 public class LvlLoader {
 
-	public static void cargarNivel(int numeroNivel, MotorJuego motor) {
 
-		switch (numeroNivel) {
-		case 0: {
-
-		}
-		case 1: {
-
-		}
-		default:
-			throw new IllegalArgumentException("Unexpected value: " + numeroNivel);
-		}
-
-	}
 
 	// CADA NIVEL
 	public static void cargaNvlDeFichero(int numeroNivel, MotorJuego motor) {
@@ -41,13 +28,13 @@ public class LvlLoader {
 		NaveBase jugador1 = motor.jugador1;
 		NaveBase jugador2 = motor.jugador2;
 
-		String ficheroNivel = "/niveles/Nivel" + numeroNivel + ".csv";
+		String ficheroNivel = "nivel" + numeroNivel + ".csv";
 
-		leerDeFichero(ficheroNivel, motor);
+		leerNvlDeFichero(ficheroNivel, motor);
 
 	}
 
-	public static void leerDeFichero(String ruta, MotorJuego motor) {
+	public static void leerNvlDeFichero(String ruta, MotorJuego motor) {
 
 		try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
 			String linea;
@@ -91,30 +78,7 @@ public class LvlLoader {
 
 		}
 
-//				}
-//				case "frecEnemigos": {
-//					motor.frecEnemigos = valor;
-//				}
-//				case "NumAsteroideBasicos": {
-//					for (int i = 0; i < valor - 1; i++) {
-//						motor.asteroidesEnPantalla.anyadir(new AsteroideBasico());
-//					}
-//				}
-//				case "NumAsteroideDorado": {
-//					for (int i = 0; i < valor - 1; i++) {
-//						motor.asteroidesEnPantalla.anyadir(new AsteroideDorado());
-//					}
-//				}case "FrecAsteroides": {
-//					motor.frecAsteroides = valor;
-//				}case "FrecPowerUps": {
-//					motor.frecPowerUps = valor;
-//				}
-//				
-//				default:
-//					System.out.println("patata");
-//				}
-//			}
-//			
+
 		catch (Exception e) {
 			e.printStackTrace();
 		}

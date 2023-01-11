@@ -15,6 +15,8 @@ import java.util.Set;
 import javax.swing.JFrame;
 
 import Controles.Teclado;
+import baseDeDatos.GestorBaseDatos;
+import baseDeDatos.Usuario;
 import graficos.Assets;
 import niveles.LvlLoader;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
@@ -40,9 +42,16 @@ public class MotorJuego extends JFrame implements Runnable {
 	private static int FPS_TARGET = 60;
 	private static int fps = 0;
 	private static int ups = 0;
-	
+	//BASE DE DATOS
+	public static GestorBaseDatos gestorBD;
+	public boolean cargarDatos = false;
+	protected Usuario usuario1;
+	protected Usuario usuario2;
+	//
 	
 	// VARIABLES DE JUEGO
+	public int finDeJuego=  0;
+	
 	public static int numeroNivel;
 	public  NaveBase jugador1;
 	public  NaveBase jugador2;
@@ -70,7 +79,7 @@ public class MotorJuego extends JFrame implements Runnable {
 
 	public static boolean dobleJugador;
 	
-	public MotorJuego(final String titulo, int numeroNivel, NaveBase nave1, NaveBase nave2) {
+	public MotorJuego(final String titulo, int numeroNivel, NaveBase nave1, NaveBase nave2, Usuario usu1, Usuario usu2) {
 		this.titulo = titulo;
 		this.setTitle(titulo);
 		cc = new CustomCanvas(anchuraV, alturaV);
@@ -88,7 +97,8 @@ public class MotorJuego extends JFrame implements Runnable {
 		
 		this.jugador1 = nave1;
 		this.jugador2 = nave2;
-
+		this.usuario1 = usu1;
+		this.usuario2 = usu2;
 		
 		 System.out.println(Assets.naveBasica);
 		
@@ -150,10 +160,19 @@ public class MotorJuego extends JFrame implements Runnable {
 
 		// TECLADO
 		teclado.update();
-		for (NaveBase jugador :this.jugadoresEnPartida) {
-			
-			jugador.movimiento();
+		if(this.jugadoresEnPartida.size() !=0) {
+			List<NaveBase > navesLectura = new ArrayList<>(jugadoresEnPartida);
+		for (NaveBase jugador :navesLectura) {
+			if(jugador.getVida() > 0) {
+				jugador.movimiento();
+			}else {
+				jugadoresEnPartida.remove(jugador);
+			}
 		}
+		}else {
+			this.finDeJuego = -1;
+		}
+		
 		if (teclado.menuESQ) {
 			
 			this.GameStop();
@@ -215,7 +234,7 @@ public class MotorJuego extends JFrame implements Runnable {
 		
 		this.requestFocus();
 		while (running) {
-		
+			
 			final long beginLoop = System.nanoTime();
 
 			currentTime = beginLoop - lastUpdate;
@@ -224,9 +243,16 @@ public class MotorJuego extends JFrame implements Runnable {
 			deltaAps += currentTime / TIME_PER_UPDATE;
 
 			while (deltaAps >= 1) {
+				if(finDeJuego == 0) {
 				update();
+
+				}
+				else if (finDeJuego == 1){
+					
+				}
 				accumulatedUpdates++;
 				deltaAps--;
+				
 			}
 
 			deltaFps += currentTime / TIME_PER_RENDER;
@@ -252,9 +278,11 @@ public class MotorJuego extends JFrame implements Runnable {
 				}
 			}
 
+
+			}
 		}
 
-	}
+	
 
 	// GET-SET
 	public boolean isRunning() {
@@ -329,11 +357,13 @@ public class MotorJuego extends JFrame implements Runnable {
 	//CARGAR VARIABLES DE JUEGO
 	public void cargarVariables() {
 		
+		
+		this.gestorBD = new GestorBaseDatos();
 		projectiles = new ArrayList<>();
 		this.jugadoresEnPartida = new ArrayList<>();
 		this.enemigosVivos = new GrupoEnemigos();
 		this.jugadoresEnPartida.add(jugador1);
-		
+		this.gestorBD.getUsuariosDeJuegoParaActualizar().add(usuario1);
 		this.puntuacionDeJugadores = new Puntuacion(0);
 		
 		
@@ -342,11 +372,14 @@ public class MotorJuego extends JFrame implements Runnable {
 		if(isDobleJugador()==true && this.jugador2 != null)
 		{
 			this.jugadoresEnPartida.add(this.jugador2);
-			
+			this.gestorBD.getUsuariosDeJuegoParaActualizar().add(usuario2);
 		}
 		
-		LvlLoader.leerDeFichero("nivel0.csv", this);
-		System.out.println(frecEnemigos);
+		LvlLoader.cargaNvlDeFichero(numeroNivel, this);
+		
+		
+		
+		
 	}
 
 }

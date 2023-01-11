@@ -23,5 +23,8 @@ public class Main {
 				new Usuario(8888, "Maria", "Marybol@gmail.com", "2001-01-04")));
 
 		gb.actualizarPuntuaciones();
+		
+		gb.limpiarBaseDeDatos();
+		gb.actualizarPuntuaciones();
 	}
 }

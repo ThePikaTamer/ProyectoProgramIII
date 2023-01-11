@@ -18,7 +18,7 @@ import paquetePrincipal.Objeto;
 
 abstract public class NaveBase extends Objeto {
 
-	protected int vida;
+	protected double vida;
 	protected double velocidadDisparo;
 	protected double velocidadMovimiento;
 	protected double velocidadRotacion;
@@ -42,7 +42,7 @@ abstract public class NaveBase extends Objeto {
 	protected int fireRate=300;
 
 
-	public NaveBase(double radio, int vida, double velocidadDisparo,
+	public NaveBase(double radio, double vida, double velocidadDisparo,
 			double velocidadMovimiento, double velocidadRotacion, BufferedImage IMG, CategoriaJugador jugador,
 			Object habilidad, Vector2D vectorVel) {
 		super();
@@ -64,12 +64,12 @@ abstract public class NaveBase extends Objeto {
 
 
 
-	public int getVida() {
+	public double getVida() {
 		return vida;
 	}
 
-	public void setVida(int vida) {
-		this.vida = vida;
+	public void setVida(double d) {
+		this.vida = d;
 	}
 
 	public double getVelocidadDisparo() {
@@ -243,7 +243,7 @@ abstract public class NaveBase extends Objeto {
 		}
 	}
 
-	public void reducirVida(int danyo) {
+	public void reducirVida(double danyo) {
 		this.setVida(this.getVida() - danyo);
 	};
 

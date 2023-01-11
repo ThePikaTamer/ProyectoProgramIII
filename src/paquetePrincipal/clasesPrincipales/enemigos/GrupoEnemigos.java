@@ -53,6 +53,7 @@ public class GrupoEnemigos {
 			}
 			for (NaveBase nave : lista) {
 				if (i.colisionando(nave)) {
+					//nave.reducirVida(i.danyo);
 					i.vivo = false;
 					muertos.add(i);
 				
@@ -63,11 +64,21 @@ public class GrupoEnemigos {
 		}
 		sumarPuntosDeMuertos(muertos, motor);
 		this.arrayEnemigos.removeAll(muertos);
-		this.dibujable.removeAll(muertos);	
-		System.out.println(motor.puntuacionDeJugadores.get());
+		this.dibujable.removeAll(muertos);
+		if(arrayEnemigos.size() == 0) {
+			if(motor.jugadoresEnPartida.size() != 0) {
+				motor.finDeJuego = 1;
+				motor.gestorBD.actualizarPuntuaciones();
+			}else {
+				motor.finDeJuego = -1;
+			}
+		}
+		
 
 	}
 
+
+	
 	public void incializar(MotorJuego motor) {
 		for (Enemigo e : arrayEnemigos) {
 			e.inicializarEnemigo(motor.getAnchuraV(), motor.getAlturaV(),motor.jugadoresEnPartida );
