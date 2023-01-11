@@ -10,7 +10,7 @@ public class NaveBasica extends NaveBase {
 
 	protected static CategoriaJugador tipoJugador;
 	private final static double RADIO_NAVE = 20;
-	private final static int VIDA = 2;
+	private final static int VIDA = 3;
 	private final static double VEL_DISP = 2;
 	private final static double VEL_MAX = 3;
 	private final static double VEL_ROT = 0.1;

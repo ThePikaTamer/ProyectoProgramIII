@@ -11,8 +11,8 @@ public class NaveDRapido extends NaveBase {
 	
 	private final static double RADIO_NAVE = 25;
 	private final static int VIDA = 2;
-	private final static double VEL_DISP = 2;
-	private final static double VEL_MAX = 5;
+	private final static double VEL_DISP = 4;
+	private final static double VEL_MAX = 4;
 	private final static double VEL_ROT = 0.15;
 	protected static BufferedImage IMG = Assets.naveDRapido;
 	protected static BufferedImage IMG2 = Assets.naveDRapido_P1;
