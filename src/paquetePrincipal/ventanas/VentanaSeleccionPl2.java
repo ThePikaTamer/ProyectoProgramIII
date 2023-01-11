@@ -7,7 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import paquetePrincipal.CategoriaJugador;
 import paquetePrincipal.MotorJuego;
+import paquetePrincipal.clasesPrincipales.Naves.NaveBasica;
+import paquetePrincipal.clasesPrincipales.Naves.NaveDRapido;
 
 public class VentanaSeleccionPl2 extends JFrame
 {
@@ -34,7 +37,7 @@ public class VentanaSeleccionPl2 extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//System.out.println("Pl2 ready");
-				new MotorJuego("My Game").setDobleJugador(true);
+				new MotorJuego("Asteroids", 0, new NaveBasica(null, CategoriaJugador.PLAYER1), new NaveDRapido(null, CategoriaJugador.PLAYER2), true);
 				
 				dispose();
 			}

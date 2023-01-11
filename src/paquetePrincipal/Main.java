@@ -18,7 +18,8 @@ public class Main {
 //HojaSprites hoja = new HojaSprites("/imagenes/primero.png", anchura, altura);
 
 //		
-		new MotorJuego("Game", 0, new NaveBasica(null, CategoriaJugador.PLAYER1), new NaveDRapido(args, CategoriaJugador.PLAYER2));
+		new MainWindow();
+		//new MotorJuego("Game", 0, new NaveBasica(null, CategoriaJugador.PLAYER1), new NaveDRapido(args, CategoriaJugador.PLAYER2));
 //		System.out.println("This is a test.");
 	}
 }
