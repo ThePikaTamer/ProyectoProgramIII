@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import graficos.Assets;
 import paquetePrincipal.clasesPrincipales.enemigos.Enemigo;
 import paquetePrincipal.clasesPrincipales.enemigos.EnemigoBasico;
 import paquetePrincipal.clasesPrincipales.enemigos.EnemigoReforzado;
@@ -44,20 +45,19 @@ public class ObjetoTest {
 	@Test
 	public void testSetDibujoInicial() {
 		Enemigo e1 = new EnemigoBasico();
+		
 		// Rama1
-		e1.setImage("prueba");
-		assertTrue(e1.getImage() == "prueba");
 		e1.setDibujoInicial();
-		assertTrue(e1.getImage() == "img\\Enemy_1.png");
+		assertEquals(Assets.enemigoBasico, e1.getImage());
 
 	}
 
 	@Test
 	public void testSiguienteDibujo() {
 		Enemigo e1 = new EnemigoBasico();
-
+		assertTrue(Assets.enemigoBasico);
 		e1.siguienteDibujo();
-		assertTrue("img\\Enemy_1_1.png" == e1.getImage());
+		assertTrue();
 		e1.siguienteDibujo();
 		assertTrue("img\\Enemy_1.png" == e1.getImage());
 

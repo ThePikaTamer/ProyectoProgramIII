@@ -39,7 +39,7 @@ public class VentanaSeleccion extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(pl2Selected==false)
 				{
-					new MotorJuego("Asteroids", 0, new NaveBasica(null, CategoriaJugador.PLAYER1), null, false);
+					new MotorJuego("Asteroids", 0, new NaveBasica(null, CategoriaJugador.PLAYER1), null,null, null, false);
 					dispose();
 				}
 				
@@ -57,7 +57,7 @@ public class VentanaSeleccion extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(pl2Selected==false)
 				{
-					new MotorJuego("Asteroids", 0, new NaveDRapido(null, CategoriaJugador.PLAYER1), null, false);
+					new MotorJuego("Asteroids", 0, new NaveDRapido(null, CategoriaJugador.PLAYER1), null,null,null, false);
 					dispose();
 				}
 				
@@ -75,7 +75,7 @@ public class VentanaSeleccion extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(pl2Selected==false)
 				{
-					new MotorJuego("Asteroids", 0, new NaveVeloz(null, CategoriaJugador.PLAYER1), null, false);
+					new MotorJuego("Asteroids", 0, new NaveVeloz(null, CategoriaJugador.PLAYER1), null,null,null,false);
 					dispose();
 				}
 				
@@ -93,7 +93,7 @@ public class VentanaSeleccion extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(pl2Selected==false)
 				{
-					new MotorJuego("Asteroids", 0, new NaveTanque(null, CategoriaJugador.PLAYER1), null, false);
+					new MotorJuego("Asteroids", 0, new NaveTanque(null, CategoriaJugador.PLAYER1), null,null,null, false);
 					dispose();
 				}
 				

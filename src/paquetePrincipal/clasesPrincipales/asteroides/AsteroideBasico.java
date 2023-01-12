@@ -1,12 +1,21 @@
 package paquetePrincipal.clasesPrincipales.asteroides;
 
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+
+import graficos.Assets;
+import paquetePrincipal.Puntuacion;
 
 public class AsteroideBasico extends Asteroide {
-	protected static String IMG = "";
-	
+	protected static BufferedImage IMG = Assets.asteroideBasico;
+	private final static double RADIO_EN = 25;
+	private final static int VIDA = 1;
+	private final static double DANYO_CHOQUE = 1;
+	private final static double VEL_X = 2;
+	private final static double VEL_Y = 2;
+	private final static Puntuacion PUNT = new Puntuacion(500);
 	public AsteroideBasico() {
-		super(3, 1, 2, 2, 50, 50, IMG, new Point(0, 0), 5, 5);
+		super( VIDA, DANYO_CHOQUE,VEL_X, VEL_Y, IMG, new Point(0, 0),RADIO_EN );
 		
 	}
 

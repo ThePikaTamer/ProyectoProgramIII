@@ -10,9 +10,9 @@ import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 
 public class GrupoEnemigos {
 
-	protected List<Enemigo> arrayEnemigos;
-	protected List<Enemigo> noInit;
-	protected List<Enemigo> dibujable;
+	public List<Enemigo> arrayEnemigos;
+	public List<Enemigo> noInit;
+	public List<Enemigo> dibujable;
 	public GrupoEnemigos() {
 		arrayEnemigos = new ArrayList<Enemigo>();
 		noInit = new ArrayList<Enemigo>();
@@ -53,10 +53,12 @@ public class GrupoEnemigos {
 			}
 			for (NaveBase nave : lista) {
 				if (i.colisionando(nave)) {
-					//nave.reducirVida(i.danyo);
+					if(i.vivo) {
+					nave.reducirVida(i.danyo);
 					i.vivo = false;
 					muertos.add(i);
-				
+					System.err.println("dfad");
+					}
 				
 				}
 
@@ -82,16 +84,17 @@ public class GrupoEnemigos {
 	public void incializar(MotorJuego motor) {
 		for (Enemigo e : arrayEnemigos) {
 			e.inicializarEnemigo(motor.getAnchuraV(), motor.getAlturaV(),motor.jugadoresEnPartida );
+			
 		}
 	}
 	public void inicializarSig(MotorJuego motor){
-		
+		System.out.println(noInit.size());
 		if(this.noInit.size() != 0) {
 			int numA = (int)(Math.random()*this.noInit.size());
 			 this.noInit.get(numA).inicializarEnemigo(motor.getAnchuraV(), motor.getAlturaV(), motor.jugadoresEnPartida);
 			 this.dibujable.add(this.noInit.get(numA));
 			this.noInit.remove(numA);
-			
+//			System.err.println(noInit.size());
 		}
 		
 	}
@@ -101,9 +104,10 @@ public class GrupoEnemigos {
 		if(this.dibujable.size() != 0) {
 			
 		for (Enemigo e : this.dibujable) {
-			if(e.vivo) {
-			e.dibujar(g);}
-		}
+			
+			e.dibujar(g);
+			}
+		
 		}
 	}
 	public void sumarPuntosDeMuertos(List<Enemigo> muertos, MotorJuego motor) {

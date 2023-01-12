@@ -67,7 +67,7 @@ public class CustomCanvas extends Canvas {
 			if(motor.jugador2.getVida() > 0)motor.jugador2.dibujar(g);
 		}
 		motor.enemigosVivos.dibujar(g);
-
+		motor.asteroidesEnPantalla.dibujar(g);
 		if(motor.finDeJuego == 1) {
 			g.setColor(Color.YELLOW);
 			g.drawRect(anchura/5, (altura/5)*2, (anchura/5)*3,(altura/5) );

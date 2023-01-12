@@ -31,7 +31,11 @@ public class Assets {
 	public static BufferedImage enemigoVeloz;
 	public static BufferedImage enemigoVeloz1;
 	//
-	
+	//ASTEROIDE
+	public static BufferedImage asteroideBasico;
+	public static BufferedImage asteroideBasico1;
+	public static BufferedImage asteroideBasico2;
+	//
 	
 	//FONDO
 	public static BufferedImage fondoPrueba;
@@ -63,6 +67,14 @@ public class Assets {
 		enemigoVeloz1 = Loader.ImagenLoader("/enemigos/Enemy_2_1.png");
 		enemigoReforzado = Loader.ImagenLoader("/enemigos/Enemy_3.png");
 		enemigoReforzado1 = Loader.ImagenLoader("/enemigos/Enemy_3_1.png");
+		
+		
+		asteroideBasico = Loader.ImagenLoader("/asteroides/Asteroid_1.png");
+		asteroideBasico1 = Loader.ImagenLoader("/asteroides/Asteroid_2.png");
+		asteroideBasico2 = Loader.ImagenLoader("/asteroides/Asteroid_3.png");
+		
+		
+		
 		
 		fondoPrueba = Loader.ImagenLoader("/fondoEspacio.png");
 	}

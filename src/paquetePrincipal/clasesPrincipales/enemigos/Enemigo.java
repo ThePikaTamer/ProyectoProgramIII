@@ -27,7 +27,6 @@ import paquetePrincipal.clasesPrincipales.Naves.NaveBasica;
 
 public abstract class Enemigo extends paquetePrincipal.Objeto {
 
-	
 	protected int vida;
 	protected double danyo;
 	protected NaveBase NaveDectada = null;
@@ -38,9 +37,10 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 	public Puntuacion puntuacion;
 
 	public int contadorAnimacion = 0;
-	
+
 	// CONSTRUCTORES//
-	public Enemigo(int vida, double danyo, double velX, double velY, double radio, BufferedImage image, Puntuacion puntuacion) {
+	public Enemigo(int vida, double danyo, double velX, double velY, double radio, BufferedImage image,
+			Puntuacion puntuacion) {
 		this.vida = vida;
 		this.danyo = danyo;
 		this.velX = velX;
@@ -59,10 +59,8 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 
 	@Override
 	public boolean colisionando(Objeto o1) {
-//		if(o1 instanceof NaveBase) {
-//			((NaveBase) o1).reducirVida((int)this.getDanyo());
+
 		return super.colisionando(o1);
-//		}else return false;
 	}
 
 	// metodos de obtención y modificación de la vida de los enemigos
@@ -134,20 +132,24 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 		}
 
 		// Prueba para ver si funciona
-		System.out.println("X = " + posX);
-		System.out.println("Y = " + posY);
+//		System.out.println("X = " + posX);
+//		System.out.println("Y = " + posY);
 		this.elegirNaveSeguida(navesVivas);
-
+//		for (NaveBase nave : navesVivas) {
+//			if (nave.getPosX() == this.posX && nave.getPosY() == this.posY) {
+//				this.inicializarEnemigo(anchuraPantalla, alturaPantalla, navesVivas);
+//			}
+//		}
 	}
 
 //actualiza posicion de los enemigos
 	public void update() {
 		this.setVectorDirectorConNave(this.NaveDectada);
-		// System.out.println(this.vectorDirectorNaveX + " - "+
-		// this.vectorDirectorNaveY);
+
 		this.posX += this.velX * this.vectorDirectorNaveX;
 		this.posY += this.velY * this.vectorDirectorNaveY;
-		this.colisionando(NaveDectada);
+
+//		this.colisionando(NaveDectada);
 	}
 
 	public void elegirNaveSeguida(List<NaveBase> navesVivas) {
@@ -177,18 +179,15 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 		this.vectorDirectorNaveY = yVectorN;
 	}
 
-	
 	public void dibujar(Graphics2D g) {
 		contadorAnimacion++;
-		
-		if(contadorAnimacion > 30) {
+
+		if (contadorAnimacion > 30) {
 			this.siguienteDibujo();
 			contadorAnimacion = 0;
 		}
-		g.drawImage(this.IMG, (int)posX, (int)posY, null);
-	
-		
+		g.drawImage(this.IMG, (int) posX, (int) posY, null);
+
 	}
 
-	
 }

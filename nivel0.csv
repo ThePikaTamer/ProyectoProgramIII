@@ -1,8 +1,8 @@
-NumEnemigoBasicos;6
-NumEnemigoReforzados;6
-NumEnemigoVeloz;5
+NumEnemigoBasicos;0
+NumEnemigoReforzados;1
+NumEnemigoVeloz;0
 FrecEnemigos;1
-NumAsteroideBasicos;0
+NumAsteroideBasicos;5
 NumAsteroideDorado;0
 FrecAsteroides;3
 FrecPowerUps;1

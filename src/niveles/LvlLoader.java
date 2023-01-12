@@ -48,25 +48,25 @@ public class LvlLoader {
 				if(valor != 0) {
 				if (nombre.equals("NumEnemigoBasicos")) {
 					
-					for (int i = 0; i < valor - 1; i++) {
+					for (int i = 0; i < valor ; i++) {
 						motor.enemigosVivos.anyadir(new EnemigoBasico());
 					}
 				} else if (nombre.equals("NumEnemigoVeloz")) {
-					for (int i = 0; i < valor - 1; i++) {
+					for (int i = 0; i < valor ; i++) {
 						motor.enemigosVivos.anyadir(new EnemigoVeloz());
 					}
 				} else if (nombre.equals("NumEnemigoReforzados")) {
-					for (int i = 0; i < valor - 1; i++) {
+					for (int i = 0; i < valor ; i++) {
 						motor.enemigosVivos.anyadir(new EnemigoReforzado());
 					}
 				} else if (nombre.equals("FrecEnemigos")) {
 					motor.frecEnemigos = valor;
 				} else if (nombre.equals("NumAsteroideBasicos")) {
-					for (int i = 0; i < valor - 1; i++) {
+					for (int i = 0; i < valor ; i++) {
 						motor.asteroidesEnPantalla.anyadir(new AsteroideBasico());
 					}
 				} else if (nombre.equals("NumAsteroideDorado")) {
-					for (int i = 0; i < valor - 1; i++) {
+					for (int i = 0; i < valor ; i++) {
 						motor.asteroidesEnPantalla.anyadir(new AsteroideDorado());
 					}
 				} else if (nombre.equals("FrecAsteroides")) {
@@ -75,6 +75,8 @@ public class LvlLoader {
 					motor.frecPowerUps = valor;
 				}
 			}}
+			System.out.println("ArrayEnemigos = "+ motor.enemigosVivos.arrayEnemigos.size() );
+			System.out.println("ArrayAsteroides = "+ motor.asteroidesEnPantalla.arrayAsteroide.size() );
 
 		}
 

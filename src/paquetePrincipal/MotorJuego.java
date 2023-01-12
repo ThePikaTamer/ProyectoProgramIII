@@ -108,8 +108,7 @@ public class MotorJuego extends JFrame implements Runnable {
 		this.dobleJugador=pl2;
 
 		
-		 System.out.println(Assets.naveBasica);
-		
+		 
 		
 		
 		//
@@ -157,10 +156,11 @@ public class MotorJuego extends JFrame implements Runnable {
 
 		cargarVariables();
 		//
-
+		
 		thread = new Thread(this, "principal");
 
 		thread.start();
+		
 	}
 
 	// ACTUALIZA LOGICA DE JUEGO
@@ -187,7 +187,7 @@ public class MotorJuego extends JFrame implements Runnable {
 
 		}
 		if(contadorEnem >= frecEnemigos*UPS_TARGET) {
-		
+			this.asteroidesEnPantalla.inicializarSig(this);
 			this.enemigosVivos.inicializarSig(this);
 			contadorEnem = 0;
 		}else {
@@ -196,7 +196,7 @@ public class MotorJuego extends JFrame implements Runnable {
 //		this.enemigosVivos.incializar(this);
 //		this.enemigosVivos.inicializarSig(this);
 		this.enemigosVivos.update(jugadoresEnPartida, this);
-		
+		this.asteroidesEnPantalla.update(jugadoresEnPartida, this);
 //		cadenciaDisparo++;
 		
 	};
@@ -370,8 +370,9 @@ public class MotorJuego extends JFrame implements Runnable {
 		projectiles = new ArrayList<>();
 		this.jugadoresEnPartida = new ArrayList<>();
 		this.enemigosVivos = new GrupoEnemigos();
+		this.asteroidesEnPantalla = new GrupoAsteroide();
 		this.jugadoresEnPartida.add(jugador1);
-		this.gestorBD.getUsuariosDeJuegoParaActualizar().add(usuario1);
+//		this.gestorBD.getUsuariosDeJuegoParaActualizar().add(usuario1);
 		this.puntuacionDeJugadores = new Puntuacion(0);
 		
 		System.out.println("Jugador en partida cargaV es: "+isDobleJugador());
@@ -379,7 +380,7 @@ public class MotorJuego extends JFrame implements Runnable {
 		if(isDobleJugador()==true && this.jugador2 != null)
 		{
 			this.jugadoresEnPartida.add(this.jugador2);
-			this.gestorBD.getUsuariosDeJuegoParaActualizar().add(usuario2);
+//			this.gestorBD.getUsuariosDeJuegoParaActualizar().add(usuario2);
 		}
 		
 		LvlLoader.cargaNvlDeFichero(numeroNivel, this);
