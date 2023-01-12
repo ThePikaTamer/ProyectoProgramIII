@@ -7,8 +7,9 @@ import paquetePrincipal.Puntuacion;
 
 public class EnemigoVeloz extends Enemigo {
 	protected static BufferedImage IMG = Assets.enemigoVeloz;
-	protected static BufferedImage IMG1 = Assets.enemigoVeloz;
-	private final static double RADIO_EN = 16;
+	protected static BufferedImage IMG1 = Assets.enemigoVeloz1;
+	
+	private final static double RADIO_EN = 20;
 	private final static int VIDA = 1;
 	private final static double DANYO = 2;
 	private final static double VEL_X = 3;

@@ -29,6 +29,7 @@ public class Assets {
 	public static BufferedImage enemigoReforzado;
 	public static BufferedImage enemigoReforzado1;
 	public static BufferedImage enemigoVeloz;
+	public static BufferedImage enemigoVeloz1;
 	//
 	
 	
@@ -58,10 +59,11 @@ public class Assets {
 		
 		enemigoBasico = Loader.ImagenLoader("/enemigos/Enemy_1.png");
 		enemigoBasico1 = Loader.ImagenLoader("/enemigos/Enemy_1_1.png");
-		enemigoReforzado = Loader.ImagenLoader("/enemigos/Enemy_2.png");
-		enemigoReforzado1 = Loader.ImagenLoader("/enemigos/Enemy_2_1.png");
-		fondoPrueba = Loader.ImagenLoader("/fondoEspacio.png");
-//		enemigoVeloz = Loader.ImagenLoader("/enemigos/Enemy_3.png");
+		enemigoVeloz = Loader.ImagenLoader("/enemigos/Enemy_2.png");
+		enemigoVeloz1 = Loader.ImagenLoader("/enemigos/Enemy_2_1.png");
+		enemigoReforzado = Loader.ImagenLoader("/enemigos/Enemy_3.png");
+		enemigoReforzado1 = Loader.ImagenLoader("/enemigos/Enemy_3_1.png");
 		
+		fondoPrueba = Loader.ImagenLoader("/fondoEspacio.png");
 	}
 }
