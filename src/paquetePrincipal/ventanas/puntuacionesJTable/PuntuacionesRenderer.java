@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTree;
@@ -14,6 +15,10 @@ import baseDeDatos.Usuario;
 
 public class PuntuacionesRenderer implements TableCellRenderer {
 
+	protected boolean borrable = false;
+	
+	
+	
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 			int row, int column) {
@@ -41,11 +46,13 @@ public class PuntuacionesRenderer implements TableCellRenderer {
 		if (isSelected) {
 			label.setBackground(table.getSelectionBackground());
 			label.setForeground(table.getSelectionForeground());
+			this.borrable = true;
 		}
 		
 		label.setOpaque(true);
 		
 		return label;
 	}
+	
 
 }

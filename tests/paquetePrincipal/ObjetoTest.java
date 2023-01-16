@@ -2,6 +2,7 @@ package paquetePrincipal;
 
 import static org.junit.Assert.*;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -54,7 +55,7 @@ public class ObjetoTest {
 	@Test
 	public void testSiguienteDibujo() {
 		Enemigo e1 = new EnemigoBasico();
-		assertEquals(Assets.asteroideBasico,e1.getImage() );
+		assertEquals((BufferedImage)Assets.asteroideBasico,(BufferedImage)e1.getImage() );
 		e1.siguienteDibujo();
 		assertEquals(Assets.asteroideBasico1, e1.getImage());
 		e1.siguienteDibujo();

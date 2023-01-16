@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import paquetePrincipal.ventanas.VentanaOpciones;
 import paquetePrincipal.ventanas.puntuacionesJTable.pruebasJtable;
 
 public class Main {
@@ -24,9 +25,9 @@ public class Main {
 				new Usuario(9999, "Juan", "Juan@gmail.com", "2000-10-23"),
 				new Usuario(8888, "Maria", "Marybol@gmail.com", "2001-01-04")));
 
-		gb.actualizarPuntuaciones();
+//		gb.actualizarPuntuaciones();
 		
-		new pruebasJtable();
-
+		//new pruebasJtable(gb);
+//		new VentanaOpciones();
 	}
 }

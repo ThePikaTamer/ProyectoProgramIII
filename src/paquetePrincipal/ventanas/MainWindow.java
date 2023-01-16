@@ -11,7 +11,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import baseDeDatos.GestorBaseDatos;
+import paquetePrincipal.ventanas.puntuacionesJTable.pruebasJtable;
+
 public class MainWindow extends JFrame {
+	protected MainWindow ventana = this;
 	public MainWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1800, 1000);
@@ -20,15 +24,19 @@ public class MainWindow extends JFrame {
 
 		JPanel panel = new JPanel();
 
-		panel.setLayout(new GridLayout(3, 3));
+		panel.setLayout(new GridLayout(4, 3));
 		JButton botonJugar = new JButton("Jugar");
 		JButton botonOptions = new JButton("Opciones");
 		JButton botonStop = new JButton("Salir");
+		JButton botonPuntuaciones = new JButton("Puntuaciones");
+
 		this.add(panel);
 
 		panel.add(botonJugar);
 		panel.add(botonOptions);
+		panel.add(botonPuntuaciones);
 		panel.add(botonStop);
+		
 
 		botonJugar.addActionListener(new ActionListener() {
 
@@ -48,6 +56,17 @@ public class MainWindow extends JFrame {
 
 			}
 		});
+		
+		botonPuntuaciones.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new pruebasJtable(new GestorBaseDatos(), ventana);
+				dispose();
+			}
+		});
+		
+		
 		botonStop.addActionListener(new ActionListener() {
 
 			@Override

@@ -235,6 +235,7 @@ public class GestorBaseDatos {
 						.prepareStatement("INSERT INTO USUARIO (ID_US, NICKNAME, CORREO, FECHA_NAC) VALUES(?,?,?,?)")) {
 
 					for (Usuario cadaUs : this.usuariosDeJuegoParaActualizar) {
+						if(cadaUs != null) {
 						if (!this.ListaClavesUsuarios().contains(cadaUs.getIdUsuario())) {
 							insertUs.setInt(1, cadaUs.getIdUsuario());
 							insertUs.setString(2, cadaUs.getNickUsuario());
@@ -242,6 +243,7 @@ public class GestorBaseDatos {
 							insertUs.setString(4, cadaUs.getFechanacimiento().toString());
 							System.out.println(insertUs.toString());
 							insertUs.executeUpdate();
+						}
 						}
 					}
 					this.descargarDatosDeBaseDeDatosCompleta(baseDeDatos);
@@ -413,4 +415,20 @@ public class GestorBaseDatos {
 		}
 	}
 
+	public void borrarPartidaBD(Partida partida) {
+		this.partidasDeJuego = new ArrayList<Partida>();
+		this.usuariosDeJuego = new ArrayList<Usuario>();
+		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + this.baseDeDatos)) {
+			try (PreparedStatement deletePartida = conn.prepareStatement("DELETE FROM PARTIDA WHERE	ID_PAR = ?")) {
+				deletePartida.setInt(1, partida.getIDPartida());
+				deletePartida.executeUpdate();
+			}
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 }
