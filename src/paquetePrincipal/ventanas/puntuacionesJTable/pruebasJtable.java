@@ -42,15 +42,19 @@ public class pruebasJtable extends JFrame {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			if(tablaPuntuaciones.getSelectedRow() != -1) {
 			gestor.borrarPartidaBD(partidas.get(tablaPuntuaciones.getSelectedRow()));
 			updateTablaPuntuaciones();
+			}else {
+				bBorrar.setEnabled(false);
+			}
 		}
 	};
 	protected ActionListener listenerBACK = new ActionListener() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			new MainWindow();
+			new MainWindow(null);
 			dispose();
 			
 		}

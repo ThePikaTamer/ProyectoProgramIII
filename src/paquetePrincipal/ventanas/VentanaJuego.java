@@ -46,7 +46,7 @@ public class VentanaJuego extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new MainWindow();
+				new MainWindow(null);
 				dispose();
 
 			}

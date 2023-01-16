@@ -3,6 +3,8 @@ package paquetePrincipal;
 import java.awt.BorderLayout;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -27,12 +29,15 @@ import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBasica;
 import paquetePrincipal.clasesPrincipales.Naves.NaveDRapido;
 import paquetePrincipal.clasesPrincipales.Naves.Proyectil;
+import paquetePrincipal.clasesPrincipales.asteroides.Asteroide;
 import paquetePrincipal.clasesPrincipales.asteroides.GrupoAsteroide;
 import paquetePrincipal.clasesPrincipales.enemigos.Enemigo;
 import paquetePrincipal.clasesPrincipales.enemigos.EnemigoBasico;
 import paquetePrincipal.clasesPrincipales.enemigos.EnemigoReforzado;
 import paquetePrincipal.clasesPrincipales.enemigos.EnemigoVeloz;
 import paquetePrincipal.clasesPrincipales.enemigos.GrupoEnemigos;
+import paquetePrincipal.ventanas.MainWindow;
+import paquetePrincipal.ventanas.VentanaMenu;
 import paquetePrincipal.ventanas.VentanaOpciones;
 
 public class MotorJuego extends JFrame implements Runnable {
@@ -46,28 +51,28 @@ public class MotorJuego extends JFrame implements Runnable {
 	private static int FPS_TARGET = 60;
 	private static int fps = 0;
 	private static int ups = 0;
-	//BASE DE DATOS
+	// BASE DE DATOS
 	public static GestorBaseDatos gestorBD;
 	public boolean cargarDatos = false;
 	protected Usuario usuario1;
 	protected Usuario usuario2;
 	//
-	
+
 	// VARIABLES DE JUEGO
-	public int finDeJuego=  0;
-	
+	public int finDeJuego = 0;
+
 	public static int numeroNivel;
-	public  NaveBase jugador1;
-	public  NaveBase jugador2;
+	public NaveBase jugador1;
+	public NaveBase jugador2;
 	public static List<NaveBase> jugadoresEnPartida;
 	public static List<Proyectil> projectiles;
-	
+
 	public static GrupoEnemigos enemigosVivos;
 	public static GrupoAsteroide asteroidesEnPantalla;
 	public static int frecEnemigos;
 	public static double frecAsteroides;
 	public static double frecPowerUps;
-	
+
 	public static double contadorEnem;
 
 	public Puntuacion puntuacionDeJugadores;
@@ -79,14 +84,13 @@ public class MotorJuego extends JFrame implements Runnable {
 	//
 	// THREADS
 	private static Thread thread;
+	protected static boolean pausado = false;
 	//
 
 	public static boolean dobleJugador;
-	
 
-	public MotorJuego(final String titulo, int numeroNivel, NaveBase nave1, NaveBase nave2, Usuario usu1, Usuario usu2, boolean pl2) {
-
-	
+	public MotorJuego(final String titulo, int numeroNivel, NaveBase nave1, NaveBase nave2, Usuario usu1, Usuario usu2,
+			boolean pl2) {
 
 		this.titulo = titulo;
 		this.setTitle(titulo);
@@ -98,34 +102,42 @@ public class MotorJuego extends JFrame implements Runnable {
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		
-		//VARIABLES BASE - JUGADORES Y NIVEL
+
+		// VARIABLES BASE - JUGADORES Y NIVEL
 		Assets.init();
 		this.numeroNivel = numeroNivel;
-		
+
 		this.jugador1 = nave1;
 		this.jugador2 = nave2;
 		this.usuario1 = usu1;
 		this.usuario2 = usu2;
 
+		this.dobleJugador = pl2;
 
-		this.dobleJugador=pl2;
-
-		
-		 
-		
-		
 		//
-		
+
 		// TECLADO
 		teclado = new Teclado();
 		this.addKeyListener(teclado);
 		this.requestFocus();
 		//
+		this.addFocusListener(new FocusListener() {
 
+			@Override
+			public void focusLost(FocusEvent e) {
+				
+				requestFocus();
+				
+			}
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				
+
+			}
+		});
 		// TODO //HAY QUE CREAR HILOS PARA QUE NO SE ATASQUE EL PROGRAMA
 		this.GameStart();
-
 
 	}
 
@@ -143,16 +155,16 @@ public class MotorJuego extends JFrame implements Runnable {
 //		
 //	}
 	public synchronized void GameStop() {
+		this.setRunning(false);
 
 		try {
 			thread.join();
-			this.setRunning(false);
-			this.dispose();
-			
+
 		} catch (InterruptedException e) {
 			System.err.println("Problemas con hilo");
 			e.printStackTrace();
 		}
+		dispose();
 	}
 
 	public void iniciar() {
@@ -160,11 +172,11 @@ public class MotorJuego extends JFrame implements Runnable {
 
 		cargarVariables();
 		//
-		
+
 		thread = new Thread(this, "principal");
 
 		thread.start();
-		
+
 	}
 
 	// ACTUALIZA LOGICA DE JUEGO
@@ -172,36 +184,39 @@ public class MotorJuego extends JFrame implements Runnable {
 
 		// TECLADO
 		teclado.update();
-		if(this.jugadoresEnPartida.size() !=0) {
-			List<NaveBase > navesLectura = new ArrayList<>(jugadoresEnPartida);
-		for (NaveBase jugador :navesLectura) {
-			if(jugador.getVida() > 0) {
-				jugador.movimiento();
-			}else {
-				jugadoresEnPartida.remove(jugador);
+		if (this.jugadoresEnPartida.size() != 0) {
+			List<NaveBase> navesLectura = new ArrayList<>(jugadoresEnPartida);
+			for (NaveBase jugador : navesLectura) {
+				if (jugador.getVida() > 0) {
+					jugador.movimiento();
+				} else {
+					jugadoresEnPartida.remove(jugador);
+				}
 			}
-		}
-		}else {
+		} else {
 			this.finDeJuego = -1;
 		}
-		
+
 		if (teclado.menuESQ) {
 			
-			this.GameStop();
+			this.pausado = true;
+			new VentanaMenu(this);
+			
+			
 
 		}
-		if(contadorEnem >= frecEnemigos*UPS_TARGET) {
+		if (contadorEnem >= frecEnemigos * UPS_TARGET) {
 			this.asteroidesEnPantalla.inicializarSig(this);
 			this.enemigosVivos.inicializarSig(this);
 			contadorEnem = 0;
-		}else {
+		} else {
 			contadorEnem++;
 		}
 
 		this.enemigosVivos.update(jugadoresEnPartida, this);
 		this.asteroidesEnPantalla.update(jugadoresEnPartida, this);
 //		cadenciaDisparo++;
-		
+
 	};
 
 	// DIBUJAR
@@ -216,18 +231,20 @@ public class MotorJuego extends JFrame implements Runnable {
 	public static int getUPS() {
 		return ups;
 	}
-	
+
 /////////////////////////////
 	public boolean isDobleJugador() {
 		return dobleJugador;
 	}
+
 	public void setDobleJugador(boolean dobleJugador) {
 		this.dobleJugador = dobleJugador;
 	}
+
 ////////////////////////////////
 	public void comenzarBuclePrincipal() {
 
-		System.out.println("Jugador en comenzarBucle es: "+isDobleJugador());
+		System.out.println("Jugador en comenzarBucle es: " + isDobleJugador());
 		int accumulatedUpdates = 0;// nº actualizaciones
 		int accumulatedFrames = 0;// nº dibujados
 
@@ -241,10 +258,10 @@ public class MotorJuego extends JFrame implements Runnable {
 		double currentTime;
 		double deltaAps = 0;
 		double deltaFps = 0;
-		
-		
+
 		this.requestFocus();
 		while (running) {
+			if(!this.pausado) {
 			
 			final long beginLoop = System.nanoTime();
 
@@ -254,26 +271,24 @@ public class MotorJuego extends JFrame implements Runnable {
 			deltaAps += currentTime / TIME_PER_UPDATE;
 
 			while (deltaAps >= 1) {
-				if(finDeJuego == 0) {
-				update();
+				if (finDeJuego == 0) {
+					update();
 
-				}
-				else if (finDeJuego == 1){
+				} else if (finDeJuego == 1 || finDeJuego == -1) {
 					this.setRunning(false);
-		
-					
+
 				}
 				accumulatedUpdates++;
 				deltaAps--;
-				
+
 			}
 
 			deltaFps += currentTime / TIME_PER_RENDER;
 
 			if (deltaFps >= 1) {
-				
-					dibujar();
-				
+
+				dibujar();
+
 				accumulatedFrames++;
 				deltaFps = 0;
 				try {
@@ -292,22 +307,64 @@ public class MotorJuego extends JFrame implements Runnable {
 					lastCounter = System.nanoTime();
 				}
 			}
+			}else {
+				final long beginLoop = System.nanoTime();
 
+				currentTime = beginLoop - lastUpdate;
+				lastUpdate = beginLoop;
 
+				deltaAps += currentTime / TIME_PER_UPDATE;
+
+				while (deltaAps >= 1) {
+					if (finDeJuego == 0) {
+						for(Enemigo e : enemigosVivos.dibujable) {
+							e.setPosX(e.posX);
+							e.setPosY(e.posY);
+						}for(Asteroide a: asteroidesEnPantalla.dibujable) {
+							a.setPosX(a.posX);
+							a.setPosY(a.posY);
+						}
+						
+						
+
+					} else if (finDeJuego == 1 || finDeJuego == -1) {
+						this.setRunning(false);
+
+					}
+					accumulatedUpdates++;
+					deltaAps--;
+
+				}
+
+				deltaFps += currentTime / TIME_PER_RENDER;
 			}
-		System.err.println("patata");
-		
-		this.guardarDatosDepartidaBD();
-		try {
-			this.thread.join();
-		} catch (Exception e) {
-			System.err.println("imposible cortar thread");
+			
+
 		}
+		if (finDeJuego == 1) {
+			System.err.println("FIN - GANA");
+			this.guardarDatosDepartidaBD();
+			new MainWindow(this);
+		} else if (finDeJuego == -1) {
+			System.err.println("FIN - PIERDE");
+			new MainWindow(this);
+		} else {
+			System.err.println("Pausa - PARADO ACCIDENTALMETE");
 		}
 
-	
+	}
 
 	// GET-SET
+	
+	public Thread getHilo() {
+		return this.thread;
+	}
+	public boolean isPausado() {
+		return this.pausado;
+	}
+	public void setpausado(boolean pausado) {
+		this.pausado = pausado;
+	}
 	public boolean isRunning() {
 		return running;
 	}
@@ -374,13 +431,10 @@ public class MotorJuego extends JFrame implements Runnable {
 		this.comenzarBuclePrincipal();
 
 	}
-	
-	
-	
-	//CARGAR VARIABLES DE JUEGO
+
+	// CARGAR VARIABLES DE JUEGO
 	public void cargarVariables() {
-		
-		
+
 		this.gestorBD = new GestorBaseDatos();
 		projectiles = new ArrayList<>();
 		this.jugadoresEnPartida = new ArrayList<>();
@@ -389,37 +443,32 @@ public class MotorJuego extends JFrame implements Runnable {
 		this.jugadoresEnPartida.add(jugador1);
 //		this.gestorBD.getUsuariosDeJuegoParaActualizar().add(usuario1);
 		this.puntuacionDeJugadores = new Puntuacion(0);
-		
-		System.out.println("Jugador en partida cargaV es: "+isDobleJugador());
-		
-		if(isDobleJugador()==true && this.jugador2 != null)
-		{
+
+		System.out.println("Jugador en partida cargaV es: " + isDobleJugador());
+
+		if (isDobleJugador() == true && this.jugador2 != null) {
 			this.jugadoresEnPartida.add(this.jugador2);
 //			this.gestorBD.getUsuariosDeJuegoParaActualizar().add(usuario2);
 		}
-		
+
 		LvlLoader.cargaNvlDeFichero(numeroNivel, this);
-		
-		
-		
-		
+
 	}
-	public void guardarDatosDepartidaBD(){
+
+	public void guardarDatosDepartidaBD() {
 		int ultimoCodPartida;
-		if(gestorBD.ListaClavesPartidas().size() >=1) {
-			ultimoCodPartida = gestorBD.ListaClavesPartidas().get(gestorBD.ListaClavesPartidas().size()-1)+1;
-		}else {
+		if (gestorBD.ListaClavesPartidas().size() >= 1) {
+			ultimoCodPartida = gestorBD.ListaClavesPartidas().get(gestorBD.ListaClavesPartidas().size() - 1) + 1;
+		} else {
 			ultimoCodPartida = 1;
 		}
-		Partida partida = new Partida(ultimoCodPartida,LocalDate.now(), LocalTime.now(), this.puntuacionDeJugadores.get(), usuario1, usuario2);
+		Partida partida = new Partida(ultimoCodPartida, LocalDate.now(), LocalTime.now(),
+				this.puntuacionDeJugadores.get(), usuario1, usuario2);
 		this.gestorBD.addUsuarioActualizar(usuario1);
 		this.gestorBD.addUsuarioActualizar(usuario2);
 		this.gestorBD.addPartidaActualizar(partida);
 		this.gestorBD.actualizarPuntuaciones();
-//		System.out.println("partida: "+ partida);
-//		System.out.println(usuario1);
-//		System.out.println(usuario2);
-	
+
 	}
 
 }

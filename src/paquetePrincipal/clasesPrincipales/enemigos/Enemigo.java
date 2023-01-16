@@ -143,7 +143,7 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 		this.posX += this.velX * this.vectorDirectorNaveX;
 		this.posY += this.velY * this.vectorDirectorNaveY;
 
-//		this.colisionando(NaveDectada);
+
 	}
 
 	public void elegirNaveSeguida(List<NaveBase> navesVivas) {

@@ -23,7 +23,7 @@ public class Main {
 
 //		new MotorJuego("Game", 0, new NaveBasica(null, CategoriaJugador.PLAYER1), new NaveDRapido(args, CategoriaJugador.PLAYER2), us1, us2, false);
 
-		new MainWindow();
+		new MainWindow(null);
 		//new MotorJuego("Game", 0, new NaveBasica(null, CategoriaJugador.PLAYER1), new NaveDRapido(args, CategoriaJugador.PLAYER2));
 
 //		System.out.println("This is a test.");

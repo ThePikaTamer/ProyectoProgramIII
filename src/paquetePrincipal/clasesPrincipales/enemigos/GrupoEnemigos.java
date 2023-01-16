@@ -46,6 +46,7 @@ public class GrupoEnemigos {
 	}
 
 	public void update(List<NaveBase> lista,MotorJuego motor) {
+		
 		List<Enemigo> muertos = new ArrayList<>();
 		for (Enemigo i : this.dibujable) {
 			if (i.vivo) {
@@ -75,9 +76,10 @@ public class GrupoEnemigos {
 				motor.finDeJuego = -1;
 			}
 		}
+		}
 		
 
-	}
+	
 
 
 	
