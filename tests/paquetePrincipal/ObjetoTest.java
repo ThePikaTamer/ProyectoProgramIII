@@ -27,13 +27,12 @@ public class ObjetoTest {
 	@Test
 	public void testColisionando() {
 		Enemigo e1 = new EnemigoBasico();
-		e1.setPosX(50);
+		e1.setPosX(10);
 		e1.setPosY(0);
 		Enemigo e2 = new EnemigoBasico();
 		e2.setPosX(0);
 		e2.setPosY(0);
 		assertTrue(e1.colisionando(e2));
-		System.out.println(e1.colisionando(e2));
 		e1.setPosX(150);
 		e1.setPosY(0);
 		e2.setPosX(0);
@@ -55,12 +54,11 @@ public class ObjetoTest {
 	@Test
 	public void testSiguienteDibujo() {
 		Enemigo e1 = new EnemigoBasico();
-		assertTrue(Assets.enemigoBasico);
+		assertEquals(Assets.asteroideBasico,e1.getImage() );
 		e1.siguienteDibujo();
-		assertTrue();
+		assertEquals(Assets.asteroideBasico1, e1.getImage());
 		e1.siguienteDibujo();
-		assertTrue("img\\Enemy_1.png" == e1.getImage());
-
+		assertEquals(Assets.asteroideBasico, e1.getImage());
 	}
 
 	@Test

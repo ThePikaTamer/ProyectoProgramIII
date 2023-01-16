@@ -48,6 +48,18 @@ public class GestorBaseDatos {
 		this.inicializarConexion();
 	}
 
+	public void addUsuarioActualizar(Usuario usuario) {
+		this.usuariosDeJuegoParaActualizar.add(usuario);
+	}
+
+	public void addPartidaActualizar(Partida partida) {
+		this.partidasDeJuegoParaActualizar.add(partida);
+	}
+
+	public void addTipoJuegoActualizar() {
+
+	}
+
 	public List<TipoJuego> getModosDeJuegoParaActualizar() {
 		return ModosDeJuegoParaActualizar;
 	}
@@ -385,23 +397,20 @@ public class GestorBaseDatos {
 
 	}
 
-	
 	public void limpiarBaseDeDatos() {
+		this.partidasDeJuego = new ArrayList<Partida>();
+		this.usuariosDeJuego = new ArrayList<Usuario>();
 		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + this.baseDeDatos)) {
-			try (PreparedStatement deletePar = conn
-					.prepareStatement("DELETE FROM PARTIDA" ))
-			{
+			try (PreparedStatement deletePar = conn.prepareStatement("DELETE FROM PARTIDA")) {
 				deletePar.executeUpdate();
 			}
-			try (PreparedStatement deleteUs = conn
-					.prepareStatement("DELETE FROM USUARIO" ))
-			{
+			try (PreparedStatement deleteUs = conn.prepareStatement("DELETE FROM USUARIO")) {
 				deleteUs.executeUpdate();
 			}
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

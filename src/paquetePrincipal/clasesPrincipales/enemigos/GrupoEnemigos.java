@@ -30,16 +30,16 @@ public class GrupoEnemigos {
 
 	}
 
-	public void colisionando(NaveBase nave) {
-
-		for (Enemigo e : this.arrayEnemigos) {
-			e.colisionando(nave);
-			if (e.colisionando(nave)) {
-				this.eliminarPorObjeto(e);
-			}
-		}
-
-	}
+//	public void colisionando(NaveBase nave) {
+//		
+//		for (Enemigo e : this.arrayEnemigos) {
+//			e.colisionando(nave);
+//			if (e.colisionando(nave)) {
+//				this.eliminarPorObjeto(e);
+//			}
+//		}
+//}
+	
 
 	public boolean contiene(Enemigo e) {
 		return this.arrayEnemigos.contains(e);
@@ -68,7 +68,7 @@ public class GrupoEnemigos {
 		this.arrayEnemigos.removeAll(muertos);
 		this.dibujable.removeAll(muertos);
 		if(arrayEnemigos.size() == 0) {
-			if(motor.jugadoresEnPartida.size() != 0) {
+			if(motor.jugadoresEnPartida.size() > 0) {
 				motor.finDeJuego = 1;
 				motor.gestorBD.actualizarPuntuaciones();
 			}else {
@@ -81,12 +81,7 @@ public class GrupoEnemigos {
 
 
 	
-	public void incializar(MotorJuego motor) {
-		for (Enemigo e : arrayEnemigos) {
-			e.inicializarEnemigo(motor.getAnchuraV(), motor.getAlturaV(),motor.jugadoresEnPartida );
-			
-		}
-	}
+	
 	public void inicializarSig(MotorJuego motor){
 		System.out.println(noInit.size());
 		if(this.noInit.size() != 0) {

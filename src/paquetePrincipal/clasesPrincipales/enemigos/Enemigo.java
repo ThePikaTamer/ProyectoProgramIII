@@ -131,15 +131,9 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 			}
 		}
 
-		// Prueba para ver si funciona
-//		System.out.println("X = " + posX);
-//		System.out.println("Y = " + posY);
+		
 		this.elegirNaveSeguida(navesVivas);
-//		for (NaveBase nave : navesVivas) {
-//			if (nave.getPosX() == this.posX && nave.getPosY() == this.posY) {
-//				this.inicializarEnemigo(anchuraPantalla, alturaPantalla, navesVivas);
-//			}
-//		}
+
 	}
 
 //actualiza posicion de los enemigos
@@ -180,7 +174,7 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 	}
 
 	public void dibujar(Graphics2D g) {
-		contadorAnimacion++;
+		contadorAnimacion++; 
 
 		if (contadorAnimacion > 30) {
 			this.siguienteDibujo();
@@ -190,4 +184,4 @@ public abstract class Enemigo extends paquetePrincipal.Objeto {
 
 	}
 
-}
+} 

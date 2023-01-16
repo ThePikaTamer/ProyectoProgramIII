@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import paquetePrincipal.ventanas.puntuacionesJTable.pruebasJtable;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -24,7 +26,7 @@ public class Main {
 
 		gb.actualizarPuntuaciones();
 		
-		gb.limpiarBaseDeDatos();
-		gb.actualizarPuntuaciones();
+		new pruebasJtable();
+
 	}
 }

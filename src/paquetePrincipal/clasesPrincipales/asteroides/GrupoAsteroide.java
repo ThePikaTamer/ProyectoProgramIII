@@ -108,7 +108,9 @@ public class GrupoAsteroide {
 		}
 	}
 	
-	
+	public int size() {
+		return this.arrayAsteroide.size();
+	}
 	
 	
 }

@@ -7,15 +7,19 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import Controles.Teclado;
 import baseDeDatos.GestorBaseDatos;
+import baseDeDatos.Partida;
 import baseDeDatos.Usuario;
 import graficos.Assets;
 import niveles.LvlLoader;
@@ -193,8 +197,7 @@ public class MotorJuego extends JFrame implements Runnable {
 		}else {
 			contadorEnem++;
 		}
-//		this.enemigosVivos.incializar(this);
-//		this.enemigosVivos.inicializarSig(this);
+
 		this.enemigosVivos.update(jugadoresEnPartida, this);
 		this.asteroidesEnPantalla.update(jugadoresEnPartida, this);
 //		cadenciaDisparo++;
@@ -256,6 +259,8 @@ public class MotorJuego extends JFrame implements Runnable {
 
 				}
 				else if (finDeJuego == 1){
+					this.setRunning(false);
+		
 					
 				}
 				accumulatedUpdates++;
@@ -266,7 +271,9 @@ public class MotorJuego extends JFrame implements Runnable {
 			deltaFps += currentTime / TIME_PER_RENDER;
 
 			if (deltaFps >= 1) {
-				dibujar();
+				
+					dibujar();
+				
 				accumulatedFrames++;
 				deltaFps = 0;
 				try {
@@ -288,6 +295,14 @@ public class MotorJuego extends JFrame implements Runnable {
 
 
 			}
+		System.err.println("patata");
+		
+		this.guardarDatosDepartidaBD();
+		try {
+			this.thread.join();
+		} catch (Exception e) {
+			System.err.println("imposible cortar thread");
+		}
 		}
 
 	
@@ -388,6 +403,23 @@ public class MotorJuego extends JFrame implements Runnable {
 		
 		
 		
+	}
+	public void guardarDatosDepartidaBD(){
+		int ultimoCodPartida;
+		if(gestorBD.ListaClavesPartidas().size() >=1) {
+			ultimoCodPartida = gestorBD.ListaClavesPartidas().get(gestorBD.ListaClavesPartidas().size()-1)+1;
+		}else {
+			ultimoCodPartida = 1;
+		}
+		Partida partida = new Partida(ultimoCodPartida,LocalDate.now(), LocalTime.now(), this.puntuacionDeJugadores.get(), usuario1, usuario2);
+		this.gestorBD.addUsuarioActualizar(usuario1);
+		this.gestorBD.addUsuarioActualizar(usuario2);
+		this.gestorBD.addPartidaActualizar(partida);
+		this.gestorBD.actualizarPuntuaciones();
+//		System.out.println("partida: "+ partida);
+//		System.out.println(usuario1);
+//		System.out.println(usuario2);
+	
 	}
 
 }
