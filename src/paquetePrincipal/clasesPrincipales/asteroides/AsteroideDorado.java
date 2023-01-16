@@ -17,7 +17,7 @@ public class AsteroideDorado extends Asteroide {
 
 	public AsteroideDorado() {
 	// TODO Auto-generated constructor stub
-		super( VIDA, DANYO_CHOQUE,VEL_X, VEL_Y, IMG, new Point(0, 0),RADIO_EN );
+		super( VIDA, DANYO_CHOQUE, IMG, new Point(0, 0),RADIO_EN );
 			
 		
 

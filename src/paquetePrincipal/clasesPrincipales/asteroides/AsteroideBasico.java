@@ -15,7 +15,7 @@ public class AsteroideBasico extends Asteroide {
 	private final static double VEL_Y = 2;
 	private final static Puntuacion PUNT = new Puntuacion(500);
 	public AsteroideBasico() {
-		super( VIDA, DANYO_CHOQUE,VEL_X, VEL_Y, IMG, new Point(0, 0),RADIO_EN );
+		super( VIDA, DANYO_CHOQUE, IMG, new Point(0, 0),RADIO_EN );
 		
 	}
 

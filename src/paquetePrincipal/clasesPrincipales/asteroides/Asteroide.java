@@ -24,13 +24,11 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 
 	// CONSTRUCTORES//
 
-	public Asteroide(double vida, double danyoChoque, double velX, double velY, BufferedImage IMG, Point2D orientacion,
+	public Asteroide(double vida, double danyoChoque, BufferedImage IMG, Point2D orientacion,
 			double radio) {
 		this.velocidad = 2;
 		this.vida = vida;
 		this.danyoChoque = danyoChoque;
-		this.velX = velX;
-		this.velY = velY;
 		this.radio = radio;
 		this.IMG = IMG;
 		this.orientacion = orientacion;
@@ -71,7 +69,7 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 		if (danyoChoque >= 0) {
 			this.danyoChoque = danyoChoque;
 		} else {
-			System.err.println("El daño debe contener un numero natural.");
+			System.err.println("El daÃ±o debe contener un numero natural.");
 
 		}
 	}
@@ -107,6 +105,59 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 		this.posX = Math.random() * anchuraPantalla;
 		this.posY = Math.random() * alturaPantalla;
 		double oX = Math.random();
+		System.out.println(oX);
+		
+		if(oX >= 0 && oX<= 0.25) {
+			if(Math.random()<= 0.5) {
+				velX = 0;
+				velY= 1;
+				
+			}else {
+				velX = 1;
+				velY= 1;
+			}
+			
+		}
+		
+		else if(oX >= 0.26 && oX<= 0.5) {
+			if(Math.random()<= 0.5) {
+				velX = 1;
+				velY= 0;
+				
+			}else {
+				velX = 0;
+				velY= -1;
+			}
+			
+		}
+		
+
+		else if(oX >= 0.51 && oX<= 0.75) {
+			if(Math.random()<= 0.5) {
+				velX = -1;
+				velY= 0;
+				
+			}else {
+				velX = -1;
+				velY= -1;
+			}
+			
+		}
+
+		else if(oX >= 0.76 && oX<= 1) {
+			if(Math.random()<= 0.5) {
+				velX = -1;
+				velY= 1;
+				
+			}else {
+				velX = 1;
+				velY= -1;
+			}
+			
+		}
+		
+		
+		
 		double oY = Math.random();
 		if (this.posX >= anchuraPantalla - 2 * this.getRadio() || this.posY >= alturaPantalla - 2 * this.getRadio()) {
 			while (this.posX >= anchuraPantalla - 2 * this.getRadio()
@@ -125,32 +176,28 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 
 	}
 
-	public void mover() {
 
-		if (orientacion.equals(new Point(0, 1))) {
-			y += velocidad;
-		} else if (orientacion.equals(new Point(1, 1))) {
-			y += velocidad;
-			x += velocidad;
-		} else if (orientacion.equals(new Point(1, 0))) {
-			x += velocidad;
-		} else if (orientacion.equals(new Point(1, -1))) {
-			y -= velocidad;
-			x += velocidad;
-		} else if (orientacion.equals(new Point(0, -1))) {
-			y -= velocidad;
+		public void mover() {
+			posX += velX * 2;
+			posY += velY * 2;
+		
+			
+			if(posX > MotorJuego.getAnchuraV() ) {
+				this.setPosX(0);
+				}
+			if(posY > MotorJuego.getAlturaV() ) {
+				this.setY(0);;
+				}
+			
+			if(posX < 0 ) {
+				this.setPosX(MotorJuego.getAnchuraV());
+				}
+			if(posY < 0 ) {
+				this.setPosY(MotorJuego.getAlturaV());
+				}
 
-		} else if (orientacion.equals(new Point(-1, -1))) {
-			y -= velocidad;
-			x -= velocidad;
-
-		} else if (orientacion.equals(new Point(-1, 0))) {
-			x -= velocidad;
-		} else if (orientacion.equals(new Point(-1, 1))) {
-			x -= velocidad;
-			y += velocidad;
 		}
-	}
+	
 
 	public void rebotar() {
 		if (y < 0) {
@@ -175,7 +222,6 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 
 	public void update() {
 		mover();
-		rebotar();
 	}
 
 	public void dibujar(Graphics2D g) {
