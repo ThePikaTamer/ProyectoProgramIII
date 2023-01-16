@@ -19,6 +19,8 @@ import java.util.List;
 
 import org.sqlite.SQLiteException;
 
+import Logger.Logger_Final;
+
 public class GestorBaseDatos {
 	protected List<TipoJuego> ModosDeJuego;
 	protected List<Usuario> usuariosDeJuego;
@@ -195,6 +197,7 @@ public class GestorBaseDatos {
 				}
 
 				System.out.println("-- FIN PARTIDAS"); // PRUEBAS
+				Logger_Final.Logger_Final2();
 				this.partidasDeJuego = resultadoPartidas;
 				rs3.close();
 

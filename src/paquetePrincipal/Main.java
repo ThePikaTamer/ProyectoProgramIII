@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.imageio.ImageIO;
 
+import Logger.Logger_Principio;
 import baseDeDatos.Usuario;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBasica;
 import paquetePrincipal.clasesPrincipales.Naves.NaveDRapido;
@@ -17,6 +18,7 @@ public class Main {
 		
 		Assets.init();
 		
+		Logger_Principio.Logger_Principio2();
 		Usuario us1 = new Usuario(9876, "pruebaUsuario1", "pruebaGmail.com", LocalDate.now());
 		Usuario us2 = new Usuario(6789, "pruebaUsuario2", "prueba2Gmail.com", LocalDate.now());
 //		
