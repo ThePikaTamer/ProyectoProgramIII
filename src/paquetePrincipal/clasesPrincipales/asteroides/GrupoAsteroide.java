@@ -67,6 +67,7 @@ public class GrupoAsteroide {
 	public void update(List<NaveBase> lista,MotorJuego motor) {
 		List<Asteroide> destruidos = new ArrayList<>();
 		List<Disparo> dEliminados = new ArrayList<>();
+		List<Asteroide> divididos = new ArrayList<>();
 		for (Asteroide i : this.dibujable) {
 			if (i.activo) {
 				i.update();
@@ -77,6 +78,17 @@ public class GrupoAsteroide {
 					nave.reducirVida(i.danyoChoque);
 					i.activo = false;
 					destruidos.add(i);
+					if(i instanceof AsteroideBasico) {
+						divididos.add(new AsteroideMediano(i));
+						divididos.add(new AsteroideMediano(i));
+					}else if(i instanceof AsteroideMediano) {
+						divididos.add(new AsteroidePequeño(i));
+						divididos.add(new AsteroidePequeño(i));
+						divididos.add(new AsteroidePequeño(i));
+						
+					}
+					
+					
 					
 					}
 				
@@ -96,6 +108,16 @@ public class GrupoAsteroide {
 						{
 							i.activo = false;
 							destruidos.add(i);
+							if(i instanceof AsteroideBasico) {
+								divididos.add(new AsteroideMediano(i));
+								divididos.add(new AsteroideMediano(i));
+							}else if(i instanceof AsteroideMediano) {
+								divididos.add(new AsteroidePequeño(i));
+								divididos.add(new AsteroidePequeño(i));
+								divididos.add(new AsteroidePequeño(i));
+								
+							}
+							
 						}
 						disparo.activo=false;
 						dEliminados.add(disparo);
@@ -105,6 +127,7 @@ public class GrupoAsteroide {
 		}
 		
 		this.sumarPuntosDestruidos(destruidos, motor);
+		dibujable.addAll(divididos);
 		MotorJuego.projectiles.removeAll(dEliminados);
 		this.arrayAsteroide.removeAll(destruidos);
 		this.dibujable.removeAll(destruidos);

@@ -1,5 +1,7 @@
 package paquetePrincipal.clasesPrincipales.asteroides;
 
+
+
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Point2D;
@@ -9,6 +11,7 @@ import java.util.List;
 import paquetePrincipal.MotorJuego;
 import paquetePrincipal.Objeto;
 import paquetePrincipal.Puntuacion;
+
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 
 public abstract class Asteroide extends paquetePrincipal.Objeto {
@@ -19,10 +22,11 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 	protected double vida;
 	protected BufferedImage imagen;
 	protected Point2D orientacion;
-	protected final int velocidad;
+	protected  int velocidad;
 	public boolean activo = false;
 	public boolean init = false;
 	public Puntuacion puntuacion;
+
 
 	// CONSTRUCTORES//
 
@@ -37,6 +41,7 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 		velX = 1;
 		velY = 1;
 		this.puntuacion = puntuacion;
+		
 	}
 
 	// METODOS//
@@ -181,8 +186,8 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 
 
 		public void mover() {
-			posX += velX * 2;
-			posY += velY * 2;
+			posX += velX * velocidad;
+			posY += velY * velocidad;
 		
 			
 			if(posX > MotorJuego.getAnchuraV() ) {
@@ -226,6 +231,7 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 	public void update() {
 		mover();
 	}
+	
 
 	public void dibujar(Graphics2D g) {
 		g.drawImage(this.IMG, (int) posX, (int) posY, null);
