@@ -71,7 +71,7 @@ public class Assets {
 		naveTanque_P2 = Loader.ImagenLoader("/naves/Nave4_P2.png");
 		
 		
-		disparo = Loader.ImagenLoader("/naves/shot.png");
+		disparo = Loader.ImagenLoader("/naves/Bullet.png");
 		
 		
 		enemigoBasico = Loader.ImagenLoader("/enemigos/Enemy_1.png");
