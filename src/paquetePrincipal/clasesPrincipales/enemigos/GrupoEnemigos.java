@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import paquetePrincipal.MotorJuego;
+import paquetePrincipal.clasesPrincipales.Naves.Disparo;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 
 public class GrupoEnemigos {
@@ -48,6 +49,7 @@ public class GrupoEnemigos {
 	public void update(List<NaveBase> lista,MotorJuego motor) {
 		
 		List<Enemigo> muertos = new ArrayList<>();
+		List<Disparo> dEliminados = new ArrayList<>();
 		for (Enemigo i : this.dibujable) {
 			if (i.vivo) {
 				i.update();
@@ -64,8 +66,29 @@ public class GrupoEnemigos {
 				}
 
 			}
+			
+			for (Disparo disparo : MotorJuego.projectiles)
+			{
+				if(i.colisionando(disparo))
+				{
+					if(disparo.activo)
+					{
+						System.err.println(i.getVida());
+						i.reducirVida(1);
+						System.out.println(i.getVida());
+						if(i.vida<=0)
+						{
+							i.vivo = false;
+							muertos.add(i);
+						}
+						disparo.activo=false;
+						dEliminados.add(disparo);
+					}
+				}
+			}
 		}
 		sumarPuntosDeMuertos(muertos, motor);
+		MotorJuego.projectiles.removeAll(dEliminados);
 		this.arrayEnemigos.removeAll(muertos);
 		this.dibujable.removeAll(muertos);
 		if(arrayEnemigos.size() == 0 && motor.asteroidesEnPantalla.arrayAsteroide.size() == 0) {

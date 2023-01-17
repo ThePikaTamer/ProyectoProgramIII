@@ -20,6 +20,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 
 import graficos.Assets;
+import paquetePrincipal.clasesPrincipales.Naves.Disparo;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 
 public class CustomCanvas extends Canvas {
@@ -59,6 +60,11 @@ public class CustomCanvas extends Canvas {
 		g.drawImage(Assets.fondoPrueba,0,0, null);
 		//
 		
+		//proyectiles
+		for (Disparo disparo : MotorJuego.projectiles) 
+		{
+			disparo.dibujar(g);
+		}
 		
 		 if(motor.jugador1.getVida() > 0) { motor.jugador1.dibujar(g);
 		

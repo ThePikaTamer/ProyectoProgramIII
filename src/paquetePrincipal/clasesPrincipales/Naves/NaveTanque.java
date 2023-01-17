@@ -11,7 +11,7 @@ public class NaveTanque extends NaveBase {
 	
 	private final static double RADIO_NAVE = 25;
 	private final static int VIDA = 6;
-	private final static double VEL_DISP = 2;
+	private final static double VEL_DISP = 60;
 	private final static double VEL_MAX = 2;
 	private final static double VEL_ROT = 0.15;
 	protected static BufferedImage IMG = Assets.naveTanque;

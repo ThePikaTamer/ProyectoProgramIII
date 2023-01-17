@@ -176,12 +176,12 @@ abstract public class NaveBase extends Objeto {
 			if (Teclado.S) 
 			{
 				vectorAcc = orientacion.multEscalar(-ACCEL);
-			}
+			}/*
 			if(Teclado.espacio)//disparo
 			{
 				System.out.println("shoot1");
 				
-			}
+			}*/
 		}
 		else if(this.jugador == CategoriaJugador.PLAYER2) 
 		{
@@ -201,11 +201,11 @@ abstract public class NaveBase extends Objeto {
 			if (Teclado.abajo) 
 			{
 				vectorAcc = orientacion.multEscalar(-ACCEL);
-			}
+			}/*
 			if(Teclado.punto)//disparo
 			{
 				System.out.println("shoot2");
-			}	
+			}	*/
 		}
 		
 		

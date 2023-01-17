@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.sql.Array;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ import baseDeDatos.Partida;
 import baseDeDatos.Usuario;
 import graficos.Assets;
 import niveles.LvlLoader;
+import paquetePrincipal.clasesPrincipales.Naves.Disparo;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBasica;
 import paquetePrincipal.clasesPrincipales.Naves.NaveDRapido;
@@ -65,7 +67,7 @@ public class MotorJuego extends JFrame implements Runnable {
 	public NaveBase jugador1;
 	public NaveBase jugador2;
 	public static List<NaveBase> jugadoresEnPartida;
-	public static List<Proyectil> projectiles;
+	public static List<Disparo> projectiles=new ArrayList<Disparo>();
 
 	public static GrupoEnemigos enemigosVivos;
 	public static GrupoAsteroide asteroidesEnPantalla;
@@ -78,7 +80,8 @@ public class MotorJuego extends JFrame implements Runnable {
 
 	public Puntuacion puntuacionDeJugadores;
 	//
-	public int cadenciaDisparo = 10;
+	public int cadenciaDisparo1 = 10;
+	public int cadenciaDisparo2 = 10;
 
 	// Teclado
 	public Teclado teclado;
@@ -190,6 +193,20 @@ public class MotorJuego extends JFrame implements Runnable {
 			for (NaveBase jugador : navesLectura) {
 				if (jugador.getVida() > 0) {
 					jugador.movimiento();
+					if(cadenciaDisparo1*UPS_TARGET>jugador.getVelocidadDisparo()*UPS_TARGET&&teclado.espacio&&jugador.getJugador()==CategoriaJugador.PLAYER1)
+					{
+						System.out.println("shoot1");
+						//jugador.disparar();
+						new Disparo(5, 5, jugador1, this);
+						cadenciaDisparo1=0;
+					}
+					if(cadenciaDisparo2*UPS_TARGET>jugador.getVelocidadDisparo()*UPS_TARGET&&teclado.punto&&jugador.getJugador()==CategoriaJugador.PLAYER2)
+					{
+						System.out.println("shoot2");
+						//jugador.disparar();
+						new Disparo(5, 5, jugador2, this);
+						cadenciaDisparo2=0;
+					}/**/
 				} else {
 					jugadoresEnPartida.remove(jugador);
 				}
@@ -220,9 +237,23 @@ public class MotorJuego extends JFrame implements Runnable {
 			contadorAster++;
 		}
 
+		List<Disparo> dispEliminados=new ArrayList<Disparo>();
+		
+		for (Disparo disparo : MotorJuego.projectiles)
+		{
+			disparo.update();
+			if(disparo.posX > MotorJuego.getAnchuraV()||disparo.posY > MotorJuego.getAlturaV()||disparo.posX  < 0||disparo.posY  < 0) 
+			{
+				//MotorJuego.projectiles.remove(this);
+				dispEliminados.add(disparo);
+			}
+		}
+		MotorJuego.projectiles.removeAll(dispEliminados);
+		
 		this.enemigosVivos.update(jugadoresEnPartida, this);
 		this.asteroidesEnPantalla.update(jugadoresEnPartida, this);
-//		cadenciaDisparo++;
+		cadenciaDisparo1++;
+		cadenciaDisparo2++;
 
 	};
 

@@ -19,7 +19,6 @@ import java.util.List;
 import javax.swing.JFrame;
 
 import paquetePrincipal.Animable;
-import paquetePrincipal.Disparo;
 import paquetePrincipal.Objeto;
 import paquetePrincipal.Puntuacion;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
