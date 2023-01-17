@@ -7,11 +7,8 @@ import java.util.Date;
 
 
 public class Main_Log {
-/*
- * Vale lo que tengo pensado con el logger para utilizarlo que al entrar al juego es decir al abrir la primera ventana
- * que salga un mensaje por pantalla diciendo algo como "Entrada al juego" con una fecha/hora y que al salir tambien
- * salga un mensaje de "Salida del juego" con la fecha) hora
- */
+
+ 
 	 public static void main(String[] args)
 	    {
 		 try {

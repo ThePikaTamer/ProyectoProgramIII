@@ -10,8 +10,7 @@ import paquetePrincipal.Objeto;
 
 public abstract class PowerUp extends paquetePrincipal.Objeto {
 
-	protected double anchuraPowerUp;
-	protected double alturaPowerUp; 
+	
 	protected Point2D orientacion;
 	protected final int velocidad;
 	protected int x;
@@ -23,10 +22,8 @@ public abstract class PowerUp extends paquetePrincipal.Objeto {
 
 	
 	//CONSTRUCTORES//
-	public PowerUp(double anchuraPowerUp, double alturaPowerUp, BufferedImage IMG, int x, int y, Point2D orientacion, int velocidad) {
-		this.velocidad = 0;
-		this.alturaPowerUp = alturaPowerUp;
-		this.anchuraPowerUp = anchuraPowerUp;
+	public PowerUp( BufferedImage IMG, int x, int y, Point2D orientacion, int velocidad) {
+		this.velocidad = 1;
 		this.IMG = IMG;
 		this.orientacion = orientacion;
 		this.y = y;
@@ -114,22 +111,6 @@ public abstract class PowerUp extends paquetePrincipal.Objeto {
 		return super.colisionando(o1);
 
 	}
-		public double getAnchuraPowerUp() {
-			return anchuraPowerUp;
-		}
-
-		public void setAnchuraPowerUp(double anchuraPowerUp) {
-			this.anchuraPowerUp = anchuraPowerUp;
-		}
-
-		public double getAlturaPowerUp() {
-			return alturaPowerUp;
-		}
-
-		public void setAlturaPowerUp(double alturaPowerUp) {
-			this.alturaPowerUp = alturaPowerUp;
-		}
-
 		public Point2D getOrientacion() {
 			return orientacion;
 		}
