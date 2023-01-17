@@ -38,7 +38,7 @@ import paquetePrincipal.clasesPrincipales.enemigos.EnemigoVeloz;
 import paquetePrincipal.clasesPrincipales.enemigos.GrupoEnemigos;
 import paquetePrincipal.ventanas.MainWindow;
 import paquetePrincipal.ventanas.VentanaMenu;
-import paquetePrincipal.ventanas.VentanaOpciones;
+
 
 public class MotorJuego extends JFrame implements Runnable {
 	private boolean running = false;
@@ -74,6 +74,7 @@ public class MotorJuego extends JFrame implements Runnable {
 	public static double frecPowerUps;
 
 	public static double contadorEnem;
+	public static double contadorAster;
 
 	public Puntuacion puntuacionDeJugadores;
 	//
@@ -125,8 +126,8 @@ public class MotorJuego extends JFrame implements Runnable {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				
 				requestFocus();
+				
 				
 			}
 
@@ -206,11 +207,16 @@ public class MotorJuego extends JFrame implements Runnable {
 
 		}
 		if (contadorEnem >= frecEnemigos * UPS_TARGET) {
-			this.asteroidesEnPantalla.inicializarSig(this);
 			this.enemigosVivos.inicializarSig(this);
 			contadorEnem = 0;
 		} else {
 			contadorEnem++;
+		}
+		if (contadorAster >= frecAsteroides * UPS_TARGET) {
+			this.asteroidesEnPantalla.inicializarSig(this);
+			contadorAster = 0;
+		} else {
+			contadorAster++;
 		}
 
 		this.enemigosVivos.update(jugadoresEnPartida, this);
@@ -262,7 +268,7 @@ public class MotorJuego extends JFrame implements Runnable {
 		this.requestFocus();
 		while (running) {
 			if(!this.pausado) {
-			
+				Teclado.menuESQ = false;
 			final long beginLoop = System.nanoTime();
 
 			currentTime = beginLoop - lastUpdate;

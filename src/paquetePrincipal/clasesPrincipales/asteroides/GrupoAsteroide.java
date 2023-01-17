@@ -44,11 +44,9 @@ public class GrupoAsteroide {
 			for(Asteroide a : this.arrayAsteroide) {
 				a.inicializarAsteroide(MotorJuego.getAnchuraV(), MotorJuego.getAlturaV());
 			}
-			System.err.println(noInit.size());
-			System.err.println("dibu = "+ this.dibujable.size());
+			
 		}
 		public void inicializarSig(MotorJuego motor){
-			System.err.println(noInit.size());
 			if(this.noInit.size() != 0) {
 				int numA = (int)(Math.random()*this.noInit.size());
 				 this.noInit.get(numA).inicializarAsteroide(motor.getAnchuraV(), motor.getAlturaV());
@@ -91,9 +89,9 @@ public class GrupoAsteroide {
 		
 	}
 	public void sumarPuntosDestruidos(List<Asteroide> destruidos, MotorJuego motor) {
-//		for(Asteroide a : destruidos) {
-//			motor.puntuacionDeJugadores.inc(a.puntuacion.get());
-//		}
+		for(Asteroide a : destruidos) {
+			motor.puntuacionDeJugadores.inc(a.puntuacion.get());
+		}
 	}
 	
 	public void dibujar(Graphics2D g) {

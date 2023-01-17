@@ -42,8 +42,8 @@ public class VentanaMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				motor.setpausado(false);
+				
 				dispose();
-
 			}
 		});
 		

@@ -8,6 +8,7 @@ import java.util.List;
 
 import paquetePrincipal.MotorJuego;
 import paquetePrincipal.Objeto;
+import paquetePrincipal.Puntuacion;
 import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
 
 public abstract class Asteroide extends paquetePrincipal.Objeto {
@@ -21,18 +22,21 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 	protected final int velocidad;
 	public boolean activo = false;
 	public boolean init = false;
+	public Puntuacion puntuacion;
 
 	// CONSTRUCTORES//
 
 	public Asteroide(double vida, double danyoChoque, BufferedImage IMG, Point2D orientacion,
-			double radio) {
+			double radio, Puntuacion puntuacion) {
 		this.velocidad = 2;
 		this.vida = vida;
 		this.danyoChoque = danyoChoque;
 		this.radio = radio;
 		this.IMG = IMG;
 		this.orientacion = orientacion;
-
+		velX = 1;
+		velY = 1;
+		this.puntuacion = puntuacion;
 	}
 
 	// METODOS//
@@ -105,7 +109,6 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 		this.posX = Math.random() * anchuraPantalla;
 		this.posY = Math.random() * alturaPantalla;
 		double oX = Math.random();
-		System.out.println(oX);
 		
 		if(oX >= 0 && oX<= 0.25) {
 			if(Math.random()<= 0.5) {

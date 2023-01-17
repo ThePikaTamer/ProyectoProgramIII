@@ -52,7 +52,7 @@ public class CustomCanvas extends Canvas {
 		g.clearRect(0, 0, anchura, altura);
 
 		g.fillRect(10, 10, 130, 15);
-		g.setColor(Color.red);
+		//g.setColor(Color.red);
 		g.drawString("UPS: " + MotorJuego.getUPS() + " | FPS: " + MotorJuego.getFPS(), 20, 20);
 
 		//FONDO
@@ -60,23 +60,27 @@ public class CustomCanvas extends Canvas {
 		//
 		
 		
-		 if(motor.jugador1.getVida() > 0) motor.jugador1.dibujar(g);
-		//System.out.println("Jugador en partida customCanvas es: "+motor.isDobleJugador());
+		 if(motor.jugador1.getVida() > 0) { motor.jugador1.dibujar(g);
+		 g.setColor(Color.WHITE);
+		 g.fillRect(10, 10, 130, 15);
+		 g.setColor(Color.BLUE);
+			g.drawString("PLAYER1 : "+ motor.jugador1.getVida(), 20,20);
+		 }
+		 
 		if(motor.isDobleJugador()) //si hay 2 jugadores
 		{
-			if(motor.jugador2.getVida() > 0)motor.jugador2.dibujar(g);
+			if(motor.jugador2.getVida() > 0) {motor.jugador2.dibujar(g);
+			g.setColor(Color.WHITE);
+			 g.fillRect(10, 25, 130, 15);
+				g.setColor(Color.red);
+				g.drawString("PLAYER2 : "+ motor.jugador2.getVida(), 20,35);
+			}
 		}
 		motor.enemigosVivos.dibujar(g);
 		motor.asteroidesEnPantalla.dibujar(g);
-		if(motor.finDeJuego == 1) {
-			g.setColor(Color.YELLOW);
-			g.drawRect(anchura/5, (altura/5)*2, (anchura/5)*3,(altura/5) );
-			g.fillRect(anchura/5, (altura/5)*2, (anchura/5)*3,(altura/5) );
-		}else if(motor.finDeJuego == -1) {
-			g.setColor(Color.RED);
-			g.drawRect(anchura/5, (altura/5)*2, (anchura/5)*3,(altura/5) );
-			g.fillRect(anchura/5, (altura/5)*2, (anchura/5)*3,(altura/5) );
-		}
+		g.fillRect(getWidth()- 130, 8, 130, 15);
+		g.setColor(Color.YELLOW);
+		g.drawString("PUNTOS : "+ motor.puntuacionDeJugadores.get(), getWidth()- 150, 20);
 		// Configuracion y dibujado final
 		Toolkit.getDefaultToolkit().sync();
 		g.dispose();
