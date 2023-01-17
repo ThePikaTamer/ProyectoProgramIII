@@ -52,7 +52,7 @@ public class VentanaSeleccionPl2 extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//new MotorJuego("Asteroids", 0, jugador1, new NaveDRapido(null, CategoriaJugador.PLAYER2), us1, us2, true);
-				new seleccionNiveles(true, us1, us2, jugador1, new NaveBasica(null, CategoriaJugador.PLAYER2));
+				new seleccionNiveles(true, us1, us2, jugador1, new NaveDRapido(null, CategoriaJugador.PLAYER2));
 				
 				dispose();
 
@@ -63,7 +63,7 @@ public class VentanaSeleccionPl2 extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//new MotorJuego("Asteroids", 0, jugador1, new NaveVeloz(null, CategoriaJugador.PLAYER2), us1, us2, true);
-				new seleccionNiveles(true, us1, us2, jugador1, new NaveBasica(null, CategoriaJugador.PLAYER2));
+				new seleccionNiveles(true, us1, us2, jugador1, new NaveVeloz(null, CategoriaJugador.PLAYER2));
 				
 				dispose();
 
@@ -74,7 +74,7 @@ public class VentanaSeleccionPl2 extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//new MotorJuego("Asteroids", 0, jugador1, new NaveTanque(null, CategoriaJugador.PLAYER2), us1, us2, true);
-				new seleccionNiveles(true, us1, us2, jugador1, new NaveBasica(null, CategoriaJugador.PLAYER2));
+				new seleccionNiveles(true, us1, us2, jugador1, new NaveTanque(null, CategoriaJugador.PLAYER2));
 				
 				dispose();
 
