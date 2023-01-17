@@ -18,7 +18,7 @@ import paquetePrincipal.clasesPrincipales.Naves.NaveVeloz;
 public class VentanaSeleccion extends JFrame {
 	public VentanaSeleccion(boolean pl2Selected, Usuario us1, Usuario us2) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1800, 1000);
+		setSize(1333, 750);
 		setTitle("Seleccion nave");
 		setLocationRelativeTo(null);
 

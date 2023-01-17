@@ -22,7 +22,7 @@ public class VentanaUsuario extends JFrame
 {
 	public VentanaUsuario() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1800, 1000);
+		setSize(1333, 750);
 		setTitle("Seleccion nave");
 		setLocationRelativeTo(null);
 		JButton boton1 = new JButton("1 Jugador");
@@ -109,7 +109,7 @@ public class VentanaUsuario extends JFrame
 		
 		////////////////////////////////
 		
-//AÑADIRLOS AL PANEL CENTRAL
+//Aï¿½ADIRLOS AL PANEL CENTRAL
 		panelCentral.add(panelJugador1);
 		panelCentral.add(panelJugador2);
 		this.getContentPane().add(panelCentral, BorderLayout.CENTER);

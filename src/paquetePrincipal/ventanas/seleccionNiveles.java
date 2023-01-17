@@ -19,7 +19,7 @@ import paquetePrincipal.clasesPrincipales.Naves.NaveVeloz;
 public class seleccionNiveles extends JFrame {
 	public seleccionNiveles(boolean pl2Selected, Usuario us1, Usuario us2, NaveBase nPl1, NaveBase nPl2) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1800, 1000);
+		setSize(1333, 750);
 		setTitle("Seleccion nivel");
 		setLocationRelativeTo(null);
 		JButton boton0 = new JButton("Nivel 0");

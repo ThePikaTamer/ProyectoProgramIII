@@ -22,7 +22,7 @@ public class ventanaUsuario2 extends JFrame
 	public ventanaUsuario2()
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1800, 1000);
+		setSize(1333, 750);
 		setTitle("Seleccion nave");
 		setLocationRelativeTo(null);
 		JButton boton1 = new JButton("Seleccionar naves -->");
@@ -96,7 +96,7 @@ public class ventanaUsuario2 extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(!mote1.getText().isEmpty()&&!correo1.getText().isEmpty()&&!fecha1.getText().isEmpty()&&!mote2.getText().isEmpty()&&!correo2.getText().isEmpty()&&!fecha2.getText().isEmpty())
-				{//todavía no he implementado el id del ususario, está así para comprobar que funciona
+				{//todavï¿½a no he implementado el id del ususario, estï¿½ asï¿½ para comprobar que funciona
 					Usuario us1 = new Usuario(1111, mote1.getText(), correo1.getText(), LocalDate.now());//, fecha1.getText());
 					Usuario us2 = new Usuario(2222, mote2.getText(), correo2.getText(), LocalDate.now());//, fecha2.getText());
 					new VentanaSeleccion(true, us1, us2);

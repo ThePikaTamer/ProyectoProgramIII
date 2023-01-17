@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 public class VentanaJuego extends JFrame {
 	public VentanaJuego() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1800, 1000);
+		setSize(1333, 750);
 		setTitle("Asteroids");
 		setLocationRelativeTo(null);
 

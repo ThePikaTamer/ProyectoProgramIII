@@ -23,7 +23,7 @@ public class ventanaUsuario1 extends JFrame
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setSize(1800, 1000);
-		setSize(1800, 500);
+		setSize(1333, 750);
 		setTitle("Seleccion nave");
 		setLocationRelativeTo(null);
 		JButton boton1 = new JButton("Seleccionar nave -->");

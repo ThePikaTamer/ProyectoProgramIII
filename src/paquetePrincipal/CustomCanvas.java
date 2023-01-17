@@ -61,24 +61,34 @@ public class CustomCanvas extends Canvas {
 		
 		
 		 if(motor.jugador1.getVida() > 0) { motor.jugador1.dibujar(g);
-		 g.setColor(Color.WHITE);
-		 g.fillRect(10, 10, 130, 15);
-		 g.setColor(Color.BLUE);
-			g.drawString("PLAYER1 : "+ motor.jugador1.getVida(), 20,20);
+		
+		
 		 }
 		 
 		if(motor.isDobleJugador()) //si hay 2 jugadores
 		{
 			if(motor.jugador2.getVida() > 0) {motor.jugador2.dibujar(g);
 			g.setColor(Color.WHITE);
-			 g.fillRect(10, 25, 130, 15);
+			 g.fillRect(10, 22, 130, 15);
 				g.setColor(Color.red);
 				g.drawString("PLAYER2 : "+ motor.jugador2.getVida(), 20,35);
 			}
 		}
 		motor.enemigosVivos.dibujar(g);
 		motor.asteroidesEnPantalla.dibujar(g);
-		g.fillRect(getWidth()- 130, 8, 130, 15);
+		 g.setColor(Color.WHITE);
+		 g.fillRect(10, 8, 130, 15);
+		 g.setColor(Color.BLUE);
+			g.drawString("PLAYER1 : "+ motor.jugador1.getVida(), 20,20);
+			if(motor.isDobleJugador()) {
+				 g.setColor(Color.WHITE);
+			 g.fillRect(10, 22, 130, 15);
+				g.setColor(Color.red);
+				g.drawString("PLAYER2 : "+ motor.jugador2.getVida(), 20,35);
+			}
+			
+			
+			
 		g.setColor(Color.YELLOW);
 		g.drawString("PUNTOS : "+ motor.puntuacionDeJugadores.get(), getWidth()- 150, 20);
 		// Configuracion y dibujado final

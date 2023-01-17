@@ -86,7 +86,15 @@ public class GrupoAsteroide {
 		this.sumarPuntosDestruidos(destruidos, motor);
 		this.arrayAsteroide.removeAll(destruidos);
 		this.dibujable.removeAll(destruidos);
-		
+		if(arrayAsteroide.size() == 0
+				&& motor.enemigosVivos.arrayEnemigos.size() == 0) {
+			if(motor.jugadoresEnPartida.size() > 0) {
+				motor.finDeJuego = 1;
+				motor.gestorBD.actualizarPuntuaciones();
+			}else {
+				motor.finDeJuego = -1;
+			}
+		}
 	}
 	public void sumarPuntosDestruidos(List<Asteroide> destruidos, MotorJuego motor) {
 		for(Asteroide a : destruidos) {

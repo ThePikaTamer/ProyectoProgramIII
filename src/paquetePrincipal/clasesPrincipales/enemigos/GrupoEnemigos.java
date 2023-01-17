@@ -68,7 +68,7 @@ public class GrupoEnemigos {
 		sumarPuntosDeMuertos(muertos, motor);
 		this.arrayEnemigos.removeAll(muertos);
 		this.dibujable.removeAll(muertos);
-		if(arrayEnemigos.size() == 0) {
+		if(arrayEnemigos.size() == 0 && motor.asteroidesEnPantalla.arrayAsteroide.size() == 0) {
 			if(motor.jugadoresEnPartida.size() > 0) {
 				motor.finDeJuego = 1;
 				motor.gestorBD.actualizarPuntuaciones();

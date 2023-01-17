@@ -35,6 +35,7 @@ public class Assets {
 	public static BufferedImage asteroideBasico;
 	public static BufferedImage asteroideBasico1;
 	public static BufferedImage asteroideBasico2;
+	public static BufferedImage asteroideDorado;
 	//
 	
 	//FONDO
@@ -72,6 +73,7 @@ public class Assets {
 		asteroideBasico = Loader.ImagenLoader("/asteroides/Asteroid_1.png");
 		asteroideBasico1 = Loader.ImagenLoader("/asteroides/Asteroid_2.png");
 		asteroideBasico2 = Loader.ImagenLoader("/asteroides/Asteroid_3.png");
+		asteroideDorado = Loader.ImagenLoader("/asteroides/Asteroid_golden.png");
 		
 		
 		

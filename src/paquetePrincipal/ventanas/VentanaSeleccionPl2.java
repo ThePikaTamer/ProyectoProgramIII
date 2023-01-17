@@ -20,7 +20,7 @@ public class VentanaSeleccionPl2 extends JFrame
 {
 	public VentanaSeleccionPl2(NaveBase jugador1, Usuario us1, Usuario us2) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1800, 1000);
+		setSize(1333, 750);
 		setTitle("Seleccion nave");
 		setLocationRelativeTo(null);
 

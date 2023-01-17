@@ -7,7 +7,7 @@ import graficos.Assets;
 import paquetePrincipal.Puntuacion;
 
 public class AsteroideDorado extends Asteroide {
-	protected static BufferedImage IMG = Assets.asteroideBasico2;
+	protected static BufferedImage IMG = Assets.asteroideDorado;
 	private final static double RADIO_EN = 30;
 	private final static int VIDA =  5;
 	private final static double DANYO_CHOQUE = 1;

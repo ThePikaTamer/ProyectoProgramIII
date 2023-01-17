@@ -45,7 +45,7 @@ public class MotorJuego extends JFrame implements Runnable {
 	private final String titulo;
 	private static int anchuraV = 1333;
 	private static int alturaV = 750;
-
+	
 	public static CustomCanvas cc;
 	private static int UPS_TARGET = 60;
 	private static int FPS_TARGET = 60;
@@ -213,6 +213,7 @@ public class MotorJuego extends JFrame implements Runnable {
 			contadorEnem++;
 		}
 		if (contadorAster >= frecAsteroides * UPS_TARGET) {
+			
 			this.asteroidesEnPantalla.inicializarSig(this);
 			contadorAster = 0;
 		} else {

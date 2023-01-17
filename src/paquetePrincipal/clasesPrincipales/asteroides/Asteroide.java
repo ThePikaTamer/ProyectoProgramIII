@@ -189,7 +189,7 @@ public abstract class Asteroide extends paquetePrincipal.Objeto {
 				this.setPosX(0);
 				}
 			if(posY > MotorJuego.getAlturaV() ) {
-				this.setY(0);;
+				this.setPosY(0);;
 				}
 			
 			if(posX < 0 ) {
