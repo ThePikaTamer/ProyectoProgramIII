@@ -10,8 +10,8 @@ public class NaveVeloz extends NaveBase {
 	
 	private final static double RADIO_NAVE = 25;
 	private final static int VIDA = 2;
-	private final static double VEL_DISP = 35;
-	private final static double VEL_MAX = 6;
+	private final static double VEL_DISP = 30;
+	private final static double VEL_MAX = 5;
 	private final static double VEL_ROT = 0.1;
 	protected static BufferedImage IMG = Assets.naveVeloz;
 	protected static BufferedImage IMG2 = Assets.naveVeloz_P1;

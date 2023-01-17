@@ -13,7 +13,7 @@ import paquetePrincipal.Objeto;
 
 public class Disparo extends Objeto//extends MotorJuego
 {
-
+//
 	/*public Disparo(String titulo) {
 		super(titulo);
 		// TODO Auto-generated constructor stub
@@ -47,7 +47,7 @@ public class Disparo extends Objeto//extends MotorJuego
 	protected Vector2D orientacion;
 	protected static BufferedImage IMG = Assets.disparo;
 	public NaveBase nave;
-	private final static double RADIO_EN = 20;
+	private final static double RADIO_EN = 5;
 	protected AffineTransform at;
 	protected double anguloOrientacion;
 	public boolean activo=false;
@@ -56,15 +56,28 @@ public class Disparo extends Objeto//extends MotorJuego
 	public Disparo(double vel, double radio, NaveBase nave, MotorJuego motor)
 	{
 		super();
-		this.posX = nave.getPosX();
-		this.posY = nave.getPosY();
+		if(nave instanceof NaveDRapido) {	
+		this.posX = nave.getPosX()+7+nave.getRadio()/2;
+		this.posY = nave.getPosY()+7+nave.getRadio()/2;
+		}else if(nave instanceof NaveVeloz) {	
+			this.posX = nave.getPosX()+2+nave.getRadio()/2;
+			this.posY = nave.getPosY()+2+nave.getRadio()/2;
+			}
+		else if(nave instanceof NaveBasica) {	
+			this.posX = nave.getPosX()+5+nave.getRadio()/2;
+			this.posY = nave.getPosY()+5+nave.getRadio()/2;
+			}else {	
+				this.posX = nave.getPosX()+2+nave.getRadio()/2;
+				this.posY = nave.getPosY()+2+nave.getRadio()/2;
+				}
+	
 		this.vel = vel;
 		this.radio=radio;
 		this.orientacion = nave.orientacion;
 		this.nave = nave;
 		MotorJuego.projectiles.add(this);
 		anguloOrientacion=nave.anguloOrientacion;
-		at= AffineTransform.getTranslateInstance(this.posX+5, this.posY);
+		at= AffineTransform.getTranslateInstance(this.posX, this.posY);
 		activo=true;
 	}
 	
@@ -79,8 +92,9 @@ public class Disparo extends Objeto//extends MotorJuego
 	public void dibujar(Graphics2D g) 
 	{
 
-		at= AffineTransform.getTranslateInstance(this.posX+5, this.posY);
+		at= AffineTransform.getTranslateInstance(this.posX, this.posY);
 		at.rotate(anguloOrientacion, this.IMG.getWidth()/2,this.IMG.getHeight()/2);
+		
 		g.drawImage(this.IMG,at, null);
 
 	}

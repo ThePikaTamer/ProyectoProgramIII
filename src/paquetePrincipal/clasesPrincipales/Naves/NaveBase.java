@@ -36,7 +36,7 @@ abstract public class NaveBase extends Objeto {
 	
 	protected  final double ACCEL = 0.2;
 	
-	//
+	////
 
 	private long time, lastTime;
 	protected int fireRate=300;
@@ -129,7 +129,7 @@ abstract public class NaveBase extends Objeto {
 
 	}
 
-	/*
+	
 	// para disparar
 	void disparar()// (bullet bala)
 	{
@@ -150,7 +150,7 @@ abstract public class NaveBase extends Objeto {
 				System.out.println("2");
 			}
 		}
-	}*/
+	}
 
 	//
 	public void movimiento() {
@@ -207,6 +207,8 @@ abstract public class NaveBase extends Objeto {
 				System.out.println("shoot2");
 			}	*/
 		}
+		
+		
 		
 		
 		vectorVel = vectorVel.sumar(vectorAcc);
