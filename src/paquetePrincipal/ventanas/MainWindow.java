@@ -9,7 +9,6 @@ import java.awt.event.KeyListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import baseDeDatos.GestorBaseDatos;
@@ -18,19 +17,7 @@ import paquetePrincipal.ventanas.puntuacionesJTable.pruebasJtable;
 
 public class MainWindow extends JFrame {
 	protected MainWindow ventana = this;
-	public MainWindow(MotorJuego motor) {
-		if(motor != null) {
-			motor.dispose();
-			 JOptionPane option = new JOptionPane();
-			 option.setVisible(true);
-			 if(motor.finDeJuego == 1) {
-				 option.showMessageDialog(option, "VICTORIA - PARTIDA AÑADIDA A BASE DE DATOS"); 
-			 }else if(motor.finDeJuego == -1) {
-				 option.showMessageDialog(option, "DERROTA - PRUEBA OTRA VEZ");
-			 }
-			 
-			
-		}
+	public MainWindow(MotorJuego motorJuego) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1800, 1000);
 		setTitle("Asteroids");
@@ -57,6 +44,7 @@ public class MainWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new VentanaJuego();
+				//new VentanaUsuario();
 				dispose();
 
 			}
@@ -65,7 +53,7 @@ public class MainWindow extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new VentanaOpciones(motor);
+				new VentanaOpciones(null);
 				dispose();
 
 			}

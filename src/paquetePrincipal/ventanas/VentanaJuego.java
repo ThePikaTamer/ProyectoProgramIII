@@ -28,7 +28,8 @@ public class VentanaJuego extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new VentanaSeleccion(false);
+				//new VentanaSeleccion(false);
+				new ventanaUsuario1();
 				dispose();
 
 			}
@@ -37,7 +38,8 @@ public class VentanaJuego extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new VentanaSeleccion(true);
+				//new VentanaSeleccion(true);
+				new ventanaUsuario2();
 				dispose();
 
 			}
