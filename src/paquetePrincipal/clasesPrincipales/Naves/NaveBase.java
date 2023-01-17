@@ -129,7 +129,7 @@ abstract public class NaveBase extends Objeto {
 
 	}
 
-	
+	/*
 	// para disparar
 	void disparar()// (bullet bala)
 	{
@@ -150,7 +150,7 @@ abstract public class NaveBase extends Objeto {
 				System.out.println("2");
 			}
 		}
-	}
+	}*/
 
 	//
 	public void movimiento() {
@@ -207,8 +207,6 @@ abstract public class NaveBase extends Objeto {
 				System.out.println("shoot2");
 			}	*/
 		}
-		
-		
 		
 		
 		vectorVel = vectorVel.sumar(vectorAcc);

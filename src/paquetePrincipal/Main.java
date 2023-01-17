@@ -24,9 +24,9 @@ public class Main {
 		Usuario us2 = new Usuario(6789, "pruebaUsuario2", "prueba2Gmail.com", LocalDate.now());
 //		
 
-		new MotorJuego("Game", 3, new NaveVeloz(null, CategoriaJugador.PLAYER1), new NaveTanque(args, CategoriaJugador.PLAYER2), us1, us2, true);
+		//new MotorJuego("Game", 3, new NaveVeloz(null, CategoriaJugador.PLAYER1), new NaveTanque(args, CategoriaJugador.PLAYER2), us1, us2, true);
 
-		//new MainWindow(null);
+		new MainWindow(null);
 
 	}
 }

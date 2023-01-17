@@ -197,14 +197,14 @@ public class MotorJuego extends JFrame implements Runnable {
 					{
 						System.out.println("shoot1");
 						//jugador.disparar();
-						new Disparo(5, 5, jugador1, this);
+						new Disparo(8, 5, jugador1, this);
 						cadenciaDisparo1=0;
 					}
 					if(cadenciaDisparo2*UPS_TARGET>jugador.getVelocidadDisparo()*UPS_TARGET&&teclado.punto&&jugador.getJugador()==CategoriaJugador.PLAYER2)
 					{
 						System.out.println("shoot2");
 						//jugador.disparar();
-						new Disparo(5, 5, jugador2, this);
+						new Disparo(8, 5, jugador2, this);
 						cadenciaDisparo2=0;
 					}/**/
 				} else {
