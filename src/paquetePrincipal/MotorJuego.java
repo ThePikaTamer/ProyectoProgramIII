@@ -38,7 +38,7 @@ import paquetePrincipal.clasesPrincipales.enemigos.EnemigoVeloz;
 import paquetePrincipal.clasesPrincipales.enemigos.GrupoEnemigos;
 import paquetePrincipal.ventanas.MainWindow;
 import paquetePrincipal.ventanas.VentanaMenu;
-import paquetePrincipal.ventanas.VentanaOpciones;
+
 
 public class MotorJuego extends JFrame implements Runnable {
 	private boolean running = false;

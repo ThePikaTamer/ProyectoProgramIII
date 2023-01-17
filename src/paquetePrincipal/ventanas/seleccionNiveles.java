@@ -22,17 +22,27 @@ public class seleccionNiveles extends JFrame {
 		setSize(1800, 1000);
 		setTitle("Seleccion nivel");
 		setLocationRelativeTo(null);
-
+		JButton boton0 = new JButton("Nivel 0");
 		JButton boton1 = new JButton("Nivel 1");
 		JButton boton2 = new JButton("Nivel 2");
 		JButton boton3 = new JButton("Nivel 3");
-
+		add(boton0);
 		add(boton1);
 		add(boton2);
 		add(boton3);
 
 		setLayout(new GridLayout(1, 3));
 
+		boton0.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new MotorJuego("Asteroids", 3, nPl1, nPl2, us1, us2, pl2Selected);
+					dispose();
+
+			}
+		});
+		
 		boton1.addActionListener(new ActionListener() {
 
 			@Override

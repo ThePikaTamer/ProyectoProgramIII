@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import paquetePrincipal.ventanas.VentanaOpciones;
+
 import paquetePrincipal.ventanas.puntuacionesJTable.pruebasJtable;
 
 public class Main {
