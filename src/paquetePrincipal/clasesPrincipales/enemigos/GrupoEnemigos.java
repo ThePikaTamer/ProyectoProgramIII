@@ -58,7 +58,7 @@ public class GrupoEnemigos {
 					nave.reducirVida(i.danyo);
 					i.vivo = false;
 					muertos.add(i);
-					System.err.println("dfad");
+					
 					}
 				
 				}
@@ -85,7 +85,6 @@ public class GrupoEnemigos {
 	
 	
 	public void inicializarSig(MotorJuego motor){
-		System.out.println(noInit.size());
 		if(this.noInit.size() != 0) {
 			int numA = (int)(Math.random()*this.noInit.size());
 			 this.noInit.get(numA).inicializarEnemigo(motor.getAnchuraV(), motor.getAlturaV(), motor.jugadoresEnPartida);

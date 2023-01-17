@@ -16,8 +16,7 @@ public class AsteroideDorado extends Asteroide {
 	private final static Puntuacion PUNT = new Puntuacion(2000);
 
 	public AsteroideDorado() {
-	// TODO Auto-generated constructor stub
-		super( VIDA, DANYO_CHOQUE, IMG, new Point(0, 0),RADIO_EN );
+		super( VIDA, DANYO_CHOQUE, IMG, new Point(0, 0),RADIO_EN, PUNT);
 			
 		
 
