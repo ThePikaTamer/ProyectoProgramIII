@@ -128,11 +128,13 @@ public class GrupoAsteroide {
 		
 		this.sumarPuntosDestruidos(destruidos, motor);
 		dibujable.addAll(divididos);
+		arrayAsteroide.addAll(divididos);
 		MotorJuego.projectiles.removeAll(dEliminados);
 		this.arrayAsteroide.removeAll(destruidos);
 		this.dibujable.removeAll(destruidos);
 		if(arrayAsteroide.size() == 0
 				&& motor.enemigosVivos.arrayEnemigos.size() == 0) {
+			System.out.println(motor.enemigosVivos.arrayEnemigos.size());
 			if(motor.jugadoresEnPartida.size() > 0) {
 				motor.finDeJuego = 1;
 				motor.gestorBD.actualizarPuntuaciones();
