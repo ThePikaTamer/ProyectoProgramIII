@@ -82,9 +82,9 @@ public class GrupoAsteroide {
 						divididos.add(new AsteroideMediano(i));
 						divididos.add(new AsteroideMediano(i));
 					}else if(i instanceof AsteroideMediano) {
-						divididos.add(new AsteroidePequeño(i));
-						divididos.add(new AsteroidePequeño(i));
-						divididos.add(new AsteroidePequeño(i));
+						divididos.add(new AsteroidePequeno(i));
+						divididos.add(new AsteroidePequeno(i));
+						divididos.add(new AsteroidePequeno(i));
 						
 					}
 					
@@ -112,9 +112,9 @@ public class GrupoAsteroide {
 								divididos.add(new AsteroideMediano(i));
 								divididos.add(new AsteroideMediano(i));
 							}else if(i instanceof AsteroideMediano) {
-								divididos.add(new AsteroidePequeño(i));
-								divididos.add(new AsteroidePequeño(i));
-								divididos.add(new AsteroidePequeño(i));
+								divididos.add(new AsteroidePequeno(i));
+								divididos.add(new AsteroidePequeno(i));
+								divididos.add(new AsteroidePequeno(i));
 								
 							}
 							

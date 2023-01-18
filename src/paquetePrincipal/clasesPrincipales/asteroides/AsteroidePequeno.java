@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import graficos.Assets;
 import paquetePrincipal.Puntuacion;
 
-public class AsteroidePequeño extends Asteroide {
+public class AsteroidePequeno extends Asteroide {
 	public Asteroide asteroideAnterior;
 
 	protected static BufferedImage IMG = Assets.asteroideBasico2;
@@ -17,7 +17,7 @@ public class AsteroidePequeño extends Asteroide {
 	private final static double VEL_Y = 2;
 	private final static Puntuacion PUNT = new Puntuacion(75);
 	
-	public AsteroidePequeño(Asteroide asteroide) {
+	public AsteroidePequeno(Asteroide asteroide) {
 		super(VIDA, DANYO_CHOQUE, IMG, asteroide.orientacion, RADIO_EN, PUNT);
 		this.asteroideAnterior = asteroideAnterior;
 		this.posX = asteroide.getPosX();
