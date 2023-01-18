@@ -45,7 +45,7 @@ public abstract class PowerUp extends paquetePrincipal.Objeto {
 	//METODOS//
 	
 	
-	public void inicializarAsteroide(int anchuraPantalla, int alturaPantalla) {
+	public void inicializarPowerUp(int anchuraPantalla, int alturaPantalla) {
 		this.activo = true;
 		this.init = true;
 		this.posX = Math.random() * anchuraPantalla;
@@ -227,7 +227,7 @@ public abstract class PowerUp extends paquetePrincipal.Objeto {
 		public void inicializar(MotorJuego motor) {
 
 			for(PowerUp p : this.arrayPowerUp) {
-				p.inicializarAsteroide(MotorJuego.getAnchuraV(), MotorJuego.getAlturaV());
+				p.inicializarPowerUp(MotorJuego.getAnchuraV(), MotorJuego.getAlturaV());
 			}
 			
 		}
