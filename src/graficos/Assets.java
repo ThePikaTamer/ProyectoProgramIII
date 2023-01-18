@@ -42,10 +42,10 @@ public class Assets {
 	
 	
 	//POWER UP
-	public static BufferedImage PowerUpEscudo;
+	
 	public static BufferedImage PowerUpHabilidad;
 	public static BufferedImage PowerUpHp;
-	public static BufferedImage PowerUpVida;
+
 	
 
 	//
@@ -88,11 +88,9 @@ public class Assets {
 		asteroideDorado = Loader.ImagenLoader("/asteroides/Asteroid_golden.png");
 		
 		
-		PowerUpEscudo = Loader.ImagenLoader("/asteroides/Asteroid_golden.png");
-		PowerUpEscudo = Loader.ImagenLoader("/asteroides/Asteroid_golden.png");
-		PowerUpEscudo = Loader.ImagenLoader("/asteroides/Asteroid_golden.png");
-		PowerUpEscudo = Loader.ImagenLoader("/asteroides/Asteroid_golden.png");
-		
+		PowerUpHabilidad = Loader.ImagenLoader("/asteroides/Asteroid_golden.png");
+		PowerUpHp = Loader.ImagenLoader("/asteroides/Asteroid_golden.png");
+	
 		
 		
 		

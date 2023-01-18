@@ -24,6 +24,7 @@ public class PowerUpHp extends PowerUp {
 	
 	public void Curar() {
 		
+		
 	}
 
 }

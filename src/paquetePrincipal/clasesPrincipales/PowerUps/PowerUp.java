@@ -4,13 +4,20 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 import paquetePrincipal.MotorJuego;
 import paquetePrincipal.Objeto;
+import paquetePrincipal.clasesPrincipales.Naves.Disparo;
+import paquetePrincipal.clasesPrincipales.Naves.NaveBase;
+import paquetePrincipal.clasesPrincipales.asteroides.Asteroide;
 
 public abstract class PowerUp extends paquetePrincipal.Objeto {
 
-	
+	public ArrayList<PowerUp> arrayPowerUp;
+	public List<Asteroide> noInit;
+	public List<Asteroide> dibujable;
 	protected Point2D orientacion;
 	protected final int velocidad;
 	protected int x;
@@ -28,7 +35,9 @@ public abstract class PowerUp extends paquetePrincipal.Objeto {
 		this.orientacion = orientacion;
 		this.y = y;
 		this.x = x;
-		
+		arrayPowerUp = new ArrayList<PowerUp>();
+		noInit = new ArrayList<>();
+		dibujable = new ArrayList<>();
 		
 		
 	}
@@ -184,7 +193,6 @@ public abstract class PowerUp extends paquetePrincipal.Objeto {
 
 		
 		
-		
 		public void update() {
 			 mover();
 		}
@@ -195,6 +203,49 @@ public abstract class PowerUp extends paquetePrincipal.Objeto {
 			g.drawImage(this.IMG, (int) posX, (int) posY, null);
 
 		}
-}
+		
+//		public void anyadir(PowerUp powerUp) {
+//			this.arrayPowerUp.add(powerUp);
+//			this.noInit.add(powerUp);	
+//
+//		}
+		
+		public void eliminarPorObjeto(PowerUp powerUp) {
+			this.arrayPowerUp.remove(powerUp);
 
+		}
+//		public void colisionando(NaveBase nave) {
+//
+//			for (PowerUp powerUp : this.arrayPowerUp) {
+//				powerUp.colisionando(nave);
+//				if (powerUp.colisionando(nave)) {
+//					this.eliminarPorObjeto(powerUp);
+//				}
+//			}
+//			}
+		
+		public void inicializar(MotorJuego motor) {
+
+			for(PowerUp p : this.arrayPowerUp) {
+				p.inicializarAsteroide(MotorJuego.getAnchuraV(), MotorJuego.getAlturaV());
+			}
+			
+		}
+		
+		public void inicializarSig(MotorJuego motor){
+			if(this.noInit.size() != 0) {
+				int numA = (int)(Math.random()*this.noInit.size());
+				 this.noInit.get(numA).inicializarAsteroide(motor.getAnchuraV(), motor.getAlturaV());
+				 this.dibujable.add(this.noInit.get(numA));
+				this.noInit.remove(numA);
+//				System.err.println(noInit.size());
+			}
+			
+		}
+		
+
+public int size() {
+	return this.arrayPowerUp.size();
+}
+}
 
