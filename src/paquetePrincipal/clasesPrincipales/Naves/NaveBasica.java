@@ -13,7 +13,7 @@ public class NaveBasica extends NaveBase {
 	private final static int VIDA = 3;
 	private final static double VEL_DISP = 35;
 	private final static double VEL_MAX = 3;
-	private final static double VEL_ROT = 0.1;
+	private final static double VEL_ROT = 0.08;
 	protected static BufferedImage IMG = Assets.naveBasica;
 	protected static BufferedImage IMG2 = Assets.naveBasica_P1;
 	protected static BufferedImage IMG3 = Assets.naveBasica_P2;

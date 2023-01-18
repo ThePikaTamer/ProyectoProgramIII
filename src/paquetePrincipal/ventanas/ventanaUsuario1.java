@@ -76,6 +76,7 @@ public class ventanaUsuario1 extends JFrame
 			public void actionPerformed(ActionEvent e) {
 				if(!mote1.getText().isEmpty()&&!correo1.getText().isEmpty())
 				{
+					
 					Usuario us1 = new Usuario(1166, mote1.getText(), correo1.getText(), fechaN.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());//, fecha1.getText());
 					new VentanaSeleccion(false, us1, null);
 					dispose();

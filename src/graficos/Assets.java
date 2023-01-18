@@ -88,8 +88,8 @@ public class Assets {
 		asteroideDorado = Loader.ImagenLoader("/asteroides/Asteroid_golden.png");
 		
 		
-		PowerUpHabilidad = Loader.ImagenLoader("/powerUp/PowerUp_1.png");
-		PowerUpHp = Loader.ImagenLoader("/powerUp/PowerUp_2.png");
+		PowerUpHabilidad = Loader.ImagenLoader("/powerUps/PowerUp_1.png");
+		PowerUpHp = Loader.ImagenLoader("/powerUps/PowerUp_2.png");
 	
 		
 		
