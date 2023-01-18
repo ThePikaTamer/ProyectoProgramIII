@@ -135,10 +135,10 @@ public class GestorBaseDatos {
 				while (rs.next()) {
 					TipoJuego tj = new TipoJuego(rs.getInt("ID_TJ"), rs.getString("NOM_TJ"), rs.getInt("NUM_JUG"));
 					resultadoTipoJuegos.add(tj);
-					System.out.println(tj);// PRUEBAS
+//					System.out.println(tj);// PRUEBAS
 
 				}
-				System.out.println("-- FIN TIPOJUEGOS"); // PRUEBAS
+//				System.out.println("-- FIN TIPOJUEGOS"); // PRUEBAS
 				this.ModosDeJuego = resultadoTipoJuegos;
 				rs.close();
 
@@ -153,14 +153,14 @@ public class GestorBaseDatos {
 						Usuario u = new Usuario(rs2.getInt("ID_US"), rs2.getString("NICKNAME"), rs2.getString("CORREO"),
 								fechaSQL.toLocalDate());
 						resultadoUsuarios.add(u);
-						System.out.println(u);// PRUEBAS
+//						System.out.println(u);// PRUEBAS
 
 					} catch (ParseException e) {
 						System.err.println("Truncado fallido");
 					}
 
 				}
-				System.out.println("-- FIN USUARIOS"); // PRUEBAS
+//				System.out.println("-- FIN USUARIOS"); // PRUEBAS
 				this.usuariosDeJuego = resultadoUsuarios;
 				rs2.close();
 
@@ -189,14 +189,14 @@ public class GestorBaseDatos {
 						Partida partida = new Partida(rs3.getInt("ID_PAR"), fechaPartidaSQL.toLocalDate(), horaP,
 								rs3.getInt("PUNTOS"), jugador1, jugador2);
 						resultadoPartidas.add(partida);
-						System.out.println(partida);// PRUEBAS
+//						System.out.println(partida);// PRUEBAS
 					} catch (ParseException e) {
 						// TODO: handle exception
 					}
 
 				}
 
-				System.out.println("-- FIN PARTIDAS"); // PRUEBAS
+//				System.out.println("-- FIN PARTIDAS"); // PRUEBAS
 				Logger_Final.Logger_Final2();
 				this.partidasDeJuego = resultadoPartidas;
 				rs3.close();

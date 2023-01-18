@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -22,6 +23,7 @@ import baseDeDatos.Usuario;
 
 public class ventanaUsuario1 extends JFrame
 {
+	protected List<Integer> idUsuarios;
 	public ventanaUsuario1()
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,6 +69,7 @@ public class ventanaUsuario1 extends JFrame
 		
 		///////
 		GestorBaseDatos gBD=new GestorBaseDatos();
+		gBD.descargarDatosDeBaseDeDatosCompleta("BDPuntuaciones.db");
 		
 		
 		////
@@ -76,8 +79,14 @@ public class ventanaUsuario1 extends JFrame
 			public void actionPerformed(ActionEvent e) {
 				if(!mote1.getText().isEmpty()&&!correo1.getText().isEmpty())
 				{
-					
-					Usuario us1 = new Usuario(1166, mote1.getText(), correo1.getText(), fechaN.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());//, fecha1.getText());
+					int claveUsuario;
+					idUsuarios = gBD.ListaClavesUsuarios();
+					if(gBD.ListaClavesUsuarios().size() >=1) {
+						 claveUsuario = idUsuarios.get(idUsuarios.size()-1)+1; 
+					}else {
+						 claveUsuario = 1;
+					}
+					Usuario us1 = new Usuario(claveUsuario, mote1.getText(), correo1.getText(), fechaN.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());//, fecha1.getText());
 					new VentanaSeleccion(false, us1, null);
 					dispose();
 				}
@@ -87,7 +96,7 @@ public class ventanaUsuario1 extends JFrame
 			}
 		});
 		
-		//////////////
+		//////////////  
 		panelCentral.add(panelJugador1);
 		this.getContentPane().add(panelCentral, BorderLayout.CENTER);
 

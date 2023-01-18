@@ -500,10 +500,15 @@ public class MotorJuego extends JFrame implements Runnable {
 		} else {
 			ultimoCodPartida = 1;
 		}
+			if(!isDobleJugador()) {
+		usuario2 = null; 
+		}
+			
 		Partida partida = new Partida(ultimoCodPartida, LocalDate.now(), LocalTime.now(),
 				this.puntuacionDeJugadores.get(), usuario1, usuario2);
 		this.gestorBD.addUsuarioActualizar(usuario1);
-		this.gestorBD.addUsuarioActualizar(usuario2);
+	
+		this.gestorBD.addUsuarioActualizar(usuario2);	
 		this.gestorBD.addPartidaActualizar(partida);
 		this.gestorBD.actualizarPuntuaciones();
 

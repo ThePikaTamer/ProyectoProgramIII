@@ -38,6 +38,7 @@ public class PuntuacionesRenderer implements TableCellRenderer {
 		}
 		if(column == 4 || column == 5) {
 			if(value != null) {
+			
 			label.setText(((Usuario)value).getNickUsuario());
 			}else {
 				label.setText("----");
